@@ -13,6 +13,7 @@ Library webtest
   Modules:            Webtest
 
 Executable test_runner
+  Build$:             flag(tests)
   CompiledObject:     byte
   Path:               test
   MainIs:             test_runner.ml
