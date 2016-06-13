@@ -18,5 +18,7 @@ remove: [
 ]
 depends: [
   "oasis" {build}
+  "ocamlbuild" {build}
+  "ocamlfind" {build}
   "js_of_ocaml" {test}
 ]
