@@ -1,0 +1,24 @@
+OASISFormat:    0.4
+OCamlVersion:   >= 4.01
+Name:           webtest
+Version:        0.1.0
+Authors:        John Else
+License:        ISC
+Synopsis:       Stripped down unit test framework compatible with js_of_ocaml
+Plugins:        META (0.4), DevFiles (0.4)
+BuildTools:     ocamlbuild
+
+Library webtest
+  Path:               lib
+  Modules:            Webtest
+
+Executable test_runner
+  CompiledObject:     byte
+  Path:               test
+  MainIs:             test_runner.ml
+  BuildDepends:       js_of_ocaml, js_of_ocaml.syntax, webtest
+  Install:            false
+
+Test test
+  Command:            xvfb-run test/test_driver.py
+  Run$:               flag(tests)
