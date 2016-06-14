@@ -6,6 +6,7 @@ dev-repo: "git://github.com/johnelse/ocaml-webtest"
 maintainer: "john.else@gmail.com"
 build: [
   [make]
+  [make "doc"]
 ]
 build-test: [
   [make "test"]
