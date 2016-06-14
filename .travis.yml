@@ -6,11 +6,13 @@ before_install:
 install:
   - sudo -H pip install selenium
   - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-opam.sh
+  - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-docgen.sh
 script:
   - bash -ex .travis-opam.sh
+  - if [ -n "$DOCS" -a $TRAVIS_BRANCH == "master" ]; then bash -ex .travis-docgen.sh; fi
 env:
   global:
     - PACKAGE=webtest
   matrix:
     - OCAML_VERSION=4.01
-    - OCAML_VERSION=4.02
+    - OCAML_VERSION=4.02 DOCS=true
