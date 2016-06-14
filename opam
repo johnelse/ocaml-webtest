@@ -1,0 +1,25 @@
+opam-version: "1.2"
+authors: "John Else"
+homepage: "https://github.com/johnelse/ocaml-webtest"
+bug-reports: "https://github.com/johnelse/ocaml-webtest/issues"
+dev-repo: "git://github.com/johnelse/ocaml-webtest"
+maintainer: "john.else@gmail.com"
+build: [
+  [make]
+  [make "doc"]
+]
+build-test: [
+  [make "test"]
+]
+install: [
+  [make "PREFIX=%{prefix}%" "install"]
+]
+remove: [
+  [make "PREFIX=%{prefix}%" "uninstall"]
+]
+depends: [
+  "oasis" {build}
+  "ocamlbuild" {build}
+  "ocamlfind" {build}
+  "js_of_ocaml"
+]

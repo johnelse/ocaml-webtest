@@ -1,0 +1,8 @@
+_build
+setup.data
+setup.log
+webtest_api.docdir
+test/test_runner.js
+
+*.byte
+*.swp
