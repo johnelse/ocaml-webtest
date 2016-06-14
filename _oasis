@@ -23,3 +23,14 @@ Executable test_runner
 Test test
   Command:            xvfb-run test/test_driver.py
   Run$:               flag(tests)
+
+AlphaFeatures: ocamlbuild_more_args
+Document webtest_api
+  Type:                 ocamlbuild (0.4)
+  BuildTools:           ocamldoc
+  Title:                Stripped down unit test framework
+  XOcamlBuildPath:      .
+  XOcamlBuildExtraArgs:
+    "-docflags '-colorize-code -short-functors -charset utf-8'"
+  XOcamlBuildLibraries: webtest
+  Install:              false
