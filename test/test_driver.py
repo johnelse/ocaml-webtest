@@ -6,7 +6,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 import os
-import time
 
 driver = webdriver.Firefox()
 driver.get("file://%s" % (os.path.join(os.getcwd(), "test/test_runner.html")))
