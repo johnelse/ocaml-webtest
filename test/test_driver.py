@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 import os
+import sys
 
 driver = webdriver.Firefox()
 driver.get("file://%s" % (os.path.join(os.getcwd(), "test/test_runner.html")))
@@ -22,3 +23,6 @@ webtest = driver.execute_script("return webtest")
 print webtest["log"]
 
 driver.close()
+
+if not webtest["passed"]:
+    sys.exit(1)
