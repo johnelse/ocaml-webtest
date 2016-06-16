@@ -7,12 +7,29 @@ let start _ =
   webtest##passed <- Js._false;
   webtest##run <- Js.wrap_callback
     (fun () ->
-      let logs : string list ref = ref [] in
-      let log line = logs := line :: !logs in
-      Test_suite.run_suite log;
-      webtest##logs <-
-        Js.string (List.rev !logs |> String.concat "\n");
-      webtest##passed <- Js._true;
+      let {Webtest.log; results} = Webtest.run Test_suite.suite in
+      let total, errored, failed, succeeded =
+        List.fold_left
+          (fun (total, errors, failures, successes) result ->
+            let open Webtest in
+            match result with
+            | Error _ -> total + 1, errors + 1, failures, successes
+            | Failure _ -> total + 1, errors, failures + 1, successes
+            | Success -> total + 1, errors, failures, successes + 1)
+          (0, 0, 0, 0) results
+      in
+      let final_log =
+        String.concat "\n" [
+          log;
+          Printf.sprintf "%d tests run" total;
+          Printf.sprintf "%d errors" errored;
+          Printf.sprintf "%d failures" failed;
+          Printf.sprintf "%d succeeded" succeeded;
+        ]
+      in
+      let passed = total = succeeded in
+      webtest##log <- Js.string final_log;
+      webtest##passed <- if passed then Js._true else Js._false;
       webtest##finished <- Js._true);
 
   global##webtest <- webtest;

@@ -19,6 +19,6 @@ WebDriverWait(driver, 10).until(
     lambda driver: driver.execute_script("return webtest.finished"))
 
 webtest = driver.execute_script("return webtest")
-print webtest["logs"]
+print webtest["log"]
 
 driver.close()

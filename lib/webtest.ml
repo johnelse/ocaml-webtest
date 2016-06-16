@@ -7,6 +7,11 @@ type result =
   | Failure of string
   | Success
 
+type output = {
+  log: string;
+  results: result list;
+}
+
 let string_of_result = function
   | Error e -> Printf.sprintf "Error: %s" (Printexc.to_string e)
   | Failure msg -> Printf.sprintf "Failure: %s" msg
@@ -29,9 +34,12 @@ let assert_equal ?printer a b =
     raise (TestFailure msg)
   end
 
-let run log test =
+let run test =
+  let log_buf = Buffer.create 0 in
   let log_with_prefix prefix msg =
-    log (Printf.sprintf "%s%s" prefix msg)
+    Buffer.add_string log_buf prefix;
+    Buffer.add_string log_buf msg;
+    Buffer.add_char log_buf '\n'
   in
   let rec run' prefix results = function
     | TestCase (label, f) ->
@@ -53,7 +61,11 @@ let run log test =
       let prefix = Printf.sprintf "%s%s:" prefix label in
       List.fold_left (run' prefix) results tests
   in
-  List.rev (run' "" [] test)
+  let results = List.rev (run' "" [] test) in
+  {
+    log = Buffer.contents log_buf;
+    results;
+  }
 
 let finally f cleanup =
   let result =
