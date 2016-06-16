@@ -10,16 +10,15 @@ import os
 driver = webdriver.Firefox()
 driver.get("file://%s" % (os.path.join(os.getcwd(), "test/test_runner.html")))
 
-button = driver.find_element_by_id('run')
-button.click()
+WebDriverWait(driver, 10).until(
+    lambda driver: driver.execute_script("return (webtest != undefined)"))
+
+driver.execute_script("webtest.run()")
 
 WebDriverWait(driver, 10).until(
-    EC.presence_of_element_located((
-        By.XPATH, '//*[@id="info" and text() != ""]')))
+    lambda driver: driver.execute_script("return webtest.finished"))
 
-textarea = driver.find_element_by_id('info')
-logs = textarea.get_attribute('innerHTML')
-
-print logs
+webtest = driver.execute_script("return webtest")
+print webtest["logs"]
 
 driver.close()

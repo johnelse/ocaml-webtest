@@ -1,26 +1,22 @@
 module Html = Dom_html
 
-let with_button_disabled button f =
-  (Js.Unsafe.coerce button)##disabled <- Js._true;
-  button##innerHTML <- Js.string "Running...";
-  let result = f () in
-  button##innerHTML <- Js.string "Run";
-  (Js.Unsafe.coerce button)##disabled <- Js._false;
-  result
-
 let start _ =
-  let button = Html.getElementById "run" in
-  let info = Html.getElementById "info" in
-  let log data = Dom.appendChild info
-    (Html.document##createTextNode (Js.string (Printf.sprintf "%s\n" data)))
-  in
-  button##onclick <- Html.handler
-    (fun _ ->
-      List.iter
-        (fun node -> Dom.removeChild info node)
-        (info##childNodes |> Dom.list_of_nodeList);
-      with_button_disabled button (fun () -> Test_suite.run_suite log);
-      Js._false);
+  let open Js.Unsafe in
+  let webtest = Js.Unsafe.obj [||] in
+  webtest##finished <- Js._false;
+  webtest##passed <- Js._false;
+  webtest##run <- Js.wrap_callback
+    (fun () ->
+      let logs : string list ref = ref [] in
+      let log line = logs := line :: !logs in
+      Test_suite.run_suite log;
+      webtest##logs <-
+        Js.string (List.rev !logs |> String.concat "\n");
+      webtest##passed <- Js._true;
+      webtest##finished <- Js._true);
+
+  global##webtest <- webtest;
+
   Js._false
 
 let () =
