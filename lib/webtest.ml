@@ -34,6 +34,22 @@ let assert_equal ?printer a b =
     raise (TestFailure msg)
   end
 
+let finally f cleanup =
+  let result =
+    try f ()
+    with e ->
+      cleanup ();
+      raise e
+  in
+  cleanup ();
+  result
+
+let bracket setup test teardown () =
+  let state = setup () in
+  finally
+    (fun () -> test state)
+    (fun () -> teardown state)
+
 let run test =
   let log_buf = Buffer.create 0 in
   let log_with_prefix prefix msg =
@@ -66,19 +82,3 @@ let run test =
     log = Buffer.contents log_buf;
     results;
   }
-
-let finally f cleanup =
-  let result =
-    try f ()
-    with e ->
-      cleanup ();
-      raise e
-  in
-  cleanup ();
-  result
-
-let bracket setup test teardown () =
-  let state = setup () in
-  finally
-    (fun () -> test state)
-    (fun () -> teardown state)

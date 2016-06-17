@@ -31,10 +31,10 @@ val (>:::) : string -> test list -> test
 
 val assert_equal : ?printer:('a -> string) -> 'a -> 'a -> unit
 
-val run : test -> output
-(** [run test] runs [test], and returns the logs and the test output. *)
-
 val bracket : (unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> test_fun
 (** [bracket setup test teardown] generates a {{:#TYPEtest_fun}test_fun} which will use
     [setup] to create state needed for the test, then pass that state to [test],
     and finally will pass that state to [teardown]. *)
+
+val run : test -> output
+(** [run test] runs [test], and returns the logs and the test output. *)
