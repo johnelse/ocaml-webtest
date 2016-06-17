@@ -30,6 +30,8 @@ val (>:::) : string -> test list -> test
 (** Convenience function to create a test from a label and a list of tests. *)
 
 val assert_equal : ?printer:('a -> string) -> 'a -> 'a -> unit
+(** [assert_equal a b] returns unit if [a] is equal to [b], and otherwise
+    throws {{:#EXCEPTIONTestFailure}TestFailure}. *)
 
 val bracket : (unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> test_fun
 (** [bracket setup test teardown] generates a {{:#TYPEtest_fun}test_fun} which will use
