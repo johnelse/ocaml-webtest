@@ -136,14 +136,18 @@ Convenience function to create a test from a label and a
 Convenience function to create a test from a label and a list of tests.<br>
 </div>
 
-<pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?printer:('a -> string) -> 'a -> 'a -> unit</code></pre>
-<pre><span id="VALrun"><span class="keyword">val</span> run</span> : <code class="type"><a href="Webtest.html#TYPEtest">test</a> -> <a href="Webtest.html#TYPEoutput">output</a></code></pre><div class="info ">
-<code class="code">run test</code> runs <code class="code">test</code>, and returns the logs and the test output.<br>
+<pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?printer:('a -> string) -> 'a -> 'a -> unit</code></pre><div class="info ">
+<code class="code">assert_equal a b</code> returns unit if <code class="code">a</code> is equal to <code class="code">b</code>, and otherwise
+    throws <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 
 <pre><span id="VALbracket"><span class="keyword">val</span> bracket</span> : <code class="type">(unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> <a href="Webtest.html#TYPEtest_fun">test_fun</a></code></pre><div class="info ">
 <code class="code">bracket setup test teardown</code> generates a <a href="#TYPEtest_fun">test_fun</a> which will use
     <code class="code">setup</code> to create state needed for the test, then pass that state to <code class="code">test</code>,
     and finally will pass that state to <code class="code">teardown</code>.<br>
+</div>
+
+<pre><span id="VALrun"><span class="keyword">val</span> run</span> : <code class="type"><a href="Webtest.html#TYPEtest">test</a> -> <a href="Webtest.html#TYPEoutput">output</a></code></pre><div class="info ">
+<code class="code">run test</code> runs <code class="code">test</code>, and returns the logs and the test output.<br>
 </div>
 </body></html>
