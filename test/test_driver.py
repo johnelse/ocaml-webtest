@@ -12,7 +12,7 @@ driver = webdriver.Firefox()
 driver.get("file://%s" % (os.path.join(os.getcwd(), "test/test_runner.html")))
 
 WebDriverWait(driver, 10).until(
-    lambda driver: driver.execute_script("return (webtest != undefined)"))
+    lambda driver: driver.execute_script("return (window.webtest != undefined)"))
 
 driver.execute_script("webtest.run()")
 
