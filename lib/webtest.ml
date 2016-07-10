@@ -24,6 +24,12 @@ type test =
 let (>::) label f = TestCase (label, f)
 let (>:::) label tests = TestList (label, tests)
 
+let assert_true label value =
+  if not value then begin
+    let msg = Printf.sprintf "test value was false: %s" label in
+    raise (TestFailure msg)
+  end
+
 let assert_equal ?printer a b =
   if a <> b
   then begin

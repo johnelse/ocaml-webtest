@@ -29,6 +29,10 @@ val (>::) : string -> test_fun -> test
 val (>:::) : string -> test list -> test
 (** Convenience function to create a test from a label and a list of tests. *)
 
+val assert_true : string -> bool -> unit
+(** [assert_bool label value] returns unit if [value] is true, and otherwise
+    raises {{:#EXCEPTIONTestFailure}TestFailure}. *)
+
 val assert_equal : ?printer:('a -> string) -> 'a -> 'a -> unit
 (** [assert_equal a b] returns unit if [a] is equal to [b], and otherwise
     throws {{:#EXCEPTIONTestFailure}TestFailure}. *)
