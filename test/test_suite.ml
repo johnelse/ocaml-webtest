@@ -24,6 +24,21 @@ let test_assert_equal_printer () =
     failwith "assert_equal should have failed"
   with TestFailure "not equal: 5 6" -> ()
 
+let test_bracket () =
+  let state = ref `uninitialised in
+  let setup () = state := `test_start; state in
+  let teardown state =
+    assert_equal !state `test_end;
+    state := `torn_down
+  in
+  bracket
+    setup
+    (fun state ->
+      assert_equal !state `test_start;
+      state := `test_end)
+    teardown ();
+  assert_equal !state `torn_down
+
 let suite =
   "base_suite" >::: [
     "test_assert_true_ok" >:: test_assert_true_ok;
@@ -31,4 +46,5 @@ let suite =
     "test_assert_equal_ok" >:: test_assert_equal_ok;
     "test_assert_equal_fail" >:: test_assert_equal_fail;
     "test_assert_equal_printer" >:: test_assert_equal_printer;
+    "test_bracket" >:: test_bracket;
   ]
