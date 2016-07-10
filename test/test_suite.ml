@@ -18,10 +18,17 @@ let test_assert_equal_fail () =
     failwith "assert_equal should have failed"
   with TestFailure "not equal" -> ()
 
+let test_assert_equal_printer () =
+  try
+    assert_equal ~printer:string_of_int 5 6;
+    failwith "assert_equal should have failed"
+  with TestFailure "not equal: 5 6" -> ()
+
 let suite =
   "base_suite" >::: [
     "test_assert_true_ok" >:: test_assert_true_ok;
     "test_assert_true_fail" >:: test_assert_true_fail;
     "test_assert_equal_ok" >:: test_assert_equal_ok;
     "test_assert_equal_fail" >:: test_assert_equal_fail;
+    "test_assert_equal_printer" >:: test_assert_equal_printer;
   ]
