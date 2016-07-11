@@ -4,6 +4,7 @@ homepage: "https://github.com/johnelse/ocaml-webtest"
 bug-reports: "https://github.com/johnelse/ocaml-webtest/issues"
 dev-repo: "git://github.com/johnelse/ocaml-webtest"
 maintainer: "john.else@gmail.com"
+available: [ ocaml-version >= "4.02.1" ]
 build: [
   [make]
   [make "doc"]
