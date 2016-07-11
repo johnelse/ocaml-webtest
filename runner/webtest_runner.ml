@@ -3,9 +3,9 @@ module Html = Dom_html
 let start test _ =
   let open Js.Unsafe in
   let webtest = Js.Unsafe.obj [||] in
-  webtest##finished <- Js._false;
-  webtest##passed <- Js._false;
-  webtest##run <- Js.wrap_callback
+  webtest##.finished := Js._false;
+  webtest##.passed := Js._false;
+  webtest##.run := Js.wrap_callback
     (fun () ->
       let {Webtest.log; results} = Webtest.run test in
       let total, errored, failed, succeeded =
@@ -28,13 +28,13 @@ let start test _ =
         ]
       in
       let passed = total = succeeded in
-      webtest##log <- Js.string final_log;
-      webtest##passed <- if passed then Js._true else Js._false;
-      webtest##finished <- Js._true);
+      webtest##.log := Js.string final_log;
+      webtest##.passed := if passed then Js._true else Js._false;
+      webtest##.finished := Js._true);
 
-  global##webtest <- webtest;
+  global##.webtest := webtest;
 
   Js._false
 
 let setup test =
-  Html.window##onload <- Html.handler (start test)
+  Html.window##.onload := Html.handler (start test)

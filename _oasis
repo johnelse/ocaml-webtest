@@ -14,7 +14,7 @@ Library webtest
 
 Library webtest_runner
   Path:               runner
-  BuildDepends:       js_of_ocaml, js_of_ocaml.syntax, webtest
+  BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest
   Findlibname:        runner
   Findlibparent:      webtest
   Modules:            Webtest_runner
@@ -24,7 +24,7 @@ Executable test_runner
   CompiledObject:     byte
   Path:               test
   MainIs:             test_runner.ml
-  BuildDepends:       js_of_ocaml, js_of_ocaml.syntax, webtest, webtest.runner
+  BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest, webtest.runner
   Install:            false
 
 Test test
