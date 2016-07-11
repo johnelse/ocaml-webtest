@@ -136,6 +136,11 @@ Convenience function to create a test from a label and a
 Convenience function to create a test from a label and a list of tests.<br>
 </div>
 
+<pre><span id="VALassert_true"><span class="keyword">val</span> assert_true</span> : <code class="type">string -> bool -> unit</code></pre><div class="info ">
+<code class="code">assert_bool label value</code> returns unit if <code class="code">value</code> is true, and otherwise
+    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+</div>
+
 <pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?printer:('a -> string) -> 'a -> 'a -> unit</code></pre><div class="info ">
 <code class="code">assert_equal a b</code> returns unit if <code class="code">a</code> is equal to <code class="code">b</code>, and otherwise
     throws <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
