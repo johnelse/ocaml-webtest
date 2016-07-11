@@ -143,7 +143,7 @@ Convenience function to create a test from a label and a list of tests.<br>
 
 <pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?printer:('a -> string) -> 'a -> 'a -> unit</code></pre><div class="info ">
 <code class="code">assert_equal a b</code> returns unit if <code class="code">a</code> is equal to <code class="code">b</code>, and otherwise
-    throws <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 
 <pre><span id="VALbracket"><span class="keyword">val</span> bracket</span> : <code class="type">(unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> <a href="Webtest.html#TYPEtest_fun">test_fun</a></code></pre><div class="info ">
