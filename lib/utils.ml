@@ -8,7 +8,7 @@ let string_of_result = function
   | Suite.Failure msg -> Printf.sprintf "Failure: %s" msg
   | Suite.Success -> "Success"
 
-let run suite =
+let run suite callback =
   let log_buf = Buffer.create 0 in
   let log_with_prefix prefix msg =
     Buffer.add_string log_buf prefix;
@@ -43,7 +43,7 @@ let run suite =
       continue zipper results
   in
   let results = List.rev (run' zipper []) in
-  {
+  callback {
     log = Buffer.contents log_buf;
     results;
   }
