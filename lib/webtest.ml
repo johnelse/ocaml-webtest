@@ -17,9 +17,9 @@ let string_of_result = function
   | Failure msg -> Printf.sprintf "Failure: %s" msg
   | Success -> "Success"
 
-type test =
+type suite =
   | TestCase of string * test_fun
-  | TestList of string * test list
+  | TestList of string * suite list
 
 let (>::) label f = TestCase (label, f)
 let (>:::) label tests = TestList (label, tests)
@@ -56,7 +56,7 @@ let bracket setup test teardown () =
     (fun () -> test state)
     (fun () -> teardown state)
 
-let run test =
+let run suite =
   let log_buf = Buffer.create 0 in
   let log_with_prefix prefix msg =
     Buffer.add_string log_buf prefix;
@@ -79,11 +79,11 @@ let run test =
       log "End";
       log (string_of_result result);
       result :: results
-    | TestList (label, tests) ->
+    | TestList (label, children) ->
       let prefix = Printf.sprintf "%s%s:" prefix label in
-      List.fold_left (run' prefix) results tests
+      List.fold_left (run' prefix) results children
   in
-  let results = List.rev (run' "" [] test) in
+  let results = List.rev (run' "" [] suite) in
   {
     log = Buffer.contents log_buf;
     results;
