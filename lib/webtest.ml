@@ -30,8 +30,7 @@ module Zipper = struct
     (* Move to the head of the list of crumbs. *)
     | {left; label; right} :: other_crumbs -> Some {
       crumbs = other_crumbs;
-      location = TestList
-        (label, List.rev_append (location :: left) right);
+      location = TestList (label, List.rev_append (location :: left) right);
     }
 
   let move_down {crumbs; location} =
