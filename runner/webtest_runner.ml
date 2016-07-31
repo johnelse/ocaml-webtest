@@ -11,7 +11,7 @@ let start test _ =
       let total, errored, failed, succeeded =
         List.fold_left
           (fun (total, errors, failures, successes) result ->
-            let open Webtest.Utils in
+            let open Webtest.Suite in
             match result with
             | Error _ -> total + 1, errors + 1, failures, successes
             | Failure _ -> total + 1, errors, failures + 1, successes

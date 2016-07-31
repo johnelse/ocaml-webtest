@@ -22,3 +22,26 @@ let bracket setup test teardown () =
   finally
     (fun () -> test state)
     (fun () -> teardown state)
+
+exception TestFailure of string
+
+type result =
+  | Error of exn
+  | Failure of string
+  | Success
+
+let assert_true label value =
+  if not value then begin
+    let msg = Printf.sprintf "test value was false: %s" label in
+    raise (TestFailure msg)
+  end
+
+let assert_equal ?printer a b =
+  if a <> b
+  then begin
+    let msg = match printer with
+    | Some printer -> Printf.sprintf "not equal: %s %s" (printer a) (printer b)
+    | None -> Printf.sprintf "not equal"
+    in
+    raise (TestFailure msg)
+  end

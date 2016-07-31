@@ -1,35 +1,12 @@
-exception TestFailure of string
-
-type result =
-  | Error of exn
-  | Failure of string
-  | Success
-
 type output = {
   log: string;
-  results: result list;
+  results: Suite.result list;
 }
 
 let string_of_result = function
-  | Error e -> Printf.sprintf "Error: %s" (Printexc.to_string e)
-  | Failure msg -> Printf.sprintf "Failure: %s" msg
-  | Success -> "Success"
-
-let assert_true label value =
-  if not value then begin
-    let msg = Printf.sprintf "test value was false: %s" label in
-    raise (TestFailure msg)
-  end
-
-let assert_equal ?printer a b =
-  if a <> b
-  then begin
-    let msg = match printer with
-    | Some printer -> Printf.sprintf "not equal: %s %s" (printer a) (printer b)
-    | None -> Printf.sprintf "not equal"
-    in
-    raise (TestFailure msg)
-  end
+  | Suite.Error e -> Printf.sprintf "Error: %s" (Printexc.to_string e)
+  | Suite.Failure msg -> Printf.sprintf "Failure: %s" msg
+  | Suite.Success -> "Success"
 
 let run suite =
   let log_buf = Buffer.create 0 in
@@ -53,10 +30,10 @@ let run suite =
       let result =
         try
           f ();
-          Success
+          Suite.Success
         with
-          | TestFailure msg -> Failure msg
-          | e -> Error e
+          | Suite.TestFailure msg -> Suite.Failure msg
+          | e -> Suite.Error e
       in
       log "End";
       log (string_of_result result);
