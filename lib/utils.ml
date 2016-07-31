@@ -12,6 +12,7 @@ let run suite callback =
   let log_buf = Buffer.create 0 in
   let log_with_prefix prefix msg =
     Buffer.add_string log_buf prefix;
+    Buffer.add_char log_buf ':';
     Buffer.add_string log_buf msg;
     Buffer.add_char log_buf '\n'
   in
