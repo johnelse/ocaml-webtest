@@ -9,8 +9,9 @@ Plugins:        META (0.4), DevFiles (0.4)
 BuildTools:     ocamlbuild
 
 Library webtest
+  Pack:               true
   Path:               lib
-  Modules:            Webtest
+  Modules:            Suite, Zipper, Utils
 
 Library webtest_runner
   Path:               runner

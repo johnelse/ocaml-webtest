@@ -1,4 +1,5 @@
-open Webtest
+open Webtest.Suite
+open Webtest.Utils
 
 let test_assert_true_ok () =
   assert_true "should pass" true

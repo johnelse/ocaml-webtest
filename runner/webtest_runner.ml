@@ -7,11 +7,11 @@ let start test _ =
   webtest##.passed := Js._false;
   webtest##.run := Js.wrap_callback
     (fun () ->
-      let {Webtest.log; results} = Webtest.run test in
+      let {Webtest.Utils.log; results} = Webtest.Utils.run test in
       let total, errored, failed, succeeded =
         List.fold_left
           (fun (total, errors, failures, successes) result ->
-            let open Webtest in
+            let open Webtest.Utils in
             match result with
             | Error _ -> total + 1, errors + 1, failures, successes
             | Failure _ -> total + 1, errors, failures + 1, successes
