@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Suite.html">
+<link rel="next" href="Utils.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Suite" rel="Chapter" href="Suite.html">
+<link title="Zipper" rel="Chapter" href="Zipper.html">
+<link title="Utils" rel="Chapter" href="Utils.html">
+<link title="Webtest_runner" rel="Chapter" href="Webtest_runner.html"><title>Zipper</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Suite.html" title="Suite">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Utils.html" title="Utils">Next</a>
+</div>
+<h1>Module <a href="type_Zipper.html">Zipper</a></h1>
+
+<pre><span class="keyword">module</span> Zipper: <code class="code"><span class="keyword">sig</span></code> <a href="Zipper.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+A zipper implementation based on <a href="Suite.html#TYPEt">Suite.t</a>, which
+    represents the current location in the tree as well as the path used to
+    reach the current location from the root.
+<p>
+
+    Generally this module should not be used directly; instead
+    <a href="Utils.html#VALrun">Utils.run</a> can be used to traverse the test tree and
+    report results.<br>
+</div>
+<hr width="100%">
+
+<pre><code><span id="TYPEcrumb"><span class="keyword">type</span> <code class="type"></code>crumb</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcrumb.left">left</span>&nbsp;: <code class="type"><a href="Suite.html#TYPEt">Suite.t</a> list</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+The list of siblings to the left of the current location.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcrumb.label">label</span>&nbsp;: <code class="type">string</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+The label of the parent of the current location.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcrumb.right">right</span>&nbsp;: <code class="type"><a href="Suite.html#TYPEt">Suite.t</a> list</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+The list of siblings to the right of the current location.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+}
+
+<div class="info ">
+A type representing the path through a <a href="Suite.html#TYPEt">Suite.t</a> from the
+    root to the current location.<br>
+</div>
+
+
+<pre><code><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTt.crumbs">crumbs</span>&nbsp;: <code class="type"><a href="Zipper.html#TYPEcrumb">crumb</a> list</code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+The list of crumbs which leads to the current location in the tree.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTt.location">location</span>&nbsp;: <code class="type"><a href="Suite.html#TYPEt">Suite.t</a></code>;</code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+The current location in the tree.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+}
+
+<div class="info ">
+A zipper implementation based on <a href="Suite.html#TYPEt">Suite.t</a>.<br>
+</div>
+
+
+<pre><span id="VALof_suite"><span class="keyword">val</span> of_suite</span> : <code class="type"><a href="Suite.html#TYPEt">Suite.t</a> -> <a href="Zipper.html#TYPEt">t</a></code></pre><div class="info ">
+Convert a <a href="Suite.html#TYPEt">Suite.t</a> into a <a href="#TYPEt">Zipper.t</a>.<br>
+</div>
+
+<pre><span id="VALto_suite"><span class="keyword">val</span> to_suite</span> : <code class="type"><a href="Zipper.html#TYPEt">t</a> -> <a href="Suite.html#TYPEt">Suite.t</a></code></pre><div class="info ">
+Convert a <a href="#TYPEt">Zipper.t</a> into a <a href="Suite.html#TYPEt">Suite.t</a>.
+    Note that this does not include the crumbs, only the subtree at the current
+    location.<br>
+</div>
+
+<pre><span id="VALmove_up"><span class="keyword">val</span> move_up</span> : <code class="type"><a href="Zipper.html#TYPEt">t</a> -> <a href="Zipper.html#TYPEt">t</a> option</code></pre><div class="info ">
+Attempt to move up to the parent node.<br>
+</div>
+
+<pre><span id="VALmove_down"><span class="keyword">val</span> move_down</span> : <code class="type"><a href="Zipper.html#TYPEt">t</a> -> <a href="Zipper.html#TYPEt">t</a> option</code></pre><div class="info ">
+Attempt to move down to the first child node.<br>
+</div>
+
+<pre><span id="VALmove_right"><span class="keyword">val</span> move_right</span> : <code class="type"><a href="Zipper.html#TYPEt">t</a> -> <a href="Zipper.html#TYPEt">t</a> option</code></pre><div class="info ">
+Attempt to move right to the next sibling.<br>
+</div>
+
+<pre><span id="VALnext_location"><span class="keyword">val</span> next_location</span> : <code class="type"><a href="Zipper.html#TYPEt">t</a> -> <a href="Zipper.html#TYPEt">t</a> option</code></pre><div class="info ">
+Attempt to move to the next location while traversing the tree. Return None
+    if we're already at the last location to be traversed.<br>
+</div>
+
+<pre><span id="VALget_labels"><span class="keyword">val</span> get_labels</span> : <code class="type"><a href="Zipper.html#TYPEt">t</a> -> string list</code></pre><div class="info ">
+Get the list of labels from all crumbs plus that of the current
+    location, starting at the root of the tree.<br>
+</div>
+</body></html>

@@ -7,7 +7,9 @@
 <link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
 <link title="Index of values" rel=Appendix href="index_values.html">
 <link title="Index of modules" rel=Appendix href="index_modules.html">
-<link title="Webtest" rel="Chapter" href="Webtest.html">
+<link title="Suite" rel="Chapter" href="Suite.html">
+<link title="Zipper" rel="Chapter" href="Zipper.html">
+<link title="Utils" rel="Chapter" href="Utils.html">
 <link title="Webtest_runner" rel="Chapter" href="Webtest_runner.html"><title>Index of values</title>
 </head>
 <body>
@@ -16,42 +18,78 @@
 <h1>Index of values</h1>
 <table>
 <tr><td align="left"><br></td></tr>
-<tr><td><a href="Webtest.html#VAL(>::)">(&gt;::)</a> [<a href="Webtest.html">Webtest</a>]</td>
+<tr><td><a href="Suite.html#VAL(>::)">(&gt;::)</a> [<a href="Suite.html">Suite</a>]</td>
 <td><div class="info">
-Convenience function to create a test from a label and a
+Convenience function to create a suite from a label and a
     <a href="#TYPEtest_fun">test_fun</a>.
 </div>
 </td></tr>
-<tr><td><a href="Webtest.html#VAL(>:::)">(&gt;:::)</a> [<a href="Webtest.html">Webtest</a>]</td>
+<tr><td><a href="Suite.html#VAL(>:::)">(&gt;:::)</a> [<a href="Suite.html">Suite</a>]</td>
 <td><div class="info">
-Convenience function to create a test from a label and a list of tests.
+Convenience function to create a suite from a label and a list of suites.
 </div>
 </td></tr>
 <tr><td align="left"><br>A</td></tr>
-<tr><td><a href="Webtest.html#VALassert_equal">assert_equal</a> [<a href="Webtest.html">Webtest</a>]</td>
+<tr><td><a href="Suite.html#VALassert_equal">assert_equal</a> [<a href="Suite.html">Suite</a>]</td>
 <td><div class="info">
 <code class="code">assert_equal a b</code> returns unit if <code class="code">a</code> is equal to <code class="code">b</code>, and otherwise
     raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.
 </div>
 </td></tr>
-<tr><td><a href="Webtest.html#VALassert_true">assert_true</a> [<a href="Webtest.html">Webtest</a>]</td>
+<tr><td><a href="Suite.html#VALassert_true">assert_true</a> [<a href="Suite.html">Suite</a>]</td>
 <td><div class="info">
 <code class="code">assert_bool label value</code> returns unit if <code class="code">value</code> is true, and otherwise
     raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.
 </div>
 </td></tr>
 <tr><td align="left"><br>B</td></tr>
-<tr><td><a href="Webtest.html#VALbracket">bracket</a> [<a href="Webtest.html">Webtest</a>]</td>
+<tr><td><a href="Suite.html#VALbracket">bracket</a> [<a href="Suite.html">Suite</a>]</td>
 <td><div class="info">
 <code class="code">bracket setup test teardown</code> generates a <a href="#TYPEtest_fun">test_fun</a> which will use
     <code class="code">setup</code> to create state needed for the test, then pass that state to <code class="code">test</code>,
     and finally will pass that state to <code class="code">teardown</code>.
 </div>
 </td></tr>
-<tr><td align="left"><br>R</td></tr>
-<tr><td><a href="Webtest.html#VALrun">run</a> [<a href="Webtest.html">Webtest</a>]</td>
+<tr><td align="left"><br>G</td></tr>
+<tr><td><a href="Zipper.html#VALget_labels">get_labels</a> [<a href="Zipper.html">Zipper</a>]</td>
 <td><div class="info">
-<code class="code">run test</code> runs <code class="code">test</code>, and returns the logs and the test output.
+Get the list of labels from all crumbs plus that of the current
+    location, starting at the root of the tree.
+</div>
+</td></tr>
+<tr><td align="left"><br>M</td></tr>
+<tr><td><a href="Zipper.html#VALmove_down">move_down</a> [<a href="Zipper.html">Zipper</a>]</td>
+<td><div class="info">
+Attempt to move down to the first child node.
+</div>
+</td></tr>
+<tr><td><a href="Zipper.html#VALmove_right">move_right</a> [<a href="Zipper.html">Zipper</a>]</td>
+<td><div class="info">
+Attempt to move right to the next sibling.
+</div>
+</td></tr>
+<tr><td><a href="Zipper.html#VALmove_up">move_up</a> [<a href="Zipper.html">Zipper</a>]</td>
+<td><div class="info">
+Attempt to move up to the parent node.
+</div>
+</td></tr>
+<tr><td align="left"><br>N</td></tr>
+<tr><td><a href="Zipper.html#VALnext_location">next_location</a> [<a href="Zipper.html">Zipper</a>]</td>
+<td><div class="info">
+Attempt to move to the next location while traversing the tree.
+</div>
+</td></tr>
+<tr><td align="left"><br>O</td></tr>
+<tr><td><a href="Zipper.html#VALof_suite">of_suite</a> [<a href="Zipper.html">Zipper</a>]</td>
+<td><div class="info">
+Convert a <a href="Suite.html#TYPEt">Suite.t</a> into a <a href="#TYPEt">Zipper.t</a>.
+</div>
+</td></tr>
+<tr><td align="left"><br>R</td></tr>
+<tr><td><a href="Utils.html#VALrun">run</a> [<a href="Utils.html">Utils</a>]</td>
+<td><div class="info">
+<code class="code">run suite</code> runs <code class="code">suite</code>, passes the output to a supplied callback, and
+    returns the result of the callback..
 </div>
 </td></tr>
 <tr><td align="left"><br>S</td></tr>
@@ -59,6 +97,12 @@ Convenience function to create a test from a label and a list of tests.
 <td><div class="info">
 <code class="code">setup test</code> sets up a test runner and attaches it to the document's onLoad
     handler.
+</div>
+</td></tr>
+<tr><td align="left"><br>T</td></tr>
+<tr><td><a href="Zipper.html#VALto_suite">to_suite</a> [<a href="Zipper.html">Zipper</a>]</td>
+<td><div class="info">
+Convert a <a href="#TYPEt">Zipper.t</a> into a <a href="Suite.html#TYPEt">Suite.t</a>.
 </div>
 </td></tr>
 </table>
