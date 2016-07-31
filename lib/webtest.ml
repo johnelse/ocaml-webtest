@@ -1,5 +1,93 @@
 type test_fun = unit -> unit
 
+type suite =
+  | TestCase of string * test_fun
+  | TestList of string * suite list
+
+module Zipper = struct
+  type crumb = {
+    left: suite list;
+    label: string;
+    right: suite list;
+  }
+
+  type t = {
+    crumbs: crumb list;
+    location: suite;
+  }
+
+  let of_suite suite = {
+    crumbs = [];
+    location = suite;
+  }
+
+  let to_suite {location} = location
+
+  let move_up {crumbs; location} =
+    match crumbs with
+    (* Already at the top of the tree, so nowhere to go. *)
+    | [] -> None
+    (* Move to the head of the list of crumbs. *)
+    | {left; label; right} :: other_crumbs -> Some {
+      crumbs = other_crumbs;
+      location = TestList
+        (label, List.rev_append (location :: left) right);
+    }
+
+  let move_down {crumbs; location} =
+    match location with
+    (* A TestCase has no children. *)
+    | TestCase _ -> None
+    (* A TestList may not have any children to move down to. *)
+    | TestList (label, []) -> None
+    (* Move down to the first child of the TestList. *)
+    | TestList (label, first_child :: other_children) -> Some {
+      crumbs = {
+        left = [];
+        label;
+        right = other_children;
+      } :: crumbs;
+      location = first_child;
+    }
+
+  let move_right {crumbs; location} =
+    match crumbs with
+    (* At the top of the tree, so no siblings. *)
+    | [] -> None
+    (* Already at the rightmost sibling. *)
+    | {right = []} :: _ -> None
+    (* Move to the next sibling to the right. *)
+    | {left; label; right = first_right :: other_right} :: other_crumbs -> Some {
+      crumbs = {
+        left = location :: left;
+        label;
+        right = other_right;
+      } :: other_crumbs;
+      location = first_right;
+    }
+
+  let rec next_sibling zipper =
+    match move_right zipper with
+    | (Some zipper') as result -> result
+    | None -> begin
+      match move_up zipper with
+      | Some zipper' -> next_sibling zipper'
+      | None -> None
+    end
+
+  let rec next_location zipper =
+    match move_down zipper with
+    | Some zipper' as result -> result
+    | None -> next_sibling zipper
+
+  let get_labels {crumbs; location} =
+    let location_label = match location with
+    | TestCase (label, _) -> label
+    | TestList (label, _) -> label
+    in
+    location_label :: (List.map (fun crumb -> crumb.label) crumbs) |> List.rev
+end
+
 exception TestFailure of string
 
 type result =
@@ -16,10 +104,6 @@ let string_of_result = function
   | Error e -> Printf.sprintf "Error: %s" (Printexc.to_string e)
   | Failure msg -> Printf.sprintf "Failure: %s" msg
   | Success -> "Success"
-
-type suite =
-  | TestCase of string * test_fun
-  | TestList of string * suite list
 
 let (>::) label f = TestCase (label, f)
 let (>:::) label tests = TestList (label, tests)
