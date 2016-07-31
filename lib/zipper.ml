@@ -78,8 +78,6 @@ let rec next_location zipper =
   | None -> next_sibling zipper
 
 let get_labels {crumbs; location} =
-  (* Gets the list of labels from all crumbs plus that of the current
-     location, starting at the root of the tree. *)
   let location_label = match location with
   | Suite.TestCase (label, _) -> label
   | Suite.TestList (label, _) -> label
