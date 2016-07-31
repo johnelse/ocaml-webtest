@@ -1,6 +1,6 @@
 (** Types and functions for creating and working with unit tests. *)
 
-type test_fun  = unit -> unit
+type test_fun = unit -> unit
 (** A test function. *)
 
 exception TestFailure of string
