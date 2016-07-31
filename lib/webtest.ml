@@ -147,9 +147,16 @@ let run suite =
     Buffer.add_string log_buf msg;
     Buffer.add_char log_buf '\n'
   in
-  let rec run' prefix results = function
+  let zipper = Zipper.of_suite suite in
+  let rec run' ({Zipper.location} as zipper) results =
+    let continue zipper results =
+      match Zipper.next_location zipper with
+      | Some zipper' -> run' zipper' results
+      | None -> results
+    in
+    match location with
     | TestCase (label, f) ->
-      let prefix = Printf.sprintf "%s%s:" prefix label in
+      let prefix = Zipper.get_labels zipper |> String.concat ":" in
       let log = log_with_prefix prefix in
       log "Start";
       let result =
@@ -162,12 +169,12 @@ let run suite =
       in
       log "End";
       log (string_of_result result);
-      result :: results
+      let results = result :: results in
+      continue zipper results
     | TestList (label, children) ->
-      let prefix = Printf.sprintf "%s%s:" prefix label in
-      List.fold_left (run' prefix) results children
+      continue zipper results
   in
-  let results = List.rev (run' "" [] suite) in
+  let results = List.rev (run' zipper []) in
   {
     log = Buffer.contents log_buf;
     results;
