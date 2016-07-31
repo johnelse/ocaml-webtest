@@ -20,11 +20,11 @@ Library webtest_runner
   Findlibparent:      webtest
   Modules:            Webtest_runner
 
-Executable test_runner
+Executable test_js
   Build$:             flag(tests)
   CompiledObject:     byte
   Path:               test
-  MainIs:             test_runner.ml
+  MainIs:             test_js.ml
   BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest, webtest.runner
   Install:            false
 

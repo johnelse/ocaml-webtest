@@ -2,7 +2,7 @@ _build
 setup.data
 setup.log
 webtest_api.docdir
-test/test_runner.js
+test/test_js.js
 
 *.byte
 *.swp

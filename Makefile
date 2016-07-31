@@ -1,7 +1,7 @@
 all: build
 
-test/test_runner.js: build
-	js_of_ocaml test_runner.byte -o $@
+test/test_js.js: build
+	js_of_ocaml test_js.byte -o $@
 
 NAME=webtest
 SETUP=ocaml setup.ml
@@ -14,7 +14,7 @@ build: setup.data
 doc: setup.data build
 	$(SETUP) -doc $(DOCFLAGS)
 
-test: setup.data build test/test_runner.js
+test: setup.data build test/test_js.js
 	$(SETUP) -test $(TESTFLAGS)
 
 install: setup.data
