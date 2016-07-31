@@ -1,4 +1,4 @@
-(** Types and functions for creating and working with unit tests. *)
+(** Types and functions for running unit tests. *)
 
 exception TestFailure of string
 (** The exception thrown by failing tests. *)

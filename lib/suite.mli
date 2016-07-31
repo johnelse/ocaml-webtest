@@ -1,3 +1,5 @@
+(** Types and functions for creating and structuring unit test suites. *)
+
 type test_fun = unit -> unit
 (** A test function. *)
 
