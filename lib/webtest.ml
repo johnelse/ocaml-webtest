@@ -68,10 +68,14 @@ module Zipper = struct
 
   let rec next_sibling zipper =
     match move_right zipper with
+    (* Move to the next sibling to the right. *)
     | (Some zipper') as result -> result
+    (* No more siblings, so try to move up. *)
     | None -> begin
       match move_up zipper with
+      (* If moving up succeeds, try moving right again. *)
       | Some zipper' -> next_sibling zipper'
+      (* We can't move up, so we must be at the top of the tree. *)
       | None -> None
     end
 
@@ -81,6 +85,8 @@ module Zipper = struct
     | None -> next_sibling zipper
 
   let get_labels {crumbs; location} =
+    (* Gets the list of labels from all crumbs plus that of the current
+       location, starting at the root of the tree. *)
     let location_label = match location with
     | TestCase (label, _) -> label
     | TestList (label, _) -> label
