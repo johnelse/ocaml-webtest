@@ -1,13 +1,13 @@
 module Html = Dom_html
 
-let start test _ =
+let run suite _ =
   let open Js.Unsafe in
   let webtest = Js.Unsafe.obj [||] in
   webtest##.finished := Js._false;
   webtest##.passed := Js._false;
   webtest##.run := Js.wrap_callback
     (fun () ->
-      Webtest.Utils.run test (fun {Webtest.Utils.log; results} ->
+      Webtest.Utils.run suite (fun {Webtest.Utils.log; results} ->
         let total, errored, failed, succeeded =
           List.fold_left
             (fun (total, errors, failures, successes) result ->
@@ -36,5 +36,5 @@ let start test _ =
 
   Js._false
 
-let setup test =
-  Html.window##.onload := Html.handler (start test)
+let setup suite =
+  Html.window##.onload := Html.handler (run suite)
