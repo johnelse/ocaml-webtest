@@ -1,6 +1,10 @@
 (** A zipper implementation based on {{:Suite.html#TYPEt}Suite.t}, which
     represents the current location in the tree as well as the path used to
-    reach the current location from the root. *)
+    reach the current location from the root.
+
+    Generally this module should not be used directly; instead
+    {{:Utils.html#VALrun}Utils.run} can be used to traverse the test tree and
+    report results. *)
 
 type crumb = {
   left: Suite.t list;
