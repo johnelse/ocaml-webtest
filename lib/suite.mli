@@ -1,19 +1,5 @@
 (** Types and functions for creating and structuring unit test suites. *)
 
-type test_fun = unit -> unit
-(** A test function. *)
-
-type t =
-  | TestCase of string * test_fun (** A labelled single test. *)
-  | TestList of string * t list   (** A labelled list of tests. *)
-  (** A labelled wrapper around a test or list of suites. *)
-
-val (>::) : string -> test_fun -> t
-(** Convenience function to create a suite from a label and a
-    {{:#TYPEtest_fun}test_fun}. *)
-val (>:::) : string -> t list -> t
-(** Convenience function to create a suite from a label and a list of suites. *)
-
 exception TestFailure of string
 (** The exception thrown by failing tests. *)
 
@@ -23,10 +9,44 @@ type result =
   | Success                (** The test passed. *)
 (** The result of running a single testcase. *)
 
-val bracket : (unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> test_fun
-(** [bracket setup test teardown] generates a {{:#TYPEtest_fun}test_fun} which will use
-    [setup] to create state needed for the test, then pass that state to [test],
-    and finally will pass that state to [teardown]. *)
+module Sync : sig
+  type test_fun = unit -> unit
+  (** A synchronous test function. *)
+end
+
+module Async : sig
+  type callback = unit -> unit
+  (** A callback to be passed to an asynchronous test. *)
+
+  type test_fun = callback -> unit
+  (** An asynchronous test function. *)
+
+  val run_one : test_fun -> (string -> unit )-> (result -> unit) -> unit
+  (** Run an asynchronous test and pass its result to a callback. *)
+
+  val of_sync : Sync.test_fun -> test_fun
+  (** Convert a synchronous test into an asynchronous test. *)
+end
+
+type t =
+  | TestCase of string * Async.test_fun (** A labelled single test. *)
+  | TestList of string * t list         (** A labelled list of tests. *)
+  (** A labelled wrapper around a test or list of suites. *)
+
+val (>::) : string -> Sync.test_fun -> t
+(** Convenience function to create a suite from a label and a
+    {{:#TYPESync.test_fun}Sync.test_fun}. *)
+val (>:~) : string -> Async.test_fun -> t
+(** Convenience function to create a suite from a label and a
+    {{:#TYPEAsync.test_fun}Async.test_fun}. *)
+val (>:::) : string -> t list -> t
+(** Convenience function to create a suite from a label and a list of suites. *)
+
+val bracket : (unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> Sync.test_fun
+(** [bracket setup test teardown] generates a
+    {{:#TYPESync.test_fun}Sync.test_fun} which will use [setup] to create state
+    needed for the test, then pass that state to [test], and finally will pass
+    that state to [teardown]. *)
 
 val assert_true : string -> bool -> unit
 (** [assert_bool label value] returns unit if [value] is true, and otherwise

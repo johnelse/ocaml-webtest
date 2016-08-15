@@ -1,10 +1,48 @@
-type test_fun = unit -> unit
+exception TestFailure of string
+
+type result =
+  | Error of exn
+  | Failure of string
+  | Success
+
+let string_of_result = function
+  | Error e -> Printf.sprintf "Error: %s" (Printexc.to_string e)
+  | Failure msg -> Printf.sprintf "Failure: %s" msg
+  | Success -> "Success"
+
+module Sync = struct
+  type test_fun = unit -> unit
+end
+
+module Async = struct
+  type callback = unit -> unit
+
+  type test_fun = callback -> unit
+
+  let run_one test log handle_result =
+    let log_and_handle_result result =
+      log "End";
+      log (string_of_result result);
+      handle_result result
+    in
+    try
+      log "Start";
+      test (fun () -> log_and_handle_result Success)
+    with
+      | TestFailure msg -> log_and_handle_result (Failure msg)
+      | e -> log_and_handle_result (Error e)
+
+  let of_sync test callback =
+    test ();
+    callback ()
+end
 
 type t =
-  | TestCase of string * test_fun
+  | TestCase of string * Async.test_fun
   | TestList of string * t list
 
-let (>::) label f = TestCase (label, f)
+let (>::) label f = TestCase (label, Async.of_sync f)
+let (>:~) label f = TestCase (label, f)
 let (>:::) label tests = TestList (label, tests)
 
 let finally f cleanup =
@@ -22,13 +60,6 @@ let bracket setup test teardown () =
   finally
     (fun () -> test state)
     (fun () -> teardown state)
-
-exception TestFailure of string
-
-type result =
-  | Error of exn
-  | Failure of string
-  | Success
 
 let assert_true label value =
   if not value then begin
