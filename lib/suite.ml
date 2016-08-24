@@ -41,8 +41,8 @@ type t =
   | TestCase of string * Async.test_fun
   | TestList of string * t list
 
-let (>::) label f = TestCase (label, Async.of_sync f)
-let (>:~) label f = TestCase (label, f)
+let (>::) label test_fun = TestCase (label, Async.of_sync test_fun)
+let (>:~) label test_fun = TestCase (label, test_fun)
 let (>:::) label tests = TestList (label, tests)
 
 let finally f cleanup =

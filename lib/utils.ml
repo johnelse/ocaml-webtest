@@ -23,10 +23,10 @@ let run suite callback =
         }
     in
     match location with
-    | Suite.TestCase (label, f) ->
+    | Suite.TestCase (label, test_fun) ->
       let prefix = Zipper.get_labels zipper |> String.concat ":" in
       let log = log_with_prefix prefix in
-      Suite.Async.run_one f log
+      Suite.Async.run_one test_fun log
         (fun result -> continue zipper (result :: results))
     | Suite.TestList (label, children) ->
       continue zipper results
