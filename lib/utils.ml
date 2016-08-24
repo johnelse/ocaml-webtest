@@ -21,7 +21,11 @@ let run suite callback =
     let continue zipper results =
       match Zipper.next_location zipper with
       | Some zipper' -> run' zipper' results
-      | None -> results
+      | None ->
+        callback {
+          log = Buffer.contents log_buf;
+          results = List.rev results
+        }
     in
     match location with
     | Suite.TestCase (label, f) ->
@@ -43,8 +47,4 @@ let run suite callback =
     | Suite.TestList (label, children) ->
       continue zipper results
   in
-  let results = List.rev (run' zipper []) in
-  callback {
-    log = Buffer.contents log_buf;
-    results;
-  }
+  run' zipper []
