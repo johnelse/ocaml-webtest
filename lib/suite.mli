@@ -27,6 +27,13 @@ module Async : sig
   type test_fun = callback -> unit
   (** An asynchronous test function. *)
 
+  val bracket :
+    (unit -> 'a) -> ('a -> callback -> unit) -> ('a -> unit) -> test_fun
+  (** [bracket setup test teardown] generates a
+      {{:#TYPEAsync.test_fun}Async.test_fun} which will use [setup] to create
+      state needed for the test, then pass that state to [test], and finally
+      will pass that state to [teardown]. *)
+
   val run_one : test_fun -> (string -> unit )-> (result -> unit) -> unit
   (** Run an asynchronous test and pass its result to a callback. *)
 

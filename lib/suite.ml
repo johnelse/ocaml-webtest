@@ -35,6 +35,13 @@ module Async = struct
 
   type test_fun = callback -> unit
 
+  let bracket setup test teardown =
+    (fun callback ->
+      let state = setup () in
+      finally
+        (fun () -> test state callback)
+        (fun () -> teardown state; callback ()))
+
   let run_one test log handle_result =
     let log_and_handle_result result =
       log "End";
