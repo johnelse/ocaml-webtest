@@ -3,6 +3,11 @@ type output = {
   results: Suite.result list;
 }
 
+type summary = {
+  log: string;
+  passed: bool;
+}
+
 let run suite callback =
   let log_buf = Buffer.create 0 in
   let log_with_prefix prefix msg =
@@ -32,3 +37,29 @@ let run suite callback =
       continue zipper results
   in
   run' zipper []
+
+let summarise {log; results} =
+  let total, errored, failed, succeeded =
+    List.fold_left
+      (fun (total, errors, failures, successes) result ->
+        let open Suite in
+        match result with
+        | Error _ -> total + 1, errors + 1, failures, successes
+        | Failure _ -> total + 1, errors, failures + 1, successes
+        | Success -> total + 1, errors, failures, successes + 1)
+      (0, 0, 0, 0) results
+  in
+  let final_log =
+    String.concat "\n" [
+      log;
+      Printf.sprintf "%d tests run" total;
+      Printf.sprintf "%d errors" errored;
+      Printf.sprintf "%d failures" failed;
+      Printf.sprintf "%d succeeded" succeeded;
+    ]
+  in
+  let passed = total = succeeded in
+  {
+    log = final_log;
+    passed;
+  }
