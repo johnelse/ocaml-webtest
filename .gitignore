@@ -5,4 +5,5 @@ webtest_api.docdir
 test/test_js.js
 
 *.byte
+*.native
 *.swp

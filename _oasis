@@ -28,8 +28,20 @@ Executable test_js
   BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest, webtest.runner
   Install:            false
 
-Test test
+Test test_js
   Command:            xvfb-run test/test_driver.py
+  Run$:               flag(tests)
+
+Executable test_ocaml
+  Build$:             flag(tests)
+  CompiledObject:     best
+  Path:               test
+  MainIs:             test_ocaml.ml
+  BuildDepends:       webtest
+  Install:            false
+
+Test test_ocaml
+  Command:            ./test_ocaml.native
   Run$:               flag(tests)
 
 AlphaFeatures: ocamlbuild_more_args
