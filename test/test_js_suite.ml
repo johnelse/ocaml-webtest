@@ -32,7 +32,7 @@ let test_bracket () =
     assert_equal !state `test_end;
     state := `torn_down
   in
-  bracket
+  Sync.bracket
     setup
     (fun state ->
       assert_equal !state `test_start;

@@ -12,6 +12,12 @@ type result =
 module Sync : sig
   type test_fun = unit -> unit
   (** A synchronous test function. *)
+
+  val bracket : (unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> test_fun
+  (** [bracket setup test teardown] generates a
+      {{:#TYPESync.test_fun}Sync.test_fun} which will use [setup] to create
+      state needed for the test, then pass that state to [test], and finally
+      will pass that state to [teardown]. *)
 end
 
 module Async : sig
@@ -41,12 +47,6 @@ val (>:~) : string -> Async.test_fun -> t
     {{:#TYPEAsync.test_fun}Async.test_fun}. *)
 val (>:::) : string -> t list -> t
 (** Convenience function to create a suite from a label and a list of suites. *)
-
-val bracket : (unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> Sync.test_fun
-(** [bracket setup test teardown] generates a
-    {{:#TYPESync.test_fun}Sync.test_fun} which will use [setup] to create state
-    needed for the test, then pass that state to [test], and finally will pass
-    that state to [teardown]. *)
 
 val assert_true : string -> bool -> unit
 (** [assert_bool label value] returns unit if [value] is true, and otherwise

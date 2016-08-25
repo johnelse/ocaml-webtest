@@ -10,8 +10,24 @@ let string_of_result = function
   | Failure msg -> Printf.sprintf "Failure: %s" msg
   | Success -> "Success"
 
+let finally f cleanup =
+  let result =
+    try f ()
+    with e ->
+      cleanup ();
+      raise e
+  in
+  cleanup ();
+  result
+
 module Sync = struct
   type test_fun = unit -> unit
+
+  let bracket setup test teardown () =
+    let state = setup () in
+    finally
+      (fun () -> test state)
+      (fun () -> teardown state)
 end
 
 module Async = struct
@@ -44,22 +60,6 @@ type t =
 let (>::) label test_fun = TestCase (label, Async.of_sync test_fun)
 let (>:~) label test_fun = TestCase (label, test_fun)
 let (>:::) label tests = TestList (label, tests)
-
-let finally f cleanup =
-  let result =
-    try f ()
-    with e ->
-      cleanup ();
-      raise e
-  in
-  cleanup ();
-  result
-
-let bracket setup test teardown () =
-  let state = setup () in
-  finally
-    (fun () -> test state)
-    (fun () -> teardown state)
 
 let assert_true label value =
   if not value then begin
