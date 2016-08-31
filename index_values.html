@@ -21,12 +21,18 @@
 <tr><td><a href="Suite.html#VAL(>::)">(&gt;::)</a> [<a href="Suite.html">Suite</a>]</td>
 <td><div class="info">
 Convenience function to create a suite from a label and a
-    <a href="#TYPEtest_fun">test_fun</a>.
+    <a href="#TYPESync.test_fun">Sync.test_fun</a>.
 </div>
 </td></tr>
 <tr><td><a href="Suite.html#VAL(>:::)">(&gt;:::)</a> [<a href="Suite.html">Suite</a>]</td>
 <td><div class="info">
 Convenience function to create a suite from a label and a list of suites.
+</div>
+</td></tr>
+<tr><td><a href="Suite.html#VAL(>:~)">(&gt;:~)</a> [<a href="Suite.html">Suite</a>]</td>
+<td><div class="info">
+Convenience function to create a suite from a label and a
+    <a href="#TYPEAsync.test_fun">Async.test_fun</a>.
 </div>
 </td></tr>
 <tr><td align="left"><br>A</td></tr>
@@ -43,11 +49,20 @@ Convenience function to create a suite from a label and a list of suites.
 </div>
 </td></tr>
 <tr><td align="left"><br>B</td></tr>
-<tr><td><a href="Suite.html#VALbracket">bracket</a> [<a href="Suite.html">Suite</a>]</td>
+<tr><td><a href="Suite.Async.html#VALbracket">bracket</a> [<a href="Suite.Async.html">Suite.Async</a>]</td>
 <td><div class="info">
-<code class="code">bracket setup test teardown</code> generates a <a href="#TYPEtest_fun">test_fun</a> which will use
-    <code class="code">setup</code> to create state needed for the test, then pass that state to <code class="code">test</code>,
-    and finally will pass that state to <code class="code">teardown</code>.
+<code class="code">bracket setup test teardown</code> generates a
+      <a href="#TYPEAsync.test_fun">Async.test_fun</a> which will use <code class="code">setup</code> to create
+      state needed for the test, then pass that state to <code class="code">test</code>, and finally
+      will pass that state to <code class="code">teardown</code>.
+</div>
+</td></tr>
+<tr><td><a href="Suite.Sync.html#VALbracket">bracket</a> [<a href="Suite.Sync.html">Suite.Sync</a>]</td>
+<td><div class="info">
+<code class="code">bracket setup test teardown</code> generates a
+      <a href="#TYPESync.test_fun">Sync.test_fun</a> which will use <code class="code">setup</code> to create
+      state needed for the test, then pass that state to <code class="code">test</code>, and finally
+      will pass that state to <code class="code">teardown</code>.
 </div>
 </td></tr>
 <tr><td align="left"><br>G</td></tr>
@@ -85,6 +100,11 @@ Attempt to move to the next location while traversing the tree.
 Convert a <a href="Suite.html#TYPEt">Suite.t</a> into a <a href="#TYPEt">Zipper.t</a>.
 </div>
 </td></tr>
+<tr><td><a href="Suite.Async.html#VALof_sync">of_sync</a> [<a href="Suite.Async.html">Suite.Async</a>]</td>
+<td><div class="info">
+Convert a synchronous test into an asynchronous test.
+</div>
+</td></tr>
 <tr><td align="left"><br>R</td></tr>
 <tr><td><a href="Utils.html#VALrun">run</a> [<a href="Utils.html">Utils</a>]</td>
 <td><div class="info">
@@ -92,11 +112,22 @@ Convert a <a href="Suite.html#TYPEt">Suite.t</a> into a <a href="#TYPEt">Zipper.
     returns the result of the callback..
 </div>
 </td></tr>
+<tr><td><a href="Suite.Async.html#VALrun_one">run_one</a> [<a href="Suite.Async.html">Suite.Async</a>]</td>
+<td><div class="info">
+Run an asynchronous test and pass its result to a callback.
+</div>
+</td></tr>
 <tr><td align="left"><br>S</td></tr>
 <tr><td><a href="Webtest_runner.html#VALsetup">setup</a> [<a href="Webtest_runner.html">Webtest_runner</a>]</td>
 <td><div class="info">
 <code class="code">setup test</code> sets up a test runner and attaches it to the document's onLoad
     handler.
+</div>
+</td></tr>
+<tr><td><a href="Utils.html#VALsummarise">summarise</a> [<a href="Utils.html">Utils</a>]</td>
+<td><div class="info">
+<code class="code">summarise output</code> converts the output from running a suite into a summary
+    of the results.
 </div>
 </td></tr>
 <tr><td align="left"><br>T</td></tr>

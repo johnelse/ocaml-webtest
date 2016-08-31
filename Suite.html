@@ -26,48 +26,6 @@ Types and functions for creating and structuring unit test suites.<br>
 </div>
 <hr width="100%">
 
-<pre><span id="TYPEtest_fun"><span class="keyword">type</span> <code class="type"></code>test_fun</span> = <code class="type">unit -> unit</code> </pre>
-<div class="info ">
-A test function.<br>
-</div>
-
-
-<pre><code><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> = </code></pre><table class="typetable">
-<tr>
-<td align="left" valign="top" >
-<code><span class="keyword">|</span></code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELTt.TestCase"><span class="constructor">TestCase</span></span> <span class="keyword">of</span> <code class="type">string * <a href="Suite.html#TYPEtest_fun">test_fun</a></code></code></td>
-<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
-A labelled single test.<br>
-</div>
-</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
-</tr>
-<tr>
-<td align="left" valign="top" >
-<code><span class="keyword">|</span></code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELTt.TestList"><span class="constructor">TestList</span></span> <span class="keyword">of</span> <code class="type">string * <a href="Suite.html#TYPEt">t</a> list</code></code></td>
-<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
-A labelled list of tests.<br>
-</div>
-</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
-</tr></table>
-
-<div class="info ">
-A labelled wrapper around a test or list of suites.<br>
-</div>
-
-
-<pre><span id="VAL(>::)"><span class="keyword">val</span> (&gt;::)</span> : <code class="type">string -> <a href="Suite.html#TYPEtest_fun">test_fun</a> -> <a href="Suite.html#TYPEt">t</a></code></pre><div class="info ">
-Convenience function to create a suite from a label and a
-    <a href="#TYPEtest_fun">test_fun</a>.<br>
-</div>
-
-<pre><span id="VAL(>:::)"><span class="keyword">val</span> (&gt;:::)</span> : <code class="type">string -> <a href="Suite.html#TYPEt">t</a> list -> <a href="Suite.html#TYPEt">t</a></code></pre><div class="info ">
-Convenience function to create a suite from a label and a list of suites.<br>
-</div>
-
 <pre><span id="EXCEPTIONTestFailure"><span class="keyword">exception</span> TestFailure</span> <span class="keyword">of</span> <code class="type">string</code></pre>
 <div class="info ">
 The exception thrown by failing tests.<br>
@@ -110,10 +68,47 @@ The result of running a single testcase.<br>
 </div>
 
 
-<pre><span id="VALbracket"><span class="keyword">val</span> bracket</span> : <code class="type">(unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> <a href="Suite.html#TYPEtest_fun">test_fun</a></code></pre><div class="info ">
-<code class="code">bracket setup test teardown</code> generates a <a href="#TYPEtest_fun">test_fun</a> which will use
-    <code class="code">setup</code> to create state needed for the test, then pass that state to <code class="code">test</code>,
-    and finally will pass that state to <code class="code">teardown</code>.<br>
+<pre><span class="keyword">module</span> <a href="Suite.Sync.html">Sync</a>: <code class="code"><span class="keyword">sig</span></code> <a href="Suite.Sync.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
+<pre><span class="keyword">module</span> <a href="Suite.Async.html">Async</a>: <code class="code"><span class="keyword">sig</span></code> <a href="Suite.Async.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
+<pre><code><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTt.TestCase"><span class="constructor">TestCase</span></span> <span class="keyword">of</span> <code class="type">string * <a href="Suite.Async.html#TYPEtest_fun">Async.test_fun</a></code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+A labelled single test.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTt.TestList"><span class="constructor">TestList</span></span> <span class="keyword">of</span> <code class="type">string * <a href="Suite.html#TYPEt">t</a> list</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+A labelled list of tests.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+
+<div class="info ">
+A labelled wrapper around a test or list of suites.<br>
+</div>
+
+
+<pre><span id="VAL(>::)"><span class="keyword">val</span> (&gt;::)</span> : <code class="type">string -> <a href="Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a> -> <a href="Suite.html#TYPEt">t</a></code></pre><div class="info ">
+Convenience function to create a suite from a label and a
+    <a href="#TYPESync.test_fun">Sync.test_fun</a>.<br>
+</div>
+
+<pre><span id="VAL(>:~)"><span class="keyword">val</span> (&gt;:~)</span> : <code class="type">string -> <a href="Suite.Async.html#TYPEtest_fun">Async.test_fun</a> -> <a href="Suite.html#TYPEt">t</a></code></pre><div class="info ">
+Convenience function to create a suite from a label and a
+    <a href="#TYPEAsync.test_fun">Async.test_fun</a>.<br>
+</div>
+
+<pre><span id="VAL(>:::)"><span class="keyword">val</span> (&gt;:::)</span> : <code class="type">string -> <a href="Suite.html#TYPEt">t</a> list -> <a href="Suite.html#TYPEt">t</a></code></pre><div class="info ">
+Convenience function to create a suite from a label and a list of suites.<br>
 </div>
 
 <pre><span id="VALassert_true"><span class="keyword">val</span> assert_true</span> : <code class="type">string -> bool -> unit</code></pre><div class="info ">
