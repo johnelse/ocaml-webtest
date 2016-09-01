@@ -1,7 +1,7 @@
 open Webtest
 
 let () =
-  Utils.run Test_general_suite.suite
+  Utils.run Test_base_suite.suite
     (fun output ->
       let {Utils.log; passed} = Utils.summarise output in
       print_endline log;

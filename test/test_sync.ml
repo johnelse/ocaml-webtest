@@ -41,7 +41,7 @@ let test_bracket () =
   assert_equal !state `torn_down
 
 let suite =
-  "base_suite" >::: [
+  "sync" >::: [
     "test_assert_true_ok" >:: test_assert_true_ok;
     "test_assert_true_fail" >:: test_assert_true_fail;
     "test_assert_equal_ok" >:: test_assert_equal_ok;
