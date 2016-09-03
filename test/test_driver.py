@@ -17,7 +17,7 @@ def main():
     """
     driver = webdriver.Firefox()
     driver.get(
-        "file://%s" % (os.path.join(os.getcwd(), "test/test_js.html")))
+        "file://%s" % (os.path.join(os.getcwd(), "test/run_tests.html")))
 
     WebDriverWait(driver, 10).until(
         lambda driver:

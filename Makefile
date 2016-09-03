@@ -1,7 +1,7 @@
 all: build
 
-test/test_js.js: build
-	js_of_ocaml test_js.byte -o $@
+test/run_tests.js: build
+	js_of_ocaml run_tests_js.byte -o $@
 
 NAME=webtest
 SETUP=ocaml setup.ml
@@ -14,7 +14,7 @@ build: setup.data
 doc: setup.data build
 	$(SETUP) -doc $(DOCFLAGS)
 
-test: setup.data build test/test_js.js
+test: setup.data build test/run_tests.js
 	$(SETUP) -test $(TESTFLAGS)
 
 install: setup.data
@@ -29,7 +29,7 @@ reinstall: setup.data
 
 clean:
 	$(SETUP) -clean $(CLEANFLAGS)
-	rm -f test/test_runner.js
+	rm -f test/run_tests.js
 
 distclean:
 	$(SETUP) -distclean $(DISTCLEANFLAGS)

@@ -20,28 +20,28 @@ Library webtest_runner
   Findlibparent:      webtest
   Modules:            Webtest_runner
 
-Executable test_js
+Executable run_tests_js
   Build$:             flag(tests)
   CompiledObject:     byte
   Path:               test
-  MainIs:             test_js.ml
+  MainIs:             run_tests_js.ml
   BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest, webtest.runner
   Install:            false
 
-Test test_js
+Test run_tests_js
   Command:            xvfb-run test/test_driver.py
   Run$:               flag(tests)
 
-Executable test_ocaml
+Executable run_tests_ocaml
   Build$:             flag(tests)
   CompiledObject:     best
   Path:               test
-  MainIs:             test_ocaml.ml
+  MainIs:             run_tests_ocaml.ml
   BuildDepends:       webtest
   Install:            false
 
-Test test_ocaml
-  Command:            ./test_ocaml.native
+Test run_tests_ocaml
+  Command:            ./run_tests_ocaml.native
   Run$:               flag(tests)
 
 AlphaFeatures: ocamlbuild_more_args

@@ -2,7 +2,7 @@ _build
 setup.data
 setup.log
 webtest_api.docdir
-test/test_js.js
+test/run_tests.js
 
 *.byte
 *.native
