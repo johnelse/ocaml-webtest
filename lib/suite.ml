@@ -86,3 +86,14 @@ let assert_equal ?printer a b =
     in
     raise (TestFailure msg)
   end
+
+let assert_raises e task =
+  try task ();
+  with
+    | e' when e' = e -> ()
+    | e' ->
+      let msg =
+        Printf.sprintf "unexpected exception raised: %s" (Printexc.to_string e')
+      in
+      raise (TestFailure msg);
+  raise (TestFailure "expected exception not raised")

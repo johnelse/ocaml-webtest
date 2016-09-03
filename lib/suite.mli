@@ -62,3 +62,7 @@ val assert_true : string -> bool -> unit
 val assert_equal : ?printer:('a -> string) -> 'a -> 'a -> unit
 (** [assert_equal a b] returns unit if [a] is equal to [b], and otherwise
     raises {{:#EXCEPTIONTestFailure}TestFailure}. *)
+
+val assert_raises : exn -> (unit -> unit) -> unit
+(** [assert_raises e task] returns unit if [task ()] raises [e], and otherwise
+    raises {{:#EXCEPTIONTestFailure}TestFailure}. *)

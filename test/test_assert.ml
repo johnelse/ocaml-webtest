@@ -1,5 +1,7 @@
 open Webtest.Suite
 
+exception MyException of int
+
 let test_assert_true_ok () =
   assert_true "should pass" true
 
@@ -24,6 +26,18 @@ let test_assert_equal_printer () =
     failwith "assert_equal should have failed"
   with TestFailure "not equal: 5 6" -> ()
 
+let test_assert_raises_ok () =
+  assert_raises (MyException 0) (fun () -> raise (MyException 0))
+
+let test_assert_raises_no_exn () =
+  try assert_raises (MyException 0) (fun () -> ())
+  with TestFailure "expected exception not raised" -> ()
+
+let test_assert_raises_wrong_exn () =
+  try assert_raises (MyException 0) (fun () -> raise (MyException 1))
+  with
+   | TestFailure "unexpected exception raised: Test_assert.MyException(1)" -> ()
+
 let suite =
   "assert" >::: [
     "test_assert_true_ok" >:: test_assert_true_ok;
@@ -31,4 +45,7 @@ let suite =
     "test_assert_equal_ok" >:: test_assert_equal_ok;
     "test_assert_equal_fail" >:: test_assert_equal_fail;
     "test_assert_equal_printer" >:: test_assert_equal_printer;
+    "test_assert_raises_ok" >:: test_assert_raises_ok;
+    "test_assert_raises_no_exn" >:: test_assert_raises_no_exn;
+    "test_assert_raises_wrong_exn" >:: test_assert_raises_wrong_exn;
   ]
