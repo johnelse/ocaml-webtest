@@ -13,10 +13,10 @@ Library webtest
   Path:               lib
   Modules:            Suite, Zipper, Utils
 
-Library webtest_runner
-  Path:               runner
+Library webtest_js
+  Path:               js
   BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest
-  Findlibname:        runner
+  Findlibname:        js
   Findlibparent:      webtest
   Modules:            Webtest_runner
 
@@ -25,7 +25,7 @@ Executable run_tests_js
   CompiledObject:     byte
   Path:               test
   MainIs:             run_tests_js.ml
-  BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest, webtest.runner
+  BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest, webtest.js
   Install:            false
 
 Test run_tests_js
@@ -52,5 +52,5 @@ Document webtest_api
   XOcamlBuildPath:      .
   XOcamlBuildExtraArgs:
     "-docflags '-colorize-code -short-functors -charset utf-8'"
-  XOcamlBuildLibraries: webtest, webtest.runner
+  XOcamlBuildLibraries: webtest, webtest.js
   Install:              false
