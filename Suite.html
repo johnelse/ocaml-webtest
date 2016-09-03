@@ -120,4 +120,9 @@ Convenience function to create a suite from a label and a list of suites.<br>
 <code class="code">assert_equal a b</code> returns unit if <code class="code">a</code> is equal to <code class="code">b</code>, and otherwise
     raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
+
+<pre><span id="VALassert_raises"><span class="keyword">val</span> assert_raises</span> : <code class="type">exn -> (unit -> unit) -> unit</code></pre><div class="info ">
+<code class="code">assert_raises e task</code> returns unit if <code class="code">task ()</code> raises <code class="code">e</code>, and otherwise
+    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+</div>
 </body></html>
