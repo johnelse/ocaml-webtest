@@ -25,10 +25,31 @@ let test_run_one_error () =
     (run_one_sync (fun _ -> failwith "fail"))
     (Some (Error (Failure "fail")))
 
+let test_of_sync_ok () =
+  let async_test = Async.of_sync (fun () -> ()) in
+  assert_equal
+    (run_one_sync async_test)
+    (Some Success)
+
+let test_of_sync_fail () =
+  let async_test = Async.of_sync (fun () -> assert_equal 5 6) in
+  assert_equal
+    (run_one_sync async_test)
+    (Some (Failure "not equal"))
+
+let test_of_sync_error () =
+  let async_test = Async.of_sync (fun () -> failwith "fail") in
+  assert_equal
+    (run_one_sync async_test)
+    (Some (Error (Failure "fail")))
+
 let suite =
   "async" >::: [
     "test_callback" >:~ test_callback;
     "test_run_one_ok" >:: test_run_one_ok;
     "test_run_one_fail" >:: test_run_one_fail;
     "test_run_one_error" >:: test_run_one_error;
+    "test_of_sync_ok" >:: test_of_sync_ok;
+    "test_of_sync_fail" >:: test_of_sync_fail;
+    "test_of_sync_error" >:: test_of_sync_error;
   ]
