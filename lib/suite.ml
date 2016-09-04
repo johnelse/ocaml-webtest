@@ -87,13 +87,17 @@ let assert_equal ?printer a b =
     raise (TestFailure msg)
   end
 
-let assert_raises e task =
-  try task ();
+let assert_raises expected_exn task =
+  match
+    try task (); None
+    with raised_exn -> Some raised_exn
   with
-    | e' when e' = e -> ()
-    | e' ->
-      let msg =
-        Printf.sprintf "unexpected exception raised: %s" (Printexc.to_string e')
-      in
-      raise (TestFailure msg);
-  raise (TestFailure "expected exception not raised")
+  | None -> raise (TestFailure "expected exception not raised")
+  | Some raised_exn when raised_exn = expected_exn -> ()
+  | Some raised_exn ->
+    let msg =
+      Printf.sprintf
+        "unexpected exception raised: %s"
+        (Printexc.to_string raised_exn)
+    in
+    raise (TestFailure msg)
