@@ -39,26 +39,26 @@ let run suite callback =
   run' zipper []
 
 let summarise {log; results} =
-  let total, errored, failed, succeeded =
+  let total, errors, failures, passes =
     List.fold_left
-      (fun (total, errors, failures, successes) result ->
+      (fun (total, errors, failures, passes) result ->
         let open Suite in
         match result with
-        | Error _ -> total + 1, errors + 1, failures, successes
-        | Failure _ -> total + 1, errors, failures + 1, successes
-        | Success -> total + 1, errors, failures, successes + 1)
+        | Error _ -> total + 1, errors + 1, failures, passes
+        | Fail _ -> total + 1, errors, failures + 1, passes
+        | Pass -> total + 1, errors, failures, passes + 1)
       (0, 0, 0, 0) results
   in
   let final_log =
     String.concat "\n" [
       log;
       Printf.sprintf "%d tests run" total;
-      Printf.sprintf "%d errors" errored;
-      Printf.sprintf "%d failures" failed;
-      Printf.sprintf "%d succeeded" succeeded;
+      Printf.sprintf "%d errors" errors;
+      Printf.sprintf "%d failures" failures;
+      Printf.sprintf "%d passes" passes;
     ]
   in
-  let passed = total = succeeded in
+  let passed = total = passes in
   {
     log = final_log;
     passed;

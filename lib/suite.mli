@@ -5,8 +5,8 @@ exception TestFailure of string
 
 type result =
   | Error of exn           (** An unexpected error occurred in the test. *)
-  | Failure of string      (** An assertion failed in the test. *)
-  | Success                (** The test passed. *)
+  | Fail of string         (** An assertion failed in the test. *)
+  | Pass                   (** The test passed. *)
 (** The result of running a single testcase. *)
 
 module Sync : sig

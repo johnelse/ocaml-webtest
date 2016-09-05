@@ -13,12 +13,12 @@ let test_callback callback = callback ()
 let test_run_one_ok () =
   assert_equal
     (run_one_sync (fun callback -> callback ()))
-    (Some Success)
+    (Some Pass)
 
 let test_run_one_fail () =
   assert_equal
     (run_one_sync (fun _ -> assert_equal 5 6))
-    (Some (Failure "not equal"))
+    (Some (Fail "not equal"))
 
 let test_run_one_error () =
   assert_equal
@@ -29,13 +29,13 @@ let test_of_sync_ok () =
   let async_test = Async.of_sync (fun () -> ()) in
   assert_equal
     (run_one_sync async_test)
-    (Some Success)
+    (Some Pass)
 
 let test_of_sync_fail () =
   let async_test = Async.of_sync (fun () -> assert_equal 5 6) in
   assert_equal
     (run_one_sync async_test)
-    (Some (Failure "not equal"))
+    (Some (Fail "not equal"))
 
 let test_of_sync_error () =
   let async_test = Async.of_sync (fun () -> failwith "fail") in

@@ -2,13 +2,13 @@ exception TestFailure of string
 
 type result =
   | Error of exn
-  | Failure of string
-  | Success
+  | Fail of string
+  | Pass
 
 let string_of_result = function
   | Error e -> Printf.sprintf "Error: %s" (Printexc.to_string e)
-  | Failure msg -> Printf.sprintf "Failure: %s" msg
-  | Success -> "Success"
+  | Fail msg -> Printf.sprintf "Fail: %s" msg
+  | Pass -> "Pass"
 
 let finally f cleanup =
   let result =
@@ -53,9 +53,9 @@ module Async = struct
     in
     try
       log "Start";
-      test (fun () -> log_and_handle_result Success)
+      test (fun () -> log_and_handle_result Pass)
     with
-      | TestFailure msg -> log_and_handle_result (Failure msg)
+      | TestFailure msg -> log_and_handle_result (Fail msg)
       | e -> log_and_handle_result (Error e)
 
   let of_sync test callback =
