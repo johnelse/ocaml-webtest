@@ -1,5 +1,4 @@
 open Webtest.Suite
-open Webtest.Utils
 
 let test_bracket_succeed () =
   let state = ref `uninitialised in
