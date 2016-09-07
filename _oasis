@@ -4,7 +4,7 @@ Name:           webtest
 Version:        0.1.0
 Authors:        John Else
 License:        ISC
-Synopsis:       Stripped down unit test framework compatible with js_of_ocaml
+Synopsis:       Unit test framework fully compatible with js_of_ocaml
 Plugins:        META (0.4), DevFiles (0.4)
 BuildTools:     ocamlbuild
 
@@ -48,7 +48,7 @@ AlphaFeatures: ocamlbuild_more_args
 Document webtest_api
   Type:                 ocamlbuild (0.4)
   BuildTools:           ocamldoc
-  Title:                Stripped down unit test framework
+  Title:                Unit test framework fully compatible with js_of_ocaml
   XOcamlBuildPath:      .
   XOcamlBuildExtraArgs:
     "-docflags '-colorize-code -short-functors -charset utf-8'"
