@@ -1,20 +1,18 @@
 type output = {
-  log: string;
+  log: string list;
   results: Suite.result list;
 }
 
 type summary = {
-  log: string;
+  report: string;
   passed: bool;
 }
 
 let run suite callback =
-  let log_buf = Buffer.create 0 in
+  let log = ref [] in
   let log_with_prefix prefix msg =
-    Buffer.add_string log_buf prefix;
-    Buffer.add_char log_buf ':';
-    Buffer.add_string log_buf msg;
-    Buffer.add_char log_buf '\n'
+    let line = Printf.sprintf "%s:%s" prefix msg in
+    log := (line :: !log)
   in
   let zipper = Zipper.of_suite suite in
   let rec run' ({Zipper.location} as zipper) results =
@@ -23,7 +21,7 @@ let run suite callback =
       | Some zipper' -> run' zipper' results
       | None ->
         callback {
-          log = Buffer.contents log_buf;
+          log = List.rev !log;
           results = List.rev results
         }
     in
@@ -38,7 +36,7 @@ let run suite callback =
   in
   run' zipper []
 
-let summarise {log; results} =
+let summarise results =
   let total, errors, failures, passes =
     List.fold_left
       (fun (total, errors, failures, passes) result ->
@@ -49,9 +47,8 @@ let summarise {log; results} =
         | Pass -> total + 1, errors, failures, passes + 1)
       (0, 0, 0, 0) results
   in
-  let final_log =
+  let report =
     String.concat "\n" [
-      log;
       Printf.sprintf "%d tests run" total;
       Printf.sprintf "%d errors" errors;
       Printf.sprintf "%d failures" failures;
@@ -60,6 +57,6 @@ let summarise {log; results} =
   in
   let passed = total = passes in
   {
-    log = final_log;
+    report;
     passed;
   }

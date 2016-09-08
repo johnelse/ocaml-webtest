@@ -10,8 +10,10 @@ let suite =
 
 let () =
   Utils.run suite
-    (fun output ->
-      let {Utils.log; passed} = Utils.summarise output in
+    (fun {Utils.log; results} ->
+      let {Utils.report; passed} = Utils.summarise results in
+      let log = (String.concat "\n" log) in
       print_endline log;
+      print_endline report;
       if not passed
       then exit 1)

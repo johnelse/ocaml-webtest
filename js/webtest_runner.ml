@@ -8,9 +8,9 @@ let run suite _ =
   webtest##.run := Js.wrap_callback
     (fun () ->
       let open Webtest in
-      Utils.run suite (fun results ->
-        let {Utils.log; passed} = Utils.summarise results in
-        webtest##.log := Js.string log;
+      Utils.run suite (fun {Utils.log; results} ->
+        let {Utils.report; passed} = Utils.summarise results in
+        webtest##.log := Js.string ((String.concat "\n" log) ^ "\n" ^ report);
         webtest##.passed := if passed then Js._true else Js._false;
         webtest##.finished := Js._true));
 
