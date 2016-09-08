@@ -13,8 +13,8 @@
 </head>
 <body>
 <code class="code"><span class="keyword">sig</span><br>
-&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;output&nbsp;=&nbsp;{&nbsp;log&nbsp;:&nbsp;string;&nbsp;results&nbsp;:&nbsp;<span class="constructor">Suite</span>.result&nbsp;list;&nbsp;}<br>
-&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;summary&nbsp;=&nbsp;{&nbsp;log&nbsp;:&nbsp;string;&nbsp;passed&nbsp;:&nbsp;bool;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;output&nbsp;=&nbsp;{&nbsp;log&nbsp;:&nbsp;string&nbsp;list;&nbsp;results&nbsp;:&nbsp;<span class="constructor">Suite</span>.result&nbsp;list;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;summary&nbsp;=&nbsp;{&nbsp;report&nbsp;:&nbsp;string;&nbsp;passed&nbsp;:&nbsp;bool;&nbsp;}<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;run&nbsp;:&nbsp;<span class="constructor">Suite</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(<span class="constructor">Utils</span>.output&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;summarise&nbsp;:&nbsp;<span class="constructor">Utils</span>.output&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Utils</span>.summary<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;summarise&nbsp;:&nbsp;<span class="constructor">Suite</span>.result&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Utils</span>.summary<br>
 <span class="keyword">end</span></code></body></html>
