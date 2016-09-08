@@ -16,8 +16,7 @@ type summary = {
     all the tests passed. *)
 
 val run : Suite.t -> (output -> unit) -> unit
-(** [run suite] runs [suite], passes the output to a supplied callback, and
-    returns the result of the callback.. *)
+(** [run suite callback] runs [suite], passes the output to [callback]. *)
 
 val summarise : Suite.result list -> summary
 (** [summarise results] converts a list of test results into a summary. *)
