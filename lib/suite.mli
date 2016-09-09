@@ -66,3 +66,8 @@ val assert_equal : ?printer:('a -> string) -> 'a -> 'a -> unit
 val assert_raises : exn -> (unit -> unit) -> unit
 (** [assert_raises e task] returns unit if [task ()] raises [e], and otherwise
     raises {{:#EXCEPTIONTestFailure}TestFailure}. *)
+
+val assert_raises_string : string -> (unit -> unit) -> unit
+(** [assert_raises_string str task] returns unit if [task ()] raises an
+    exception [e] for which [Printexc.to_string e = str], and otherwise
+    raises {{:#EXCEPTIONTestFailure}TestFailure}. *)

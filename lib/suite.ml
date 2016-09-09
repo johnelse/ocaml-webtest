@@ -101,3 +101,19 @@ let assert_raises expected_exn task =
         (Printexc.to_string raised_exn)
     in
     raise (TestFailure msg)
+
+let assert_raises_string expected_exn_string task =
+  match
+    try task (); None
+    with raised_exn -> Some raised_exn
+  with
+  | None -> raise (TestFailure "expected exception not raised")
+  | Some raised_exn
+    when (Printexc.to_string raised_exn) = expected_exn_string -> ()
+  | Some raised_exn ->
+    let msg =
+      Printf.sprintf
+        "unexpected exception raised: %s"
+        (Printexc.to_string raised_exn)
+    in
+    raise (TestFailure msg)
