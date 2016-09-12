@@ -72,7 +72,7 @@ let rec next_sibling zipper =
     | None -> None
   end
 
-let rec next_location zipper =
+let next_location zipper =
   match move_down zipper with
   | Some zipper' as result -> result
   | None -> next_sibling zipper
