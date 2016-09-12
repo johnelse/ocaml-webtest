@@ -48,6 +48,13 @@ Convenience function to create a suite from a label and a
     raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.
 </div>
 </td></tr>
+<tr><td><a href="Suite.html#VALassert_raises_string">assert_raises_string</a> [<a href="Suite.html">Suite</a>]</td>
+<td><div class="info">
+<code class="code">assert_raises_string str task</code> returns unit if <code class="code">task ()</code> raises an
+    exception <code class="code">e</code> for which <code class="code"><span class="constructor">Printexc</span>.to_string e = str</code>, and otherwise
+    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.
+</div>
+</td></tr>
 <tr><td><a href="Suite.html#VALassert_true">assert_true</a> [<a href="Suite.html">Suite</a>]</td>
 <td><div class="info">
 <code class="code">assert_bool label value</code> returns unit if <code class="code">value</code> is true, and otherwise
