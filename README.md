@@ -18,7 +18,7 @@ You may find this helpful if you want to
 You could even use this library to test normal OCaml code, but in that case
 you're probably better off just using oUnit for the extra features it provides.
 
-## Contents
+## Library contents
 
 `ocaml-webtest` consists of two libraries:
 
@@ -31,7 +31,7 @@ This has no dependencies, and contains code for creating tests and suites.
 This depends on `js_of_ocaml`, and contains code used for running tests in a
 browser.
 
-## Usage
+## Creating test suites
 
 `ocaml-webtest` supports two kinds of test cases - synchronous and asynchronous.
 
@@ -71,7 +71,7 @@ let async_test callback =
 ```
 
 Synchronous and asynchronous test cases can be combined into suites using the
-functions `>::`, `>:~` and `>:::`
+functions `>::`, `>:~` and `>:::` - for example:
 
 ```
 let suite =
