@@ -22,13 +22,17 @@ end
 
 module Async : sig
   type callback = unit -> unit
+
+  val noop : callback
+
+  type wrapper = callback -> unit
   (** A callback to be passed to an asynchronous test. *)
 
-  type test_fun = callback -> unit
+  type test_fun = wrapper -> unit
   (** An asynchronous test function. *)
 
   val bracket :
-    (unit -> 'a) -> ('a -> callback -> unit) -> ('a -> unit) -> test_fun
+    (unit -> 'a) -> ('a -> wrapper -> unit) -> ('a -> unit) -> test_fun
   (** [bracket setup test teardown] generates a
       {{:#TYPEAsync.test_fun}Async.test_fun} which will use [setup] to create
       state needed for the test, then pass that state to [test], and finally

@@ -10,11 +10,11 @@ let run_one_sync async_test =
     (fun result -> result_ref := Some result);
   !result_ref
 
-let test_callback callback = callback ()
+let test_wrapper wrapper = wrapper Async.noop
 
 let test_run_one_ok () =
   assert_equal
-    (run_one_sync (fun callback -> callback ()))
+    (run_one_sync (fun wrapper -> wrapper Async.noop))
     (Some Pass)
 
 let test_run_one_fail () =
@@ -28,7 +28,7 @@ let test_run_one_error () =
     (Some (Error (Failure "fail")))
 
 let test_of_sync_ok () =
-  let async_test = Async.of_sync (fun () -> ()) in
+  let async_test = Async.of_sync Async.noop in
   assert_equal
     (run_one_sync async_test)
     (Some Pass)
@@ -47,7 +47,7 @@ let test_of_sync_error () =
 
 let suite =
   "async" >::: [
-    "test_callback" >:~ test_callback;
+    "test_wrapper" >:~ test_wrapper;
     "test_run_one_ok" >:: test_run_one_ok;
     "test_run_one_fail" >:: test_run_one_fail;
     "test_run_one_error" >:: test_run_one_error;
