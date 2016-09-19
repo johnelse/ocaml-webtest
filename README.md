@@ -82,3 +82,23 @@ let suite =
     "async_test" >:~ async_test;
   ]
 ```
+
+## In-browser testing
+
+Once you've created a suite, you can integrate it into an HTML document using
+`Webtest_runner.setup`:
+
+```
+let () = Webtest_runner.setup suite
+```
+
+This will create the global Javascript object `webtest` which exposes a simple
+API for running the test suite.
+
+* `webtest.finished` is a boolean indicating whether the suite run has finished.
+* `webtest.passed` is a boolean indicating whether all the tests passed.
+* `webtest.log` contains the log produced by running the tests.
+
+This API can be used by browser automation tools such as
+[Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/). For an
+example implementation in Python, see [test_driver.py](test/test_driver.py).
