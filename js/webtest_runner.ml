@@ -4,6 +4,7 @@ let run suite _ =
   let open Js.Unsafe in
   let webtest = Js.Unsafe.obj [||] in
   webtest##.finished := Js._false;
+  webtest##.log := Js.string "";
   webtest##.passed := Js._false;
   webtest##.run := Js.wrap_callback
     (fun () ->
