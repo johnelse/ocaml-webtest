@@ -12,14 +12,14 @@
 <link title="Webtest_runner" rel="Chapter" href="Webtest_runner.html"><title>Zipper</title>
 </head>
 <body>
-<code class="code"><span class="keyword">sig</span><br>
-&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;crumb&nbsp;=&nbsp;{&nbsp;left&nbsp;:&nbsp;<span class="constructor">Suite</span>.t&nbsp;list;&nbsp;label&nbsp;:&nbsp;string;&nbsp;right&nbsp;:&nbsp;<span class="constructor">Suite</span>.t&nbsp;list;&nbsp;}<br>
-&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t&nbsp;=&nbsp;{&nbsp;crumbs&nbsp;:&nbsp;<span class="constructor">Zipper</span>.crumb&nbsp;list;&nbsp;location&nbsp;:&nbsp;<span class="constructor">Suite</span>.t;&nbsp;}<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;of_suite&nbsp;:&nbsp;<span class="constructor">Suite</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Zipper</span>.t<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;to_suite&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Suite</span>.t<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;move_up&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Zipper</span>.t&nbsp;option<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;move_down&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Zipper</span>.t&nbsp;option<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;move_right&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Zipper</span>.t&nbsp;option<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;next_location&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Zipper</span>.t&nbsp;option<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;get_labels&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;list<br>
+<code class="code"><span class="keyword">sig</span>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;crumb&nbsp;=&nbsp;{&nbsp;left&nbsp;:&nbsp;<span class="constructor">Suite</span>.t&nbsp;list;&nbsp;label&nbsp;:&nbsp;string;&nbsp;right&nbsp;:&nbsp;<span class="constructor">Suite</span>.t&nbsp;list;&nbsp;}
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t&nbsp;=&nbsp;{&nbsp;crumbs&nbsp;:&nbsp;<span class="constructor">Zipper</span>.crumb&nbsp;list;&nbsp;location&nbsp;:&nbsp;<span class="constructor">Suite</span>.t;&nbsp;}
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;of_suite&nbsp;:&nbsp;<span class="constructor">Suite</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Zipper</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;to_suite&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Suite</span>.t
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;move_up&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Zipper</span>.t&nbsp;option
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;move_down&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Zipper</span>.t&nbsp;option
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;move_right&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Zipper</span>.t&nbsp;option
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;next_location&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Zipper</span>.t&nbsp;option
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;get_labels&nbsp;:&nbsp;<span class="constructor">Zipper</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;list
 <span class="keyword">end</span></code></body></html>
