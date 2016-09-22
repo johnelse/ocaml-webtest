@@ -95,6 +95,8 @@ let () = Webtest_runner.setup suite
 This will create the global Javascript object `webtest` which exposes a simple
 API for running the test suite.
 
+* `webtest.run` is a function with no arguments - calling it will run the test
+  suite.
 * `webtest.finished` is a boolean indicating whether the suite run has finished.
 * `webtest.passed` is a boolean indicating whether all the tests passed.
 * `webtest.log` contains the log produced by running the tests.
