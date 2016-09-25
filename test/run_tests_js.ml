@@ -1,3 +1,5 @@
+(* Test suite which runs in the browser as Javascript. *)
+
 let suite =
   let open Webtest.Suite in
   "js_suite" >::: [

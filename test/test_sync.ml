@@ -1,3 +1,5 @@
+(* Test handling of synchronous test cases. *)
+
 open Webtest.Suite
 
 let test_bracket_succeed () =

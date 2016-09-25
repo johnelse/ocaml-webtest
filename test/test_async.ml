@@ -1,3 +1,5 @@
+(* Test handling of asynchronous test cases. *)
+
 open Webtest.Suite
 
 let run_one_sync async_test =

@@ -1,3 +1,5 @@
+(* Test suite which runs as OCaml. *)
+
 open Webtest
 
 let suite =

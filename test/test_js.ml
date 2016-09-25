@@ -1,3 +1,5 @@
+(* Javascript-specific tests. *)
+
 open Webtest.Suite
 
 let test_async_callback callback =

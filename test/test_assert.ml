@@ -1,3 +1,5 @@
+(* Test the assert functions. *)
+
 open Webtest.Suite
 
 exception MyException of int
