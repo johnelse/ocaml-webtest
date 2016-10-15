@@ -4,7 +4,7 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y xvfb
 install:
-  - sudo -H pip install selenium
+  - sudo -H pip install selenium==2.53.6
   - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-opam.sh
   - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-docgen.sh
 script:
