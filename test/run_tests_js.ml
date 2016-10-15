@@ -9,4 +9,4 @@ let suite =
     Test_sync.suite;
   ]
 
-let () = Webtest_runner.setup suite
+let () = Webtest_js.Runner.setup suite

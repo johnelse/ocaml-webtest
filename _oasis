@@ -14,11 +14,12 @@ Library webtest
   Modules:            Suite, Zipper, Utils
 
 Library webtest_js
+  Pack:               true
   Path:               js
   BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest
   Findlibname:        js
   Findlibparent:      webtest
-  Modules:            Webtest_runner
+  Modules:            Runner
 
 Executable run_tests_js
   Build$:             flag(tests)

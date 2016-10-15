@@ -86,10 +86,10 @@ let suite =
 ## In-browser testing
 
 Once you've created a suite, you can integrate it into an HTML document using
-`Webtest_runner.setup`:
+`Webtest_js.Runner.setup`:
 
 ```
-let () = Webtest_runner.setup suite
+let () = Webtest_js.Runner.setup suite
 ```
 
 This will create the global Javascript object `webtest` which exposes a simple
