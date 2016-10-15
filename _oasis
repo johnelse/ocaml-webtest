@@ -1,5 +1,5 @@
 OASISFormat:    0.4
-OCamlVersion:   >= 4.01
+OCamlVersion:   >= 4.02
 Name:           webtest
 Version:        0.1.0
 Authors:        John Else
