@@ -33,6 +33,7 @@ let test_bracket_fail () =
   with TestFailure "not equal" ->
     assert_equal !state `torn_down
 
+exception TestException
 let test_bracket_error () =
   let state = ref `uninitialised in
   let setup () = state := `test_start; state in
@@ -44,9 +45,9 @@ let test_bracket_error () =
       setup
       (fun state ->
         assert_equal !state `test_start;
-        failwith "error")
+        raise TestException)
       teardown ();
-  with Failure "error" ->
+  with TestException ->
     assert_equal !state `torn_down
 
 let suite =
