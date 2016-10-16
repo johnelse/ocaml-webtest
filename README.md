@@ -51,21 +51,24 @@ let sync_test2 () = assert_true "value should be true" (get_value ())
 let sync_test3 () = assert_raises MyExn (exception_thrower ())
 ```
 
-Asynchronous test cases are functions of type `(unit -> unit) -> unit`. When
-run they are passed a callback function. In order to pass, an asynchronous test
-case should not only return cleanly, it should also make sure that this callback
-function is called once the test is complete. Asynchronous test cases can be
-used to check that an event handler associated with a Javascript object has been
-called.
+Asynchronous test cases are functions of type
+`((unit -> unit) -> unit) -> unit`. When run they are passed a wrapper function
+which must be used to wrap any asynchronous code which should be triggered as
+part of the test. In order to pass, an asynchronous test case should not only
+return cleanly, it should also make sure that the wrapped code runs
+successfully. Asynchronous test cases can be used to check that an event handler
+associated with a Javascript object has been called.
 
 An example of an asynchronous test case:
 
 ```
-let async_test callback =
+let async_test wrapper =
   let js_object = create_object () in
 
   js_object##onclose :=
-    Dom_html.handler (fun _  -> callback (); Js._false);
+    Dom_html.handler (fun _  -> wrapper (fun () ->
+      assert_true "Object has been closed" (is_closed js_object);
+      Js._false));
 
   js_object##close
 ```
