@@ -24,18 +24,27 @@
 <pre><span class="keyword">module</span> Async: <code class="code"><span class="keyword">sig</span></code> <a href="Suite.Async.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><hr width="100%">
 
 <pre><span id="TYPEcallback"><span class="keyword">type</span> <code class="type"></code>callback</span> = <code class="type">unit -> unit</code> </pre>
+<div class="info ">
+The type of an asynchronous callback which will run as part of an
+      asynchronous test.<br>
+</div>
 
 
-<pre><span id="VALnoop"><span class="keyword">val</span> noop</span> : <code class="type"><a href="Suite.Async.html#TYPEcallback">callback</a></code></pre>
+<pre><span id="VALnoop"><span class="keyword">val</span> noop</span> : <code class="type"><a href="Suite.Async.html#TYPEcallback">callback</a></code></pre><div class="info ">
+The noop callback - this is just an alias for <code class="code"><span class="keyword">fun</span> () <span class="keywordsign">-&gt;</span> ()</code>.<br>
+</div>
+
 <pre><span id="TYPEwrapper"><span class="keyword">type</span> <code class="type"></code>wrapper</span> = <code class="type"><a href="Suite.Async.html#TYPEcallback">callback</a> -> unit</code> </pre>
 <div class="info ">
-A callback to be passed to an asynchronous test.<br>
+A wrapper function to be passed to an asynchronous test.<br>
 </div>
 
 
 <pre><span id="TYPEtest_fun"><span class="keyword">type</span> <code class="type"></code>test_fun</span> = <code class="type"><a href="Suite.Async.html#TYPEwrapper">wrapper</a> -> unit</code> </pre>
 <div class="info ">
-An asynchronous test function.<br>
+An asynchronous test function. When run it will be passed a wrapper
+      function - this should be used to wrap any asynchronous code which the
+      test case is expected to run.<br>
 </div>
 
 
