@@ -48,6 +48,92 @@ let test_of_sync_error () =
     (run_one_sync async_test)
     (Some (Error (Failure "fail")))
 
+let test_bracket_ok () =
+  let state = ref `uninitialised in
+  let setup () = state := `test_start; state in
+  let teardown state =
+    assert_equal !state `test_end;
+    state := `torn_down
+  in
+  let async_test = Async.bracket
+    setup
+    (fun state wrapper ->
+      wrapper (fun () ->
+        assert_equal !state `test_start;
+        state := `test_end))
+    teardown
+  in
+  assert_equal
+    (run_one_sync async_test)
+    (Some Pass);
+  assert_equal !state `torn_down
+
+let test_bracket_fail_in_sync () =
+  let state = ref `uninitialised in
+  let setup () = state := `test_start; state in
+  let teardown state =
+    state := `torn_down
+  in
+  let async_test = Async.bracket
+    setup
+    (fun state wrapper -> assert_equal 5 6)
+    teardown
+  in
+  assert_equal
+    (run_one_sync async_test)
+    (Some (Fail "not equal"));
+  assert_equal !state `torn_down
+
+let test_bracket_fail_in_async () =
+  let state = ref `uninitialised in
+  let setup () = state := `test_start; state in
+  let teardown state =
+    state := `torn_down
+  in
+  let async_test = Async.bracket
+    setup
+    (fun state wrapper -> wrapper (fun () -> assert_equal 5 6))
+    teardown
+  in
+  assert_equal
+    (run_one_sync async_test)
+    (Some (Fail "not equal"));
+  assert_equal !state `torn_down
+
+exception TestException
+
+let test_bracket_error_in_sync () =
+  let state = ref `uninitialised in
+  let setup () = state := `test_start; state in
+  let teardown state =
+    state := `torn_down
+  in
+  let async_test = Async.bracket
+    setup
+    (fun state wrapper -> raise TestException)
+    teardown
+  in
+  assert_equal
+    (run_one_sync async_test)
+    (Some (Error TestException));
+  assert_equal !state `torn_down
+
+let test_bracket_error_in_async () =
+  let state = ref `uninitialised in
+  let setup () = state := `test_start; state in
+  let teardown state =
+    state := `torn_down
+  in
+  let async_test = Async.bracket
+    setup
+    (fun state wrapper -> wrapper (fun () -> raise TestException))
+    teardown
+  in
+  assert_equal
+    (run_one_sync async_test)
+    (Some (Error TestException));
+  assert_equal !state `torn_down
+
 let suite =
   "async" >::: [
     "test_wrapper" >:~ test_wrapper;
@@ -59,4 +145,9 @@ let suite =
     "test_of_sync_ok" >:: test_of_sync_ok;
     "test_of_sync_fail" >:: test_of_sync_fail;
     "test_of_sync_error" >:: test_of_sync_error;
+    "test_bracket_ok" >:: test_bracket_ok;
+    "test_bracket_fail_in_sync" >::  test_bracket_fail_in_sync;
+    "test_bracket_fail_in_async" >::  test_bracket_fail_in_async;
+    "test_bracket_error_in_sync" >::  test_bracket_error_in_sync;
+    "test_bracket_error_in_async" >::  test_bracket_error_in_async;
   ]
