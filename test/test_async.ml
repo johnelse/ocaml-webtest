@@ -27,6 +27,16 @@ let test_run_one_error () =
     (run_one_sync (fun _ -> failwith "fail"))
     (Some (Error (Failure "fail")))
 
+let test_run_one_fail_in_callback () =
+  assert_equal
+    (run_one_sync (fun wrapper -> wrapper (fun () -> assert_equal 5 6)))
+    (Some (Fail "not equal"))
+
+let test_run_one_error_in_callback () =
+  assert_equal
+    (run_one_sync (fun wrapper -> wrapper (fun () -> failwith "fail")))
+    (Some (Error (Failure "fail")))
+
 let test_of_sync_ok () =
   let async_test = Async.of_sync Async.noop in
   assert_equal
@@ -51,6 +61,8 @@ let suite =
     "test_run_one_ok" >:: test_run_one_ok;
     "test_run_one_fail" >:: test_run_one_fail;
     "test_run_one_error" >:: test_run_one_error;
+    "test_run_one_fail_in_callback" >:: test_run_one_fail_in_callback;
+    "test_run_one_error_in_callback" >:: test_run_one_error_in_callback;
     "test_of_sync_ok" >:: test_of_sync_ok;
     "test_of_sync_fail" >:: test_of_sync_fail;
     "test_of_sync_error" >:: test_of_sync_error;
