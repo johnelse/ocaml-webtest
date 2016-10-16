@@ -1,14 +1,7 @@
 (* Test handling of asynchronous test cases. *)
 
+open Test_utils
 open Webtest.Suite
-
-let run_one_sync async_test =
-  let result_ref = ref None in
-  Async.run_one
-    async_test
-    (fun _ -> ())
-    (fun result -> result_ref := Some result);
-  !result_ref
 
 let test_wrapper wrapper = wrapper Async.noop
 
