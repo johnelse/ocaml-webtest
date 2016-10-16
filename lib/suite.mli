@@ -22,14 +22,19 @@ end
 
 module Async : sig
   type callback = unit -> unit
+  (** The type of an asynchronous callback which will run as part of an
+      asynchronous test. *)
 
   val noop : callback
+  (** The noop callback - this is just an alias for [fun () -> ()]. *)
 
   type wrapper = callback -> unit
-  (** A callback to be passed to an asynchronous test. *)
+  (** A wrapper function to be passed to an asynchronous test. *)
 
   type test_fun = wrapper -> unit
-  (** An asynchronous test function. *)
+  (** An asynchronous test function. When run it will be passed a wrapper
+      function - this should be used to wrap any asynchronous code which the
+      test case is expected to run. *)
 
   val bracket :
     (unit -> 'a) -> ('a -> wrapper -> unit) -> ('a -> unit) -> test_fun
