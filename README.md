@@ -73,6 +73,10 @@ let async_test wrapper =
   js_object##close
 ```
 
+If you don't need to perform any assertions in the asynchronous code but just
+need to check that a handler fired, you can call the wrapper function with
+`Async.noop`, which is just an alias for `fun () -> ()`.
+
 Synchronous and asynchronous test cases can be combined into suites using the
 functions `>::`, `>:~` and `>:::` - for example:
 
