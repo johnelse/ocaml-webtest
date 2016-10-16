@@ -24,18 +24,22 @@
 <pre><span class="keyword">module</span> Async: <code class="code"><span class="keyword">sig</span></code> <a href="Suite.Async.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><hr width="100%">
 
 <pre><span id="TYPEcallback"><span class="keyword">type</span> <code class="type"></code>callback</span> = <code class="type">unit -> unit</code> </pre>
+
+
+<pre><span id="VALnoop"><span class="keyword">val</span> noop</span> : <code class="type"><a href="Suite.Async.html#TYPEcallback">callback</a></code></pre>
+<pre><span id="TYPEwrapper"><span class="keyword">type</span> <code class="type"></code>wrapper</span> = <code class="type"><a href="Suite.Async.html#TYPEcallback">callback</a> -> unit</code> </pre>
 <div class="info ">
 A callback to be passed to an asynchronous test.<br>
 </div>
 
 
-<pre><span id="TYPEtest_fun"><span class="keyword">type</span> <code class="type"></code>test_fun</span> = <code class="type"><a href="Suite.Async.html#TYPEcallback">callback</a> -> unit</code> </pre>
+<pre><span id="TYPEtest_fun"><span class="keyword">type</span> <code class="type"></code>test_fun</span> = <code class="type"><a href="Suite.Async.html#TYPEwrapper">wrapper</a> -> unit</code> </pre>
 <div class="info ">
 An asynchronous test function.<br>
 </div>
 
 
-<pre><span id="VALbracket"><span class="keyword">val</span> bracket</span> : <code class="type">(unit -> 'a) -><br>       ('a -> <a href="Suite.Async.html#TYPEcallback">callback</a> -> unit) -> ('a -> unit) -> <a href="Suite.Async.html#TYPEtest_fun">test_fun</a></code></pre><div class="info ">
+<pre><span id="VALbracket"><span class="keyword">val</span> bracket</span> : <code class="type">(unit -> 'a) -><br>       ('a -> <a href="Suite.Async.html#TYPEwrapper">wrapper</a> -> unit) -> ('a -> unit) -> <a href="Suite.Async.html#TYPEtest_fun">test_fun</a></code></pre><div class="info ">
 <code class="code">bracket setup test teardown</code> generates a
       <a href="#TYPEAsync.test_fun">Async.test_fun</a> which will use <code class="code">setup</code> to create
       state needed for the test, then pass that state to <code class="code">test</code>, and finally
