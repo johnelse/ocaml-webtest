@@ -64,7 +64,7 @@ val (>:~) : string -> Async.test_fun -> t
 val (>:::) : string -> t list -> t
 (** Convenience function to create a suite from a label and a list of suites. *)
 
-val assert_true : string -> bool -> unit
+val assert_true : ?label:string -> bool -> unit
 (** [assert_bool label value] returns unit if [value] is true, and otherwise
     raises {{:#EXCEPTIONTestFailure}TestFailure}. *)
 

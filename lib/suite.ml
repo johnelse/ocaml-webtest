@@ -94,9 +94,13 @@ let (>::) label test_fun = TestCase (label, Async.of_sync test_fun)
 let (>:~) label test_fun = TestCase (label, test_fun)
 let (>:::) label tests = TestList (label, tests)
 
-let assert_true label value =
+let string_of_opt = function
+  | Some value -> Printf.sprintf ": %s" value
+  | None -> ""
+
+let assert_true ?label value =
   if not value then begin
-    let msg = Printf.sprintf "test value was false: %s" label in
+    let msg = Printf.sprintf "test value was false%s" (string_of_opt label) in
     raise (TestFailure msg)
   end
 
