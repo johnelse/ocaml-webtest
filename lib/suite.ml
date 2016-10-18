@@ -115,33 +115,45 @@ let assert_equal ?label ?printer a b =
     raise (TestFailure msg)
   end
 
-let assert_raises expected_exn task =
+let assert_raises ?label expected_exn task =
   match
     try task (); None
     with raised_exn -> Some raised_exn
   with
-  | None -> raise (TestFailure "expected exception not raised")
+  | None ->
+    let msg =
+      Printf.sprintf
+        "expected exception not raised%s" (string_of_opt label)
+    in
+    raise (TestFailure msg)
   | Some raised_exn when raised_exn = expected_exn -> ()
   | Some raised_exn ->
     let msg =
       Printf.sprintf
-        "unexpected exception raised: %s"
+        "unexpected exception raised%s: %s"
+        (string_of_opt label)
         (Printexc.to_string raised_exn)
     in
     raise (TestFailure msg)
 
-let assert_raises_string expected_exn_string task =
+let assert_raises_string ?label expected_exn_string task =
   match
     try task (); None
     with raised_exn -> Some raised_exn
   with
-  | None -> raise (TestFailure "expected exception not raised")
+  | None ->
+    let msg =
+      Printf.sprintf
+        "expected exception not raised%s" (string_of_opt label)
+    in
+    raise (TestFailure msg)
   | Some raised_exn
     when (Printexc.to_string raised_exn) = expected_exn_string -> ()
   | Some raised_exn ->
     let msg =
       Printf.sprintf
-        "unexpected exception raised: %s"
+        "unexpected exception raised%s: %s"
+        (string_of_opt label)
         (Printexc.to_string raised_exn)
     in
     raise (TestFailure msg)
