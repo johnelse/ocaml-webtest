@@ -107,10 +107,11 @@ let assert_true ?label value =
 let assert_equal ?printer a b =
   if a <> b
   then begin
-    let msg = match printer with
-    | Some printer -> Printf.sprintf "not equal: %s %s" (printer a) (printer b)
-    | None -> Printf.sprintf "not equal"
+    let values = match printer with
+    | Some printer -> Printf.sprintf ": %s %s" (printer a) (printer b)
+    | None -> ""
     in
+    let msg = Printf.sprintf "not equal%s" values in
     raise (TestFailure msg)
   end
 
