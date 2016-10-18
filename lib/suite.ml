@@ -95,7 +95,7 @@ let (>:~) label test_fun = TestCase (label, test_fun)
 let (>:::) label tests = TestList (label, tests)
 
 let string_of_opt = function
-  | Some value -> Printf.sprintf ": %s" value
+  | Some value -> Printf.sprintf " (%s)" value
   | None -> ""
 
 let assert_true ?label value =
