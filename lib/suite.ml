@@ -104,14 +104,14 @@ let assert_true ?label value =
     raise (TestFailure msg)
   end
 
-let assert_equal ?printer a b =
+let assert_equal ?label ?printer a b =
   if a <> b
   then begin
     let values = match printer with
     | Some printer -> Printf.sprintf ": %s %s" (printer a) (printer b)
     | None -> ""
     in
-    let msg = Printf.sprintf "not equal%s" values in
+    let msg = Printf.sprintf "not equal%s%s" (string_of_opt label) values in
     raise (TestFailure msg)
   end
 

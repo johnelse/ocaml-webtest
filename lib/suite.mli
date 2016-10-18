@@ -68,7 +68,7 @@ val assert_true : ?label:string -> bool -> unit
 (** [assert_bool label value] returns unit if [value] is true, and otherwise
     raises {{:#EXCEPTIONTestFailure}TestFailure}. *)
 
-val assert_equal : ?printer:('a -> string) -> 'a -> 'a -> unit
+val assert_equal : ?label:string -> ?printer:('a -> string) -> 'a -> 'a -> unit
 (** [assert_equal a b] returns unit if [a] is equal to [b], and otherwise
     raises {{:#EXCEPTIONTestFailure}TestFailure}. *)
 
