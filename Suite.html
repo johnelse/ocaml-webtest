@@ -111,22 +111,22 @@ Convenience function to create a suite from a label and a
 Convenience function to create a suite from a label and a list of suites.<br>
 </div>
 
-<pre><span id="VALassert_true"><span class="keyword">val</span> assert_true</span> : <code class="type">string -> bool -> unit</code></pre><div class="info ">
+<pre><span id="VALassert_true"><span class="keyword">val</span> assert_true</span> : <code class="type">?label:string -> bool -> unit</code></pre><div class="info ">
 <code class="code">assert_bool label value</code> returns unit if <code class="code">value</code> is true, and otherwise
     raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 
-<pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?printer:('a -> string) -> 'a -> 'a -> unit</code></pre><div class="info ">
+<pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?label:string -> ?printer:('a -> string) -> 'a -> 'a -> unit</code></pre><div class="info ">
 <code class="code">assert_equal a b</code> returns unit if <code class="code">a</code> is equal to <code class="code">b</code>, and otherwise
     raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 
-<pre><span id="VALassert_raises"><span class="keyword">val</span> assert_raises</span> : <code class="type">exn -> (unit -> unit) -> unit</code></pre><div class="info ">
+<pre><span id="VALassert_raises"><span class="keyword">val</span> assert_raises</span> : <code class="type">?label:string -> exn -> (unit -> unit) -> unit</code></pre><div class="info ">
 <code class="code">assert_raises e task</code> returns unit if <code class="code">task ()</code> raises <code class="code">e</code>, and otherwise
     raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 
-<pre><span id="VALassert_raises_string"><span class="keyword">val</span> assert_raises_string</span> : <code class="type">string -> (unit -> unit) -> unit</code></pre><div class="info ">
+<pre><span id="VALassert_raises_string"><span class="keyword">val</span> assert_raises_string</span> : <code class="type">?label:string -> string -> (unit -> unit) -> unit</code></pre><div class="info ">
 <code class="code">assert_raises_string str task</code> returns unit if <code class="code">task ()</code> raises an
     exception <code class="code">e</code> for which <code class="code"><span class="constructor">Printexc</span>.to_string e = str</code>, and otherwise
     raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
