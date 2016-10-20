@@ -6,14 +6,14 @@ ocaml-webtest
 
 A unit test framework, fully compatible with
 [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml), and written with
-in-browser testing of Javascript code in mind.
+in-browser testing of JavaScript code in mind.
 
 Heavily influenced by [oUnit](http://ounit.forge.ocamlcore.org/).
 
 You may find this helpful if you want to
 
-* test OCaml bindings to a javascript library
-* write tests for a Javascript library compiled from OCaml
+* test OCaml bindings to a JavaScript library
+* write tests for a JavaScript library compiled from OCaml
 
 You could even use this library to test normal OCaml code, but in that case
 you're probably better off just using oUnit for the extra features it provides.
@@ -57,7 +57,7 @@ which must be used to wrap any asynchronous code which should be triggered as
 part of the test. In order to pass, an asynchronous test case should not only
 return cleanly, it should also make sure that the wrapped code runs
 successfully. Asynchronous test cases can be used to check that an event handler
-associated with a Javascript object has been called.
+associated with a JavaScript object has been called.
 
 An example of an asynchronous test case:
 
@@ -99,7 +99,7 @@ Once you've created a suite, you can integrate it into an HTML document using
 let () = Webtest_js.Runner.setup suite
 ```
 
-This will create the global Javascript object `webtest` which exposes a simple
+This will create the global JavaScript object `webtest` which exposes a simple
 API for running the test suite.
 
 * `webtest.run` is a function with no arguments - calling it will run the test
