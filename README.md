@@ -111,3 +111,12 @@ API for running the test suite.
 This API can be used by browser automation tools such as
 [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/). For an
 example implementation in Python, see [test_driver.py](test/test_driver.py).
+
+## Examples
+
+`ocaml-webtest` tests itself in both OCaml
+([run_tests_ocaml.ml](test/run_tests_ocaml.ml)) and in JavaScript
+([run_tests_js.ml](test/run_tests_js.ml)).
+
+For a more real-world example, see
+[ocaml-webaudio](https://github.com/johnelse/ocaml-webaudio).
