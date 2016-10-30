@@ -29,10 +29,6 @@ Executable run_tests_js
   BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest, webtest.js
   Install:            false
 
-Test run_tests_js
-  Command:            xvfb-run test/test_driver.py
-  Run$:               flag(tests)
-
 Executable run_tests_ocaml
   Build$:             flag(tests)
   CompiledObject:     best

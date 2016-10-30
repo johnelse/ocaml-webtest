@@ -6,17 +6,26 @@ dev-repo: "git://github.com/johnelse/ocaml-webtest"
 maintainer: "john.else@gmail.com"
 available: [ ocaml-version >= "4.02.1" ]
 build: [
-  [make]
-  [make "doc"]
+  [
+    "./configure"
+    "--prefix" prefix
+    "--enable-docs"
+  ]
+  [make "build"]
 ]
 build-test: [
+  [
+    "./configure"
+    "--enable-tests"
+  ]
   [make "test"]
+  ["xvfb-run" make "test-js-firefox"]
 ]
 install: [
   [make "PREFIX=%{prefix}%" "install"]
 ]
 remove: [
-  [make "PREFIX=%{prefix}%" "uninstall"]
+  ["ocamlfind" "remove" "webtest"]
 ]
 depends: [
   "oasis" {build}

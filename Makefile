@@ -1,12 +1,7 @@
-all: build
+# OASIS_START
+# DO NOT EDIT (digest: a3c674b4239234cbbe53afe090018954)
 
-test/run_tests.js: build
-	js_of_ocaml run_tests_js.byte -o $@
-
-NAME=webtest
-SETUP=ocaml setup.ml
-
-CONFIGUREFLAGS=--enable-tests
+SETUP = ocaml setup.ml
 
 build: setup.data
 	$(SETUP) -build $(BUILDFLAGS)
@@ -14,22 +9,23 @@ build: setup.data
 doc: setup.data build
 	$(SETUP) -doc $(DOCFLAGS)
 
-test: setup.data build test/run_tests.js
+test: setup.data build
 	$(SETUP) -test $(TESTFLAGS)
+
+all:
+	$(SETUP) -all $(ALLFLAGS)
 
 install: setup.data
 	$(SETUP) -install $(INSTALLFLAGS)
 
 uninstall: setup.data
-	ocamlfind remove $(NAME)
+	$(SETUP) -uninstall $(UNINSTALLFLAGS)
 
 reinstall: setup.data
-	ocamlfind remove $(NAME) || true
 	$(SETUP) -reinstall $(REINSTALLFLAGS)
 
 clean:
 	$(SETUP) -clean $(CLEANFLAGS)
-	rm -f test/run_tests.js
 
 distclean:
 	$(SETUP) -distclean $(DISTCLEANFLAGS)
@@ -41,3 +37,11 @@ configure:
 	$(SETUP) -configure $(CONFIGUREFLAGS)
 
 .PHONY: build doc test all install uninstall reinstall clean distclean configure
+
+# OASIS_STOP
+
+test/run_tests.js: build
+	js_of_ocaml run_tests_js.byte -o $@
+
+test-js-firefox: test/run_tests.js
+	test/test_driver.py
