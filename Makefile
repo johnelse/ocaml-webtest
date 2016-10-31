@@ -39,9 +39,3 @@ configure:
 .PHONY: build doc test all install uninstall reinstall clean distclean configure
 
 # OASIS_STOP
-
-test/run_tests.js: build
-	js_of_ocaml run_tests_js.byte -o $@
-
-test-js-firefox: test/run_tests.js
-	test/test_driver.py

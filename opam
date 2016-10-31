@@ -19,7 +19,6 @@ build-test: [
     "--enable-tests"
   ]
   [make "test"]
-  ["xvfb-run" make "test-js-firefox"]
 ]
 install: [
   [make "PREFIX=%{prefix}%" "install"]
