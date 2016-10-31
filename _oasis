@@ -8,7 +8,6 @@ Synopsis:       Unit test framework fully compatible with js_of_ocaml
 Plugins:        META (0.4), DevFiles (0.4)
 BuildTools:     ocamlbuild
 
-PostBuildCommand:   [ -f run_tests_js.byte ] && js_of_ocaml run_tests_js.byte -o test/run_tests.js || true
 PostCleanCommand:   rm -f test/run_tests.js
 
 Library webtest
@@ -33,6 +32,7 @@ Executable run_tests_js
   Install:            false
 
 Test run_tests_js
+  PreCommand:         js_of_ocaml run_tests_js.byte -o test/run_tests.js
   Command:            xvfb-run test/test_driver.py
   Run$:               flag(tests)
 
