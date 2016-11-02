@@ -66,9 +66,10 @@ let async_test wrapper =
   let js_object = create_object () in
 
   js_object##onclose :=
-    Dom_html.handler (fun _  -> wrapper (fun () ->
-      assert_true "Object has been closed" (is_closed js_object);
-      Js._false));
+    Dom_html.handler (fun _  ->
+      wrapper (fun () ->
+        assert_true "Object has been closed" (is_closed js_object));
+      Js._false);
 
   js_object##close
 ```
