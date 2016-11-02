@@ -15,7 +15,7 @@ module Sync : sig
 
   val bracket : (unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> test_fun
   (** [bracket setup test teardown] generates a
-      {{:#TYPESync.test_fun}Sync.test_fun} which will use [setup] to create
+      {{:#TYPEtest_fun}test_fun} which will use [setup] to create
       state needed for the test, then pass that state to [test], and finally
       will pass that state to [teardown]. *)
 end
@@ -39,7 +39,7 @@ module Async : sig
   val bracket :
     (unit -> 'a) -> ('a -> wrapper -> unit) -> ('a -> unit) -> test_fun
   (** [bracket setup test teardown] generates a
-      {{:#TYPEAsync.test_fun}Async.test_fun} which will use [setup] to create
+      {{:#TYPEtest_fun}test_fun} which will use [setup] to create
       state needed for the test, then pass that state to [test], and finally
       will pass that state to [teardown]. *)
 
@@ -57,10 +57,10 @@ type t =
 
 val (>::) : string -> Sync.test_fun -> t
 (** Convenience function to create a suite from a label and a
-    {{:#TYPESync.test_fun}Sync.test_fun}. *)
+    {{:Suite.Sync.html#TYPEtest_fun}Sync.test_fun}. *)
 val (>:~) : string -> Async.test_fun -> t
-(** Convenience function to create a suite from a label and a
-    {{:#TYPEAsync.test_fun}Async.test_fun}. *)
+(** Convenience function to create a suite from a label and an
+    {{:Suite.Async.html#TYPEtest_fun}Async.test_fun}. *)
 val (>:::) : string -> t list -> t
 (** Convenience function to create a suite from a label and a list of suites. *)
 
