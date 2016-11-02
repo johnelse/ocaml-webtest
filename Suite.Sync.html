@@ -31,7 +31,7 @@ A synchronous test function.<br>
 
 <pre><span id="VALbracket"><span class="keyword">val</span> bracket</span> : <code class="type">(unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> <a href="Suite.Sync.html#TYPEtest_fun">test_fun</a></code></pre><div class="info ">
 <code class="code">bracket setup test teardown</code> generates a
-      <a href="#TYPESync.test_fun">Sync.test_fun</a> which will use <code class="code">setup</code> to create
+      <a href="#TYPEtest_fun">test_fun</a> which will use <code class="code">setup</code> to create
       state needed for the test, then pass that state to <code class="code">test</code>, and finally
       will pass that state to <code class="code">teardown</code>.<br>
 </div>

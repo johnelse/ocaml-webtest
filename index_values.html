@@ -21,7 +21,7 @@
 <tr><td><a href="Suite.html#VAL(>::)">(&gt;::)</a> [<a href="Suite.html">Suite</a>]</td>
 <td><div class="info">
 Convenience function to create a suite from a label and a
-    <a href="#TYPESync.test_fun">Sync.test_fun</a>.
+    <a href="Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a>.
 </div>
 </td></tr>
 <tr><td><a href="Suite.html#VAL(>:::)">(&gt;:::)</a> [<a href="Suite.html">Suite</a>]</td>
@@ -31,8 +31,8 @@ Convenience function to create a suite from a label and a list of suites.
 </td></tr>
 <tr><td><a href="Suite.html#VAL(>:~)">(&gt;:~)</a> [<a href="Suite.html">Suite</a>]</td>
 <td><div class="info">
-Convenience function to create a suite from a label and a
-    <a href="#TYPEAsync.test_fun">Async.test_fun</a>.
+Convenience function to create a suite from a label and an
+    <a href="Suite.Async.html#TYPEtest_fun">Async.test_fun</a>.
 </div>
 </td></tr>
 <tr><td align="left"><br>A</td></tr>
@@ -65,7 +65,7 @@ Convenience function to create a suite from a label and a
 <tr><td><a href="Suite.Async.html#VALbracket">bracket</a> [<a href="Suite.Async.html">Suite.Async</a>]</td>
 <td><div class="info">
 <code class="code">bracket setup test teardown</code> generates a
-      <a href="#TYPEAsync.test_fun">Async.test_fun</a> which will use <code class="code">setup</code> to create
+      <a href="#TYPEtest_fun">test_fun</a> which will use <code class="code">setup</code> to create
       state needed for the test, then pass that state to <code class="code">test</code>, and finally
       will pass that state to <code class="code">teardown</code>.
 </div>
@@ -73,7 +73,7 @@ Convenience function to create a suite from a label and a
 <tr><td><a href="Suite.Sync.html#VALbracket">bracket</a> [<a href="Suite.Sync.html">Suite.Sync</a>]</td>
 <td><div class="info">
 <code class="code">bracket setup test teardown</code> generates a
-      <a href="#TYPESync.test_fun">Sync.test_fun</a> which will use <code class="code">setup</code> to create
+      <a href="#TYPEtest_fun">test_fun</a> which will use <code class="code">setup</code> to create
       state needed for the test, then pass that state to <code class="code">test</code>, and finally
       will pass that state to <code class="code">teardown</code>.
 </div>
