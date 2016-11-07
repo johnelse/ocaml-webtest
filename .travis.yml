@@ -19,3 +19,4 @@ env:
   matrix:
     - OCAML_VERSION=4.02
     - OCAML_VERSION=4.03 DOCS=true KEEP=false
+    - OCAML_VERSION=4.04
