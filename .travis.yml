@@ -1,12 +1,13 @@
 addons:
-  firefox: "45.0"
+  firefox: "49.0"
 sudo: required
 language: c
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y xvfb
 install:
-  - sudo -H pip install selenium==2.53.6
+  - sudo -H pip install selenium==3.0.1
+  - ./test/setup_geckodriver.sh
   - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-opam.sh
   - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-docgen.sh
 script:

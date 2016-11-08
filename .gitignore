@@ -4,6 +4,8 @@ setup.log
 webtest_api.docdir
 test/run_tests.js
 
+geckodriver.log
+
 *.byte
 *.native
 *.swp
