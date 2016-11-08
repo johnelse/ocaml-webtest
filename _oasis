@@ -3,7 +3,7 @@ OCamlVersion:   >= 4.02
 Name:           webtest
 Version:        1.0.0
 Authors:        John Else
-License:        ISC
+License:        MIT
 Synopsis:       Unit test framework fully compatible with js_of_ocaml
 Plugins:        META (0.4), DevFiles (0.4)
 BuildTools:     ocamlbuild
