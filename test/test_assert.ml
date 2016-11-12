@@ -40,6 +40,17 @@ let test_assert_equal_label_printer () =
     failwith "assert_equal should have failed"
   with TestFailure "not equal (assert_equal): 5 6" -> ()
 
+let equal_float a b = abs_float (a -. b) < 0.01
+
+let test_assert_custom_equal_ok () =
+  assert_equal ~equal:equal_float 5.0 5.001
+
+let test_assert_custom_equal_fail () =
+  try
+    assert_equal ~equal:equal_float 5.0 6.0;
+    failwith "assert_equal should have failed"
+  with TestFailure "not equal" -> ()
+
 let test_assert_raises_ok () =
   assert_raises (MyException 0) (fun () -> raise (MyException 0))
 
@@ -95,6 +106,8 @@ let suite =
     "test_assert_equal_label" >:: test_assert_equal_label;
     "test_assert_equal_printer" >:: test_assert_equal_printer;
     "test_assert_equal_label_printer" >:: test_assert_equal_label_printer;
+    "test_assert_custom_equal_ok" >:: test_assert_custom_equal_ok;
+    "test_assert_custom_equal_fail" >:: test_assert_custom_equal_fail;
     "test_assert_raises_ok" >:: test_assert_raises_ok;
     "test_assert_raises_no_exn" >:: test_assert_raises_no_exn;
     "test_assert_raises_wrong_exn" >:: test_assert_raises_wrong_exn;
