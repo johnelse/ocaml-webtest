@@ -61,13 +61,13 @@ let test_assert_raises_no_exn () =
 let test_assert_raises_wrong_exn () =
   try assert_raises (MyException 0) (fun () -> raise (MyException 1))
   with
-   | TestFailure "unexpected exception raised: Test_assert.MyException(1)" -> ()
+  | TestFailure "unexpected exception raised: Test_assert.MyException(1)" -> ()
 
 let test_assert_raises_no_exn_label () =
   try
     assert_raises ~label:"assert_raises" (MyException 0) (fun () -> ())
   with
-   | TestFailure "expected exception not raised (assert_raises)" -> ()
+  | TestFailure "expected exception not raised (assert_raises)" -> ()
 
 let test_assert_raises_wrong_exn_label () =
   try
@@ -76,9 +76,9 @@ let test_assert_raises_wrong_exn_label () =
       (MyException 0)
       (fun () -> raise (MyException 1))
   with
-   | TestFailure
-       "unexpected exception raised (assert_raises): Test_assert.MyException(1)"
-     -> ()
+  | TestFailure
+      "unexpected exception raised (assert_raises): Test_assert.MyException(1)"
+    -> ()
 
 let test_assert_raises_string_ok () =
   assert_raises_string
@@ -95,7 +95,7 @@ let test_assert_raises_string_wrong_exn () =
       "Test_assert.MyException(0)"
       (fun () -> raise (MyException 1))
   with
-   | TestFailure "unexpected exception raised: Test_assert.MyException(1)" -> ()
+  | TestFailure "unexpected exception raised: Test_assert.MyException(1)" -> ()
 
 let suite =
   "assert" >::: [
