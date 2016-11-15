@@ -116,7 +116,7 @@ Convenience function to create a suite from a label and a list of suites.<br>
     raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 
-<pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?label:string -> ?printer:('a -> string) -> 'a -> 'a -> unit</code></pre><div class="info ">
+<pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?equal:('a -> 'a -> bool) -><br>       ?label:string -> ?printer:('a -> string) -> 'a -> 'a -> unit</code></pre><div class="info ">
 <code class="code">assert_equal a b</code> returns unit if <code class="code">a</code> is equal to <code class="code">b</code>, and otherwise
     raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
