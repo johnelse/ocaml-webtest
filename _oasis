@@ -11,17 +11,15 @@ BuildTools:     ocamlbuild
 PostCleanCommand:   rm -f test/run_tests.js
 
 Library webtest
-  Pack:               true
   Path:               lib
-  Modules:            Suite, Zipper, Utils
+  Modules:            Webtest
 
 Library webtest_js
-  Pack:               true
   Path:               js
   BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest
   Findlibname:        js
   Findlibparent:      webtest
-  Modules:            Runner
+  Modules:            Webtest_js
 
 Executable run_tests_js
   Build$:             flag(tests)
