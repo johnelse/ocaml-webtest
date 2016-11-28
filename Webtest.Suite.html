@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="next" href="Webtest.Zipper.html">
+<link rel="Up" href="Webtest.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Webtest" rel="Chapter" href="Webtest.html">
+<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest.Suite</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="Webtest.html" title="Webtest">Up</a>
+&nbsp;<a class="post" href="Webtest.Zipper.html" title="Webtest.Zipper">Next</a>
+</div>
+<h1>Module <a href="type_Webtest.Suite.html">Webtest.Suite</a></h1>
+
+<pre><span class="keyword">module</span> Suite: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Suite.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+Types and functions for creating and structuring unit test suites.<br>
+</div>
+<hr width="100%">
+
+<pre><span id="EXCEPTIONTestFailure"><span class="keyword">exception</span> TestFailure</span> <span class="keyword">of</span> <code class="type">string</code></pre>
+<div class="info ">
+The exception thrown by failing tests.<br>
+</div>
+
+<pre><code><span id="TYPEresult"><span class="keyword">type</span> <code class="type"></code>result</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTresult.Error"><span class="constructor">Error</span></span> <span class="keyword">of</span> <code class="type">exn</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+An unexpected error occurred in the test.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTresult.Fail"><span class="constructor">Fail</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+An assertion failed in the test.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTresult.Pass"><span class="constructor">Pass</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+The test passed.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+
+<div class="info ">
+The result of running a single testcase.<br>
+</div>
+
+
+<pre><span class="keyword">module</span> <a href="Webtest.Suite.Sync.html">Sync</a>: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Suite.Sync.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
+<pre><span class="keyword">module</span> <a href="Webtest.Suite.Async.html">Async</a>: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Suite.Async.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
+<pre><code><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTt.TestCase"><span class="constructor">TestCase</span></span> <span class="keyword">of</span> <code class="type">string * <a href="Webtest.Suite.Async.html#TYPEtest_fun">Async.test_fun</a></code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+A labelled single test.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTt.TestList"><span class="constructor">TestList</span></span> <span class="keyword">of</span> <code class="type">string * <a href="Webtest.Suite.html#TYPEt">t</a> list</code></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
+A labelled list of tests.<br>
+</div>
+</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+
+<div class="info ">
+A labelled wrapper around a test or list of suites.<br>
+</div>
+
+
+<pre><span id="VAL(>::)"><span class="keyword">val</span> (&gt;::)</span> : <code class="type">string -> <a href="Webtest.Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a> -> <a href="Webtest.Suite.html#TYPEt">t</a></code></pre><div class="info ">
+Convenience function to create a suite from a label and a
+      <a href="Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a>.<br>
+</div>
+
+<pre><span id="VAL(>:~)"><span class="keyword">val</span> (&gt;:~)</span> : <code class="type">string -> <a href="Webtest.Suite.Async.html#TYPEtest_fun">Async.test_fun</a> -> <a href="Webtest.Suite.html#TYPEt">t</a></code></pre><div class="info ">
+Convenience function to create a suite from a label and an
+      <a href="Suite.Async.html#TYPEtest_fun">Async.test_fun</a>.<br>
+</div>
+
+<pre><span id="VAL(>:::)"><span class="keyword">val</span> (&gt;:::)</span> : <code class="type">string -> <a href="Webtest.Suite.html#TYPEt">t</a> list -> <a href="Webtest.Suite.html#TYPEt">t</a></code></pre><div class="info ">
+Convenience function to create a suite from a label and a list of suites.<br>
+</div>
+
+<pre><span id="VALassert_true"><span class="keyword">val</span> assert_true</span> : <code class="type">?label:string -> bool -> unit</code></pre><div class="info ">
+<code class="code">assert_bool label value</code> returns unit if <code class="code">value</code> is true, and otherwise
+      raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+</div>
+
+<pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?equal:('a -> 'a -> bool) -><br>       ?label:string -> ?printer:('a -> string) -> 'a -> 'a -> unit</code></pre><div class="info ">
+<code class="code">assert_equal a b</code> returns unit if <code class="code">a</code> is equal to <code class="code">b</code>, and otherwise
+      raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+</div>
+
+<pre><span id="VALassert_raises"><span class="keyword">val</span> assert_raises</span> : <code class="type">?label:string -> exn -> (unit -> unit) -> unit</code></pre><div class="info ">
+<code class="code">assert_raises e task</code> returns unit if <code class="code">task ()</code> raises <code class="code">e</code>, and otherwise
+      raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+</div>
+
+<pre><span id="VALassert_raises_string"><span class="keyword">val</span> assert_raises_string</span> : <code class="type">?label:string -> string -> (unit -> unit) -> unit</code></pre><div class="info ">
+<code class="code">assert_raises_string str task</code> returns unit if <code class="code">task ()</code> raises an
+      exception <code class="code">e</code> for which <code class="code"><span class="constructor">Printexc</span>.to_string e = str</code>, and otherwise
+      raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+</div>
+</body></html>

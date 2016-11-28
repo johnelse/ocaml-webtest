@@ -1,0 +1,18 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Webtest" rel="Chapter" href="Webtest.html">
+<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest.Utils</title>
+</head>
+<body>
+<code class="code"><span class="keyword">sig</span>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;output&nbsp;=&nbsp;{&nbsp;log&nbsp;:&nbsp;string&nbsp;list;&nbsp;results&nbsp;:&nbsp;<span class="constructor">Webtest</span>.<span class="constructor">Suite</span>.result&nbsp;list;&nbsp;}
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;summary&nbsp;=&nbsp;{&nbsp;report&nbsp;:&nbsp;string;&nbsp;passed&nbsp;:&nbsp;bool;&nbsp;}
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;run&nbsp;:&nbsp;<span class="constructor">Webtest</span>.<span class="constructor">Suite</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(<span class="constructor">Webtest</span>.<span class="constructor">Utils</span>.output&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;summarise&nbsp;:&nbsp;<span class="constructor">Webtest</span>.<span class="constructor">Suite</span>.result&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Webtest</span>.<span class="constructor">Utils</span>.summary
+<span class="keyword">end</span></code></body></html>

@@ -4,155 +4,37 @@
 <link rel="stylesheet" href="style.css" type="text/css">
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <link rel="Start" href="index.html">
-<link rel="next" href="Webtest_runner.html">
+<link rel="next" href="Webtest_js.html">
 <link rel="Up" href="index.html">
 <link title="Index of types" rel=Appendix href="index_types.html">
 <link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
 <link title="Index of values" rel=Appendix href="index_values.html">
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="Webtest" rel="Chapter" href="Webtest.html">
-<link title="Webtest_runner" rel="Chapter" href="Webtest_runner.html"><title>Webtest</title>
+<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest</title>
 </head>
 <body>
 <div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
-&nbsp;<a class="post" href="Webtest_runner.html" title="Webtest_runner">Next</a>
+&nbsp;<a class="post" href="Webtest_js.html" title="Webtest_js">Next</a>
 </div>
 <h1>Module <a href="type_Webtest.html">Webtest</a></h1>
 
 <pre><span class="keyword">module</span> Webtest: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
-Types and functions for creating and working with unit tests.<br>
+Dependency-free library for creating and running tests.<br>
 </div>
 <hr width="100%">
 
-<pre><span id="TYPEtest_fun"><span class="keyword">type</span> <code class="type"></code>test_fun</span> = <code class="type">unit -> unit</code> </pre>
-<div class="info ">
-A test function.<br>
+<pre><span class="keyword">module</span> <a href="Webtest.Suite.html">Suite</a>: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Suite.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Types and functions for creating and structuring unit test suites.
 </div>
 
-
-<pre><span id="EXCEPTIONTestFailure"><span class="keyword">exception</span> TestFailure</span> <span class="keyword">of</span> <code class="type">string</code></pre>
-<div class="info ">
-The exception thrown by failing tests.<br>
+<pre><span class="keyword">module</span> <a href="Webtest.Zipper.html">Zipper</a>: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Zipper.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+A zipper implementation based on <a href="Suite.html#TYPEt">Suite.t</a>, which
+    represents the current location in the tree as well as the path used to
+    reach the current location from the root.
 </div>
 
-<pre><code><span id="TYPEresult"><span class="keyword">type</span> <code class="type"></code>result</span> = </code></pre><table class="typetable">
-<tr>
-<td align="left" valign="top" >
-<code><span class="keyword">|</span></code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELTresult.Error"><span class="constructor">Error</span></span> <span class="keyword">of</span> <code class="type">exn</code></code></td>
-<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
-An unexpected error occurred in the test.<br>
-</div>
-</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
-</tr>
-<tr>
-<td align="left" valign="top" >
-<code><span class="keyword">|</span></code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELTresult.Failure"><span class="constructor">Failure</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
-<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
-An assertion failed in the test.<br>
-</div>
-</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
-</tr>
-<tr>
-<td align="left" valign="top" >
-<code><span class="keyword">|</span></code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELTresult.Success"><span class="constructor">Success</span></span></code></td>
-<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
-The test passed.<br>
-</div>
-</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
-</tr></table>
-
-<div class="info ">
-The result of running a single testcase.<br>
-</div>
-
-
-<pre><code><span id="TYPEoutput"><span class="keyword">type</span> <code class="type"></code>output</span> = {</code></pre><table class="typetable">
-<tr>
-<td align="left" valign="top" >
-<code>&nbsp;&nbsp;</code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELToutput.log">log</span>&nbsp;: <code class="type">string</code>;</code></td>
-<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
-The logging produced while running the tests.<br>
-</div>
-</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
-</tr>
-<tr>
-<td align="left" valign="top" >
-<code>&nbsp;&nbsp;</code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELToutput.results">results</span>&nbsp;: <code class="type"><a href="Webtest.html#TYPEresult">result</a> list</code>;</code></td>
-<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
-The results of running the test.<br>
-</div>
-</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
-</tr></table>
-}
-
-<div class="info ">
-The output generated by running a test.<br>
-</div>
-
-
-<pre><code><span id="TYPEtest"><span class="keyword">type</span> <code class="type"></code>test</span> = </code></pre><table class="typetable">
-<tr>
-<td align="left" valign="top" >
-<code><span class="keyword">|</span></code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELTtest.TestCase"><span class="constructor">TestCase</span></span> <span class="keyword">of</span> <code class="type">string * <a href="Webtest.html#TYPEtest_fun">test_fun</a></code></code></td>
-<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
-A labelled single test.<br>
-</div>
-</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
-</tr>
-<tr>
-<td align="left" valign="top" >
-<code><span class="keyword">|</span></code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELTtest.TestList"><span class="constructor">TestList</span></span> <span class="keyword">of</span> <code class="type">string * <a href="Webtest.html#TYPEtest">test</a> list</code></code></td>
-<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
-A labelled list of tests.<br>
-</div>
-</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
-</tr></table>
-
-<div class="info ">
-A labelled wrapper around a test or list of tests.<br>
-</div>
-
-
-<pre><span id="VAL(>::)"><span class="keyword">val</span> (&gt;::)</span> : <code class="type">string -> <a href="Webtest.html#TYPEtest_fun">test_fun</a> -> <a href="Webtest.html#TYPEtest">test</a></code></pre><div class="info ">
-Convenience function to create a test from a label and a
-    <a href="#TYPEtest_fun">test_fun</a>.<br>
-</div>
-
-<pre><span id="VAL(>:::)"><span class="keyword">val</span> (&gt;:::)</span> : <code class="type">string -> <a href="Webtest.html#TYPEtest">test</a> list -> <a href="Webtest.html#TYPEtest">test</a></code></pre><div class="info ">
-Convenience function to create a test from a label and a list of tests.<br>
-</div>
-
-<pre><span id="VALassert_true"><span class="keyword">val</span> assert_true</span> : <code class="type">string -> bool -> unit</code></pre><div class="info ">
-<code class="code">assert_bool label value</code> returns unit if <code class="code">value</code> is true, and otherwise
-    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
-</div>
-
-<pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?printer:('a -> string) -> 'a -> 'a -> unit</code></pre><div class="info ">
-<code class="code">assert_equal a b</code> returns unit if <code class="code">a</code> is equal to <code class="code">b</code>, and otherwise
-    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
-</div>
-
-<pre><span id="VALbracket"><span class="keyword">val</span> bracket</span> : <code class="type">(unit -> 'a) -> ('a -> unit) -> ('a -> unit) -> <a href="Webtest.html#TYPEtest_fun">test_fun</a></code></pre><div class="info ">
-<code class="code">bracket setup test teardown</code> generates a <a href="#TYPEtest_fun">test_fun</a> which will use
-    <code class="code">setup</code> to create state needed for the test, then pass that state to <code class="code">test</code>,
-    and finally will pass that state to <code class="code">teardown</code>.<br>
-</div>
-
-<pre><span id="VALrun"><span class="keyword">val</span> run</span> : <code class="type"><a href="Webtest.html#TYPEtest">test</a> -> <a href="Webtest.html#TYPEoutput">output</a></code></pre><div class="info ">
-<code class="code">run test</code> runs <code class="code">test</code>, and returns the logs and the test output.<br>
+<pre><span class="keyword">module</span> <a href="Webtest.Utils.html">Utils</a>: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Utils.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Types and functions for running unit tests.
 </div>
 </body></html>

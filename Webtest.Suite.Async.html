@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Webtest.Suite.Sync.html">
+<link rel="Up" href="Webtest.Suite.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Webtest" rel="Chapter" href="Webtest.html">
+<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest.Suite.Async</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Webtest.Suite.Sync.html" title="Webtest.Suite.Sync">Previous</a>
+&nbsp;<a class="up" href="Webtest.Suite.html" title="Webtest.Suite">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Webtest.Suite.Async.html">Webtest.Suite.Async</a></h1>
+
+<pre><span class="keyword">module</span> Async: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Suite.Async.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><hr width="100%">
+
+<pre><span id="TYPEcallback"><span class="keyword">type</span> <code class="type"></code>callback</span> = <code class="type">unit -> unit</code> </pre>
+<div class="info ">
+The type of an asynchronous callback which will run as part of an
+        asynchronous test.<br>
+</div>
+
+
+<pre><span id="VALnoop"><span class="keyword">val</span> noop</span> : <code class="type"><a href="Webtest.Suite.Async.html#TYPEcallback">callback</a></code></pre><div class="info ">
+The noop callback - this is just an alias for <code class="code"><span class="keyword">fun</span> () <span class="keywordsign">-&gt;</span> ()</code>.<br>
+</div>
+
+<pre><span id="TYPEwrapper"><span class="keyword">type</span> <code class="type"></code>wrapper</span> = <code class="type"><a href="Webtest.Suite.Async.html#TYPEcallback">callback</a> -> unit</code> </pre>
+<div class="info ">
+A wrapper function to be passed to an asynchronous test.<br>
+</div>
+
+
+<pre><span id="TYPEtest_fun"><span class="keyword">type</span> <code class="type"></code>test_fun</span> = <code class="type"><a href="Webtest.Suite.Async.html#TYPEwrapper">wrapper</a> -> unit</code> </pre>
+<div class="info ">
+An asynchronous test function. When run it will be passed a wrapper
+        function - this should be used to wrap any asynchronous code which the
+        test case is expected to run.<br>
+</div>
+
+
+<pre><span id="VALbracket"><span class="keyword">val</span> bracket</span> : <code class="type">(unit -> 'a) -><br>       ('a -> <a href="Webtest.Suite.Async.html#TYPEwrapper">wrapper</a> -> unit) -><br>       ('a -> unit) -> <a href="Webtest.Suite.Async.html#TYPEtest_fun">test_fun</a></code></pre><div class="info ">
+<code class="code">bracket setup test teardown</code> generates a
+        <a href="#TYPEtest_fun">test_fun</a> which will use <code class="code">setup</code> to create
+        state needed for the test, then pass that state to <code class="code">test</code>, and finally
+        will pass that state to <code class="code">teardown</code>.<br>
+</div>
+
+<pre><span id="VALrun_one"><span class="keyword">val</span> run_one</span> : <code class="type"><a href="Webtest.Suite.Async.html#TYPEtest_fun">test_fun</a> -><br>       (string -> unit) -> (<a href="Webtest.Suite.html#TYPEresult">Webtest.Suite.result</a> -> unit) -> unit</code></pre><div class="info ">
+Run an asynchronous test and pass its result to a callback.<br>
+</div>
+
+<pre><span id="VALof_sync"><span class="keyword">val</span> of_sync</span> : <code class="type"><a href="Webtest.Suite.Sync.html#TYPEtest_fun">Webtest.Suite.Sync.test_fun</a> -> <a href="Webtest.Suite.Async.html#TYPEtest_fun">test_fun</a></code></pre><div class="info ">
+Convert a synchronous test into an asynchronous test.<br>
+</div>
+</body></html>
