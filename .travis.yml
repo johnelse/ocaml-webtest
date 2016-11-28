@@ -1,5 +1,5 @@
 addons:
-  firefox: "49.0"
+  firefox: "50.0"
 sudo: required
 language: c
 before_install:
