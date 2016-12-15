@@ -31,7 +31,7 @@ Executable run_tests_js
 
 Test run_tests_js
   PreCommand:         js_of_ocaml run_tests_js.byte -o test/run_tests.js
-  Command:            xvfb-run test/test_driver.py
+  Command:            test/test_driver.py
   Run$:               flag(tests)
 
 Executable run_tests_ocaml
