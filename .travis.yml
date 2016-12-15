@@ -10,6 +10,9 @@ install:
   - ./test/setup_geckodriver.sh
   - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-opam.sh
   - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-docgen.sh
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 script:
   - bash -ex .travis-opam.sh
   - if [ -n "$DOCS" -a $TRAVIS_BRANCH == "master" ]; then bash -ex .travis-docgen.sh; fi
