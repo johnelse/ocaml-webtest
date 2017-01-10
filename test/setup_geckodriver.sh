@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DRIVER_VERSION=v0.11.1
+DRIVER_VERSION=v0.13.0
 DRIVER_FILE=geckodriver-${DRIVER_VERSION}-linux64.tar.gz
 
 cd /tmp
