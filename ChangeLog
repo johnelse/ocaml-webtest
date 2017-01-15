@@ -1,2 +1,5 @@
+1.0.1 (15-Jan-2017):
+ * Add support for custom equality functions in assert_equal
+
 1.0.0 (02-Nov-2016):
  * first public release
