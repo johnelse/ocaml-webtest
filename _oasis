@@ -13,6 +13,7 @@ PostCleanCommand:   rm -f test/run_tests.js
 Library webtest
   Path:               lib
   Modules:            Webtest
+  InternalModules:    Suite, Utils, Zipper
 
 Library webtest_js
   Path:               js
@@ -20,6 +21,7 @@ Library webtest_js
   Findlibname:        js
   Findlibparent:      webtest
   Modules:            Webtest_js
+  InternalModules:    Runner
 
 Executable run_tests_js
   Build$:             flag(tests)
