@@ -1,3 +1,6 @@
+1.0.2 (16-Jan-2017):
+ * Add internal modules to installed package
+
 1.0.1 (15-Jan-2017):
  * Add support for custom equality functions in assert_equal
 
