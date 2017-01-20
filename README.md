@@ -113,6 +113,14 @@ This API can be used by browser automation tools such as
 [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/). For an
 example implementation in Python, see [test_driver.py](test/test_driver.py).
 
+A "known good" setup for automating browser tests (and what this repository
+uses for CI) is:
+
+* Firefox 50
+* Python 2.7 with version 3.0.1 of the Selenium bindings
+* geckodriver 0.13.0
+* Xvfb (optional, unless running on a headless machine)
+
 ## Examples
 
 `ocaml-webtest` tests itself in both OCaml
