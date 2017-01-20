@@ -82,6 +82,8 @@ Synchronous and asynchronous test cases can be combined into suites using the
 functions `>::`, `>:~` and `>:::` - for example:
 
 ```
+open Webtest.Suite
+
 let suite =
   "suite" >::: [
     "sync_test1" >:: sync_test1;
