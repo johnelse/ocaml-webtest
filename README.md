@@ -44,11 +44,11 @@ pass should return cleanly without throwing an exception.
 Some examples of simple synchronous test cases:
 
 ```
-let sync_test1 () = assert_equal (get_five ()) 5
+let sync_test1 () = Webtest.Suite.assert_equal (get_five ()) 5
 
-let sync_test2 () = assert_true "value should be true" (get_value ())
+let sync_test2 () = Webtest.Suite.assert_true (get_value ())
 
-let sync_test3 () = assert_raises MyExn (exception_thrower ())
+let sync_test3 () = Webtest.Suite.assert_raises MyExn (exception_thrower ())
 ```
 
 Asynchronous test cases are functions of type
