@@ -4,6 +4,11 @@ type result =
   | Error of exn
   | Fail of string
   | Pass
+type outcome = {
+    label: string;
+    result: result;
+    time_s: float;
+  }
 
 let string_of_result = function
   | Error e -> Printf.sprintf "Error: %s" (Printexc.to_string e)
@@ -48,18 +53,20 @@ module Async = struct
         teardown state;
         raise e)
 
-  let run_one test log handle_result =
+  let run_one label test log handle_outcome =
     (* Make sure we only handle one result per test. This prevents a successful
        callback from triggering a continuation of the tests if the synchronous
        code has already failed or errored. *)
     let handled = ref false in
+    let start_time = ref 0.0 in
     let handle_result_once result =
       if not !handled
       then begin
         handled := true;
         log "End";
         log (string_of_result result);
-        handle_result result
+        handle_outcome {label; result;
+                        time_s = Sys.time () -. !start_time}
       end
     in
     let catch_all f =
@@ -73,6 +80,7 @@ module Async = struct
        triggered. *)
     catch_all (fun () ->
       log "Start";
+      start_time := Sys.time ();
       test
         (fun callback ->
           (* This catch_all will catch failures and errors coming from the

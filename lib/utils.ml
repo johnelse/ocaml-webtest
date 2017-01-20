@@ -1,7 +1,15 @@
 type output = {
   log: string list;
-  results: Suite.result list;
+  outcomes: Suite.outcome list;
 }
+
+type raw_summary = {
+    total: int;
+    errors: int;
+    failures: int;
+    passes: int;
+    passed: bool
+  }
 
 type summary = {
   report: string;
@@ -15,48 +23,53 @@ let run suite callback =
     log := (line :: !log)
   in
   let zipper = Zipper.of_suite suite in
-  let rec run' ({Zipper.location} as zipper) results =
-    let continue zipper results =
+  let rec run' ({Zipper.location} as zipper) outcomes =
+    let continue zipper outcomes' =
       match Zipper.next_location zipper with
-      | Some zipper' -> run' zipper' results
+      | Some zipper' -> run' zipper' outcomes'
       | None ->
         callback {
           log = List.rev !log;
-          results = List.rev results
+          outcomes = List.rev outcomes'
         }
     in
     match location with
     | Suite.TestCase (label, test_fun) ->
       let prefix = Zipper.get_labels zipper |> String.concat ":" in
       let log = log_with_prefix prefix in
-      Suite.Async.run_one test_fun log
-        (fun result -> continue zipper (result :: results))
+      Suite.Async.run_one prefix test_fun log
+                  (fun outcome -> continue zipper (outcome :: outcomes))
     | Suite.TestList (label, children) ->
-      continue zipper results
+       continue zipper outcomes
   in
   run' zipper []
 
-let summarise results =
+let summarise_raw outcomes =
   let total, errors, failures, passes =
     List.fold_left
-      (fun (total, errors, failures, passes) result ->
+      (fun (total, errors, failures, passes) outcome ->
         let open Suite in
-        match result with
+        match outcome.result with
         | Error _ -> total + 1, errors + 1, failures, passes
         | Fail _ -> total + 1, errors, failures + 1, passes
         | Pass -> total + 1, errors, failures, passes + 1)
-      (0, 0, 0, 0) results
+      (0, 0, 0, 0) outcomes
   in
-  let report =
-    String.concat "\n" [
-      Printf.sprintf "%d tests run" total;
-      Printf.sprintf "%d errors" errors;
-      Printf.sprintf "%d failures" failures;
-      Printf.sprintf "%d passes" passes;
-    ]
+  {
+    total; errors; failures; passes;
+    passed = (total = passes)
+  }
+
+let summarise outcomes =
+  let raw = summarise_raw outcomes in
+  let report = String.concat "\n" [
+                               Printf.sprintf "%d tests run" raw.total;
+                               Printf.sprintf "%d errors" raw.errors;
+                               Printf.sprintf "%d failures" raw.failures;
+                               Printf.sprintf "%d passes" raw.passes;
+                             ]
   in
-  let passed = total = passes in
   {
     report;
-    passed;
+    passed = raw.passed;
   }
