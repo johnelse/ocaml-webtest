@@ -12,8 +12,8 @@ let suite =
 
 let () =
   Utils.run suite
-    (fun {Utils.log; results} ->
-      let {Utils.report; passed} = Utils.summarise results in
+    (fun {Utils.log; outcomes} ->
+      let {Utils.report; passed} = Utils.summarise outcomes in
       let log = (String.concat "\n" log) in
       print_endline log;
       print_endline report;
