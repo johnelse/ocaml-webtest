@@ -8,5 +8,6 @@ val setup : Webtest.Suite.t -> unit
     handler. *)
 
 val run : ?with_colors:bool -> Webtest.Suite.t -> unit
+(** [run suite] runs tests and displays results on stdout *)
 
 end
