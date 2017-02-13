@@ -53,7 +53,7 @@ An asynchronous test function. When run it will be passed a wrapper
         will pass that state to <code class="code">teardown</code>.<br>
 </div>
 
-<pre><span id="VALrun_one"><span class="keyword">val</span> run_one</span> : <code class="type"><a href="Webtest.Suite.Async.html#TYPEtest_fun">test_fun</a> -><br>       (string -> unit) -> (<a href="Webtest.Suite.html#TYPEresult">Webtest.Suite.result</a> -> unit) -> unit</code></pre><div class="info ">
+<pre><span id="VALrun_one"><span class="keyword">val</span> run_one</span> : <code class="type">string -><br>       <a href="Webtest.Suite.Async.html#TYPEtest_fun">test_fun</a> -><br>       (string -> unit) -> (<a href="Webtest.Suite.html#TYPEoutcome">Webtest.Suite.outcome</a> -> unit) -> unit</code></pre><div class="info ">
 Run an asynchronous test and pass its result to a callback.<br>
 </div>
 

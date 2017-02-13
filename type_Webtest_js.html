@@ -10,4 +10,10 @@
 <link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest_js</title>
 </head>
 <body>
-<code class="code"><span class="keyword">sig</span>&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">Runner</span>&nbsp;:&nbsp;<span class="keyword">sig</span>&nbsp;<span class="keyword">val</span>&nbsp;setup&nbsp;:&nbsp;<span class="constructor">Webtest</span>.<span class="constructor">Suite</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit&nbsp;<span class="keyword">end</span>&nbsp;<span class="keyword">end</span></code></body></html>
+<code class="code"><span class="keyword">sig</span>
+&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">Runner</span>&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;setup&nbsp;:&nbsp;<span class="constructor">Webtest</span>.<span class="constructor">Suite</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;run&nbsp;:&nbsp;?with_colors:bool&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Webtest</span>.<span class="constructor">Suite</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span>
+<span class="keyword">end</span></code></body></html>

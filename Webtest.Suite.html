@@ -29,7 +29,7 @@ Types and functions for creating and structuring unit test suites.<br>
 The exception thrown by failing tests.<br>
 </div>
 
-<pre><code><span id="TYPEresult"><span class="keyword">type</span> <code class="type"></code>result</span> = </code></pre><table class="typetable">
+<pre><span id="TYPEresult"><span class="keyword">type</span> <code class="type"></code>result</span> = <code class="type">Suite.result</code> = </pre><table class="typetable">
 <tr>
 <td align="left" valign="top" >
 <code><span class="keyword">|</span></code></td>
@@ -66,6 +66,36 @@ The result of running a single testcase.<br>
 </div>
 
 
+<pre><span id="TYPEoutcome"><span class="keyword">type</span> <code class="type"></code>outcome</span> = <code class="type">Suite.outcome</code> = {</pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELToutcome.label">label</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELToutcome.result">result</span>&nbsp;: <code class="type"><a href="Webtest.Suite.html#TYPEresult">result</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELToutcome.time_s">time_s</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+The outcome of a test: its label, result, and time taken to run.<br>
+</div>
+
+
+<pre><span id="VALstring_of_result"><span class="keyword">val</span> string_of_result</span> : <code class="type"><a href="Webtest.Suite.html#TYPEresult">result</a> -> string</code></pre>
 <pre><span class="keyword">module</span> <a href="Webtest.Suite.Sync.html">Sync</a>: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Suite.Sync.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
 <pre><span class="keyword">module</span> <a href="Webtest.Suite.Async.html">Async</a>: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Suite.Async.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>
 <pre><code><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> = </code></pre><table class="typetable">
