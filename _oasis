@@ -12,15 +12,15 @@ PostCleanCommand:   rm -f test/run_tests.js
 
 Library webtest
   Path:               lib
-  Modules:            Webtest
+  Pack:               true
   InternalModules:    Suite, Utils, Zipper
 
 Library webtest_js
   Path:               js
+  Pack:               true
   BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest
   Findlibname:        js
   Findlibparent:      webtest
-  Modules:            Webtest_js
   InternalModules:    Runner
 
 Executable run_tests_js
@@ -48,13 +48,9 @@ Test run_tests_ocaml
   Command:            ./run_tests_ocaml.native
   Run$:               flag(tests)
 
-AlphaFeatures: ocamlbuild_more_args
 Document webtest_api
-  Type:                 ocamlbuild (0.4)
-  BuildTools:           ocamldoc
-  Title:                Unit test framework fully compatible with js_of_ocaml
-  XOcamlBuildPath:      .
-  XOcamlBuildExtraArgs:
-    "-docflags '-colorize-code -short-functors -charset utf-8'"
-  XOcamlBuildLibraries: webtest, webtest.js
-  Install:              false
+  Type:         Custom (0.4)
+  Title:        Unit test framework fully compatible with js_of_ocaml
+  XCustom:      mkdir -p ./doc && ocaml contrib/pack.ml -o doc/webtest.ml -no-ml -mli lib/suite.mli lib/zipper.mli lib/utils.mli && ocaml contrib/pack.ml -o doc/webtest_js.ml -no-ml -mli js/runner.mli && ocamlbuild -build-dir '_build' -docflags '-t Webtest -colorize-code -short-functors -charset utf-8' webtest_api.docdir/index.html && ln -sf _build/webtest_api.docdir webtest_api.docdir
+  XCustomClean: rm -rf ./doc && rm -f ./webtest_api.docdir
+  Install:      false
