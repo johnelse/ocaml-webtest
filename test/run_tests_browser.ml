@@ -2,7 +2,7 @@
 
 let suite =
   let open Webtest.Suite in
-  "js_suite" >::: [
+  "browser_suite" >::: [
     Test_assert.suite;
     Test_async.suite;
     Test_js.suite;

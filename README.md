@@ -127,7 +127,7 @@ uses for CI) is:
 
 `ocaml-webtest` tests itself in both OCaml
 ([run_tests_ocaml.ml](test/run_tests_ocaml.ml)) and in JavaScript
-([run_tests_js.ml](test/run_tests_js.ml)).
+([run_tests_browser.ml](test/run_tests_browser.ml)).
 
 For a more real-world example, see
 [ocaml-webaudio](https://github.com/johnelse/ocaml-webaudio).

@@ -8,7 +8,7 @@ Synopsis:       Unit test framework fully compatible with js_of_ocaml
 Plugins:        META (0.4), DevFiles (0.4)
 BuildTools:     ocamlbuild
 
-PostCleanCommand:   rm -f test/run_tests.js
+PostCleanCommand:   rm -f test/run_tests_browser.js
 
 Library webtest
   Path:               lib
@@ -23,16 +23,16 @@ Library webtest_js
   Findlibparent:      webtest
   InternalModules:    Runner
 
-Executable run_tests_js
+Executable run_tests_browser
   Build$:             flag(tests)
   CompiledObject:     byte
   Path:               test
-  MainIs:             run_tests_js.ml
+  MainIs:             run_tests_browser.ml
   BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest, webtest.js
   Install:            false
 
-Test run_tests_js
-  PreCommand:         js_of_ocaml run_tests_js.byte -o test/run_tests.js
+Test run_tests_browser
+  PreCommand:         js_of_ocaml run_tests_browser.byte -o test/run_tests_browser.js
   Command:            test/test_driver.py
   Run$:               flag(tests)
 
