@@ -7,14 +7,13 @@
 <link title="Index of values" rel=Appendix href="index_values.html">
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="Webtest" rel="Chapter" href="Webtest.html">
-<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest.Suite</title>
+<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest : Webtest.Suite</title>
 </head>
 <body>
 <code class="code"><span class="keyword">sig</span>
 &nbsp;&nbsp;<span class="keyword">exception</span>&nbsp;<span class="constructor">TestFailure</span>&nbsp;<span class="keyword">of</span>&nbsp;string
-&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;result&nbsp;=&nbsp;<span class="constructor">Suite</span>.result&nbsp;=&nbsp;<span class="constructor">Error</span>&nbsp;<span class="keyword">of</span>&nbsp;exn&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Fail</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pass</span>
-&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;outcome&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Suite</span>.outcome&nbsp;=&nbsp;{
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;result&nbsp;=&nbsp;<span class="constructor">Error</span>&nbsp;<span class="keyword">of</span>&nbsp;exn&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Fail</span>&nbsp;<span class="keyword">of</span>&nbsp;string&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Pass</span>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;outcome&nbsp;=&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;label&nbsp;:&nbsp;string;
 &nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;:&nbsp;<span class="constructor">Webtest</span>.<span class="constructor">Suite</span>.result;
 &nbsp;&nbsp;&nbsp;&nbsp;time_s&nbsp;:&nbsp;float;

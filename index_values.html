@@ -8,7 +8,7 @@
 <link title="Index of values" rel=Appendix href="index_values.html">
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="Webtest" rel="Chapter" href="Webtest.html">
-<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Index of values</title>
+<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest : Index of values</title>
 </head>
 <body>
 <div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
@@ -19,7 +19,7 @@
 <tr><td><a href="Webtest.Suite.html#VAL(>::)">(&gt;::)</a> [<a href="Webtest.Suite.html">Webtest.Suite</a>]</td>
 <td><div class="info">
 Convenience function to create a suite from a label and a
-      <a href="Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a>.
+      <a href="Webtest.Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a>.
 </div>
 </td></tr>
 <tr><td><a href="Webtest.Suite.html#VAL(>:::)">(&gt;:::)</a> [<a href="Webtest.Suite.html">Webtest.Suite</a>]</td>
@@ -30,7 +30,7 @@ Convenience function to create a suite from a label and a list of suites.
 <tr><td><a href="Webtest.Suite.html#VAL(>:~)">(&gt;:~)</a> [<a href="Webtest.Suite.html">Webtest.Suite</a>]</td>
 <td><div class="info">
 Convenience function to create a suite from a label and an
-      <a href="Suite.Async.html#TYPEtest_fun">Async.test_fun</a>.
+      <a href="Webtest.Suite.Async.html#TYPEtest_fun">Async.test_fun</a>.
 </div>
 </td></tr>
 <tr><td align="left"><br>A</td></tr>
@@ -49,8 +49,8 @@ Convenience function to create a suite from a label and an
 <tr><td><a href="Webtest.Suite.html#VALassert_raises_string">assert_raises_string</a> [<a href="Webtest.Suite.html">Webtest.Suite</a>]</td>
 <td><div class="info">
 <code class="code">assert_raises_string str task</code> returns unit if <code class="code">task ()</code> raises an
-      exception <code class="code">e</code> for which <code class="code"><span class="constructor">Printexc</span>.to_string e = str</code>, and otherwise
-      raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.
+    exception <code class="code">e</code> for which <code class="code"><span class="constructor">Printexc</span>.to_string e = str</code>, and otherwise
+    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.
 </div>
 </td></tr>
 <tr><td><a href="Webtest.Suite.html#VALassert_true">assert_true</a> [<a href="Webtest.Suite.html">Webtest.Suite</a>]</td>
@@ -80,7 +80,7 @@ Convenience function to create a suite from a label and an
 <tr><td><a href="Webtest.Zipper.html#VALget_labels">get_labels</a> [<a href="Webtest.Zipper.html">Webtest.Zipper</a>]</td>
 <td><div class="info">
 Get the list of labels from all crumbs plus that of the current
-      location, starting at the root of the tree.
+    location, starting at the root of the tree.
 </div>
 </td></tr>
 <tr><td align="left"><br>M</td></tr>
@@ -113,7 +113,7 @@ The noop callback - this is just an alias for <code class="code"><span class="ke
 <tr><td align="left"><br>O</td></tr>
 <tr><td><a href="Webtest.Zipper.html#VALof_suite">of_suite</a> [<a href="Webtest.Zipper.html">Webtest.Zipper</a>]</td>
 <td><div class="info">
-Convert a <a href="Suite.html#TYPEt">Suite.t</a> into a <a href="#TYPEt">Zipper.t</a>.
+Convert a <a href="Webtest.Suite.html#TYPEt">Suite.t</a> into a <a href="#TYPEt">Zipper.t</a>.
 </div>
 </td></tr>
 <tr><td><a href="Webtest.Suite.Async.html#VALof_sync">of_sync</a> [<a href="Webtest.Suite.Async.html">Webtest.Suite.Async</a>]</td>
@@ -159,7 +159,7 @@ Run an asynchronous test and pass its result to a callback.
 <tr><td align="left"><br>T</td></tr>
 <tr><td><a href="Webtest.Zipper.html#VALto_suite">to_suite</a> [<a href="Webtest.Zipper.html">Webtest.Zipper</a>]</td>
 <td><div class="info">
-Convert a <a href="#TYPEt">Zipper.t</a> into a <a href="Suite.html#TYPEt">Suite.t</a>.
+Convert a <a href="#TYPEt">Zipper.t</a> into a <a href="Webtest.Suite.html#TYPEt">Suite.t</a>.
 </div>
 </td></tr>
 </table>
