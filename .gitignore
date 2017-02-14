@@ -3,6 +3,7 @@ setup.data
 setup.log
 webtest_api.docdir
 test/run_tests.js
+doc
 
 geckodriver.log
 
