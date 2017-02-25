@@ -5,10 +5,10 @@ type result =
   | Fail of string
   | Pass
 type outcome = {
-    label: string;
-    result: result;
-    time_s: float;
-  }
+  label: string;
+  result: result;
+  time_s: float;
+}
 
 let string_of_result = function
   | Error e -> Printf.sprintf "Error: %s" (Printexc.to_string e)
@@ -65,8 +65,7 @@ module Async = struct
         handled := true;
         log "End";
         log (string_of_result result);
-        handle_outcome {label; result;
-                        time_s = Sys.time () -. !start_time}
+        handle_outcome {label; result; time_s = Sys.time () -. !start_time}
       end
     in
     let catch_all f =

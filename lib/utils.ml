@@ -4,12 +4,12 @@ type output = {
 }
 
 type raw_summary = {
-    total: int;
-    errors: int;
-    failures: int;
-    passes: int;
-    passed: bool
-  }
+  total: int;
+  errors: int;
+  failures: int;
+  passes: int;
+  passed: bool
+}
 
 type summary = {
   report: string;
@@ -37,10 +37,10 @@ let run suite callback =
     | Suite.TestCase (label, test_fun) ->
       let prefix = Zipper.get_labels zipper |> String.concat ":" in
       let log = log_with_prefix prefix in
-      Suite.Async.run_one prefix test_fun log
-                  (fun outcome -> continue zipper (outcome :: outcomes))
-    | Suite.TestList (label, children) ->
-       continue zipper outcomes
+      Suite.Async.run_one
+        prefix test_fun log
+        (fun outcome -> continue zipper (outcome :: outcomes))
+    | Suite.TestList (label, children) -> continue zipper outcomes
   in
   run' zipper []
 
@@ -62,12 +62,14 @@ let summarise_raw outcomes =
 
 let summarise outcomes =
   let raw = summarise_raw outcomes in
-  let report = String.concat "\n" [
-                               Printf.sprintf "%d tests run" raw.total;
-                               Printf.sprintf "%d errors" raw.errors;
-                               Printf.sprintf "%d failures" raw.failures;
-                               Printf.sprintf "%d passes" raw.passes;
-                             ]
+  let report =
+    String.concat "\n"
+      [
+        Printf.sprintf "%d tests run" raw.total;
+        Printf.sprintf "%d errors" raw.errors;
+        Printf.sprintf "%d failures" raw.failures;
+        Printf.sprintf "%d passes" raw.passes;
+      ]
   in
   {
     report;
