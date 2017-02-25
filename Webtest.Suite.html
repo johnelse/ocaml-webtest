@@ -126,12 +126,12 @@ A labelled wrapper around a test or list of suites.<br>
 
 <pre><span id="VAL(>::)"><span class="keyword">val</span> (&gt;::)</span> : <code class="type">string -> <a href="Webtest.Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a> -> <a href="Webtest.Suite.html#TYPEt">t</a></code></pre><div class="info ">
 Convenience function to create a suite from a label and a
-      <a href="Webtest.Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a>.<br>
+    <a href="Webtest.Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a>.<br>
 </div>
 
 <pre><span id="VAL(>:~)"><span class="keyword">val</span> (&gt;:~)</span> : <code class="type">string -> <a href="Webtest.Suite.Async.html#TYPEtest_fun">Async.test_fun</a> -> <a href="Webtest.Suite.html#TYPEt">t</a></code></pre><div class="info ">
 Convenience function to create a suite from a label and an
-      <a href="Webtest.Suite.Async.html#TYPEtest_fun">Async.test_fun</a>.<br>
+    <a href="Webtest.Suite.Async.html#TYPEtest_fun">Async.test_fun</a>.<br>
 </div>
 
 <pre><span id="VAL(>:::)"><span class="keyword">val</span> (&gt;:::)</span> : <code class="type">string -> <a href="Webtest.Suite.html#TYPEt">t</a> list -> <a href="Webtest.Suite.html#TYPEt">t</a></code></pre><div class="info ">
@@ -140,12 +140,12 @@ Convenience function to create a suite from a label and a list of suites.<br>
 
 <pre><span id="VALassert_true"><span class="keyword">val</span> assert_true</span> : <code class="type">?label:string -> bool -> unit</code></pre><div class="info ">
 <code class="code">assert_bool label value</code> returns unit if <code class="code">value</code> is true, and otherwise
-      raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 
 <pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?equal:('a -> 'a -> bool) -><br>       ?label:string -> ?printer:('a -> string) -> 'a -> 'a -> unit</code></pre><div class="info ">
 <code class="code">assert_equal a b</code> returns unit if <code class="code">a</code> is equal to <code class="code">b</code>, and otherwise
-      raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 
 <pre><span id="VALassert_raises"><span class="keyword">val</span> assert_raises</span> : <code class="type">?label:string -> exn -> (unit -> unit) -> unit</code></pre><div class="info ">
