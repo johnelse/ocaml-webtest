@@ -2,7 +2,7 @@ _build
 setup.data
 setup.log
 webtest_api.docdir
-test/run_tests.js
+test/run_tests_browser.js
 doc
 
 geckodriver.log
