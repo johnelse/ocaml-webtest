@@ -31,7 +31,7 @@ def main():
     webtest = driver.execute_script("return webtest")
     print webtest["log"]
 
-    driver.close()
+    driver.quit()
 
     if not webtest["passed"]:
         sys.exit(1)
