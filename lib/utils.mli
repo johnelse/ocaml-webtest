@@ -22,8 +22,8 @@ type summary = {
   passed: bool;               (** A flag indicating whether all the tests
                                   passed. *)
 }
-(** A summary of a test run: short description of results plus a flag indicating whether
-    all the tests passed. *)
+(** A summary of a test run: short description of results plus a flag indicating
+    whether all the tests passed. *)
 
 val run : Suite.t -> (output -> unit) -> unit
 (** [run suite callback] runs [suite], passes the output to [callback]. *)
