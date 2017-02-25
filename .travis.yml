@@ -1,5 +1,8 @@
 addons:
   firefox: "50.0"
+  apt:
+    packages:
+      - nodejs
 sudo: required
 language: c
 before_install:
