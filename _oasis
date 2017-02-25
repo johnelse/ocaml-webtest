@@ -36,6 +36,19 @@ Test run_tests_browser
   Command:            test/test_driver.py
   Run$:               flag(tests)
 
+Executable run_tests_nodejs
+  Build$:             flag(tests)
+  CompiledObject:     byte
+  Path:               test
+  MainIs:             run_tests_nodejs.ml
+  BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest, webtest.js
+  Install:            false
+
+Test run_tests_nodejs
+  PreCommand:         js_of_ocaml run_tests_nodejs.byte -o test/run_tests_nodejs.js
+  Command:            node test/run_tests_nodejs.js
+  Run$:               flag(tests)
+
 Executable run_tests_ocaml
   Build$:             flag(tests)
   CompiledObject:     best
