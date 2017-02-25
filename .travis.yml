@@ -3,11 +3,9 @@ addons:
   apt:
     packages:
       - nodejs
+      - xvfb
 sudo: required
 language: c
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y xvfb
 install:
   - sudo -H pip install selenium==3.0.1
   - ./test/setup_geckodriver.sh
