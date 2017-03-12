@@ -7,7 +7,7 @@ addons:
 sudo: required
 language: c
 install:
-  - sudo -H pip install selenium==3.0.1
+  - sudo -H pip install selenium==3.3.0
   - ./test/setup_geckodriver.sh
   - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-opam.sh
   - wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-docgen.sh
