@@ -12,7 +12,7 @@
 <link title="Index of values" rel=Appendix href="index_values.html">
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="Webtest" rel="Chapter" href="Webtest.html">
-<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest : Webtest.Zipper</title>
+<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest.Zipper</title>
 </head>
 <body>
 <div class="navbar"><a class="pre" href="Webtest.Suite.html" title="Webtest.Suite">Previous</a>
@@ -21,8 +21,7 @@
 </div>
 <h1>Module <a href="type_Webtest.Zipper.html">Webtest.Zipper</a></h1>
 
-<pre><span class="keyword">module</span> Zipper: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Zipper.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><hr width="100%">
-<br>
+<pre><span class="keyword">module</span> Zipper: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Zipper.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
 A zipper implementation based on <a href="Webtest.Suite.html#TYPEt">Suite.t</a>, which
     represents the current location in the tree as well as the path used to
     reach the current location from the root.
@@ -31,6 +30,8 @@ A zipper implementation based on <a href="Webtest.Suite.html#TYPEt">Suite.t</a>,
     Generally this module should not be used directly; instead
     <a href="Webtest.Utils.html#VALrun">Utils.run</a> can be used to traverse the test tree and
     report results.<br>
+</div>
+<hr width="100%">
 
 <pre><code><span id="TYPEcrumb"><span class="keyword">type</span> <code class="type"></code>crumb</span> = {</code></pre><table class="typetable">
 <tr>
@@ -67,7 +68,7 @@ The list of siblings to the right of the current location.<br>
 
 <div class="info ">
 A type representing the path through a <a href="Webtest.Suite.html#TYPEt">Webtest.Suite.t</a> from the
-    root to the current location.<br>
+      root to the current location.<br>
 </div>
 
 
@@ -105,8 +106,8 @@ Convert a <a href="Webtest.Suite.html#TYPEt">Suite.t</a> into a <a href="#TYPEt"
 
 <pre><span id="VALto_suite"><span class="keyword">val</span> to_suite</span> : <code class="type"><a href="Webtest.Zipper.html#TYPEt">t</a> -> <a href="Webtest.Suite.html#TYPEt">Webtest.Suite.t</a></code></pre><div class="info ">
 Convert a <a href="#TYPEt">Zipper.t</a> into a <a href="Webtest.Suite.html#TYPEt">Suite.t</a>.
-    Note that this does not include the crumbs, only the subtree at the current
-    location.<br>
+      Note that this does not include the crumbs, only the subtree at the current
+      location.<br>
 </div>
 
 <pre><span id="VALmove_up"><span class="keyword">val</span> move_up</span> : <code class="type"><a href="Webtest.Zipper.html#TYPEt">t</a> -> <a href="Webtest.Zipper.html#TYPEt">t</a> option</code></pre><div class="info ">
@@ -123,11 +124,11 @@ Attempt to move right to the next sibling.<br>
 
 <pre><span id="VALnext_location"><span class="keyword">val</span> next_location</span> : <code class="type"><a href="Webtest.Zipper.html#TYPEt">t</a> -> <a href="Webtest.Zipper.html#TYPEt">t</a> option</code></pre><div class="info ">
 Attempt to move to the next location while traversing the tree. Return None
-    if we're already at the last location to be traversed.<br>
+      if we're already at the last location to be traversed.<br>
 </div>
 
 <pre><span id="VALget_labels"><span class="keyword">val</span> get_labels</span> : <code class="type"><a href="Webtest.Zipper.html#TYPEt">t</a> -> string list</code></pre><div class="info ">
 Get the list of labels from all crumbs plus that of the current
-    location, starting at the root of the tree.<br>
+      location, starting at the root of the tree.<br>
 </div>
 </body></html>

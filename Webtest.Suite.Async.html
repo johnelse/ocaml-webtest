@@ -11,7 +11,7 @@
 <link title="Index of values" rel=Appendix href="index_values.html">
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="Webtest" rel="Chapter" href="Webtest.html">
-<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest : Webtest.Suite.Async</title>
+<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest.Suite.Async</title>
 </head>
 <body>
 <div class="navbar"><a class="pre" href="Webtest.Suite.Sync.html" title="Webtest.Suite.Sync">Previous</a>
@@ -24,7 +24,7 @@
 <pre><span id="TYPEcallback"><span class="keyword">type</span> <code class="type"></code>callback</span> = <code class="type">unit -> unit</code> </pre>
 <div class="info ">
 The type of an asynchronous callback which will run as part of an
-      asynchronous test.<br>
+        asynchronous test.<br>
 </div>
 
 
@@ -41,15 +41,15 @@ A wrapper function to be passed to an asynchronous test.<br>
 <pre><span id="TYPEtest_fun"><span class="keyword">type</span> <code class="type"></code>test_fun</span> = <code class="type"><a href="Webtest.Suite.Async.html#TYPEwrapper">wrapper</a> -> unit</code> </pre>
 <div class="info ">
 An asynchronous test function. When run it will be passed a wrapper
-        function - this should be used to wrap any asynchronous code which the
-        test case is expected to run.<br>
+          function - this should be used to wrap any asynchronous code which the
+          test case is expected to run.<br>
 </div>
 
 
 <pre><span id="VALbracket"><span class="keyword">val</span> bracket</span> : <code class="type">(unit -> 'a) -><br>       ('a -> <a href="Webtest.Suite.Async.html#TYPEwrapper">wrapper</a> -> unit) -><br>       ('a -> unit) -> <a href="Webtest.Suite.Async.html#TYPEtest_fun">test_fun</a></code></pre><div class="info ">
 <code class="code">bracket setup test teardown</code> generates a <a href="#TYPEtest_fun">test_fun</a>
-      which will use <code class="code">setup</code> to create state needed for the test, then pass that
-      state to <code class="code">test</code>, and finally will pass that state to <code class="code">teardown</code>.<br>
+        which will use <code class="code">setup</code> to create state needed for the test, then pass that
+        state to <code class="code">test</code>, and finally will pass that state to <code class="code">teardown</code>.<br>
 </div>
 
 <pre><span id="VALrun_one"><span class="keyword">val</span> run_one</span> : <code class="type">string -><br>       <a href="Webtest.Suite.Async.html#TYPEtest_fun">test_fun</a> -><br>       (string -> unit) -> (<a href="Webtest.Suite.html#TYPEoutcome">Webtest.Suite.outcome</a> -> unit) -> unit</code></pre><div class="info ">

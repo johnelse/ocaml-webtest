@@ -11,7 +11,7 @@
 <link title="Index of values" rel=Appendix href="index_values.html">
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="Webtest" rel="Chapter" href="Webtest.html">
-<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest : Webtest.Suite</title>
+<link title="Webtest_js" rel="Chapter" href="Webtest_js.html"><title>Webtest.Suite</title>
 </head>
 <body>
 <div class="navbar">&nbsp;<a class="up" href="Webtest.html" title="Webtest">Up</a>
@@ -19,12 +19,13 @@
 </div>
 <h1>Module <a href="type_Webtest.Suite.html">Webtest.Suite</a></h1>
 
-<pre><span class="keyword">module</span> Suite: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Suite.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><hr width="100%">
+<pre><span class="keyword">module</span> Suite: <code class="code"><span class="keyword">sig</span></code> <a href="Webtest.Suite.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+Types and functions for creating and structuring unit test suites.<br>
+</div>
+<hr width="100%">
 
 <pre><span id="EXCEPTIONTestFailure"><span class="keyword">exception</span> TestFailure</span> <span class="keyword">of</span> <code class="type">string</code></pre>
 <div class="info ">
-Types and functions for creating and structuring unit test suites.
-<p>
 The exception thrown by failing tests.<br>
 </div>
 
@@ -126,12 +127,12 @@ A labelled wrapper around a test or list of suites.<br>
 
 <pre><span id="VAL(>::)"><span class="keyword">val</span> (&gt;::)</span> : <code class="type">string -> <a href="Webtest.Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a> -> <a href="Webtest.Suite.html#TYPEt">t</a></code></pre><div class="info ">
 Convenience function to create a suite from a label and a
-    <a href="Webtest.Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a>.<br>
+      <a href="Webtest.Suite.Sync.html#TYPEtest_fun">Sync.test_fun</a>.<br>
 </div>
 
 <pre><span id="VAL(>:~)"><span class="keyword">val</span> (&gt;:~)</span> : <code class="type">string -> <a href="Webtest.Suite.Async.html#TYPEtest_fun">Async.test_fun</a> -> <a href="Webtest.Suite.html#TYPEt">t</a></code></pre><div class="info ">
 Convenience function to create a suite from a label and an
-    <a href="Webtest.Suite.Async.html#TYPEtest_fun">Async.test_fun</a>.<br>
+      <a href="Webtest.Suite.Async.html#TYPEtest_fun">Async.test_fun</a>.<br>
 </div>
 
 <pre><span id="VAL(>:::)"><span class="keyword">val</span> (&gt;:::)</span> : <code class="type">string -> <a href="Webtest.Suite.html#TYPEt">t</a> list -> <a href="Webtest.Suite.html#TYPEt">t</a></code></pre><div class="info ">
@@ -140,22 +141,22 @@ Convenience function to create a suite from a label and a list of suites.<br>
 
 <pre><span id="VALassert_true"><span class="keyword">val</span> assert_true</span> : <code class="type">?label:string -> bool -> unit</code></pre><div class="info ">
 <code class="code">assert_bool label value</code> returns unit if <code class="code">value</code> is true, and otherwise
-    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+      raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 
 <pre><span id="VALassert_equal"><span class="keyword">val</span> assert_equal</span> : <code class="type">?equal:('a -> 'a -> bool) -><br>       ?label:string -> ?printer:('a -> string) -> 'a -> 'a -> unit</code></pre><div class="info ">
 <code class="code">assert_equal a b</code> returns unit if <code class="code">a</code> is equal to <code class="code">b</code>, and otherwise
-    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+      raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 
 <pre><span id="VALassert_raises"><span class="keyword">val</span> assert_raises</span> : <code class="type">?label:string -> exn -> (unit -> unit) -> unit</code></pre><div class="info ">
 <code class="code">assert_raises e task</code> returns unit if <code class="code">task ()</code> raises <code class="code">e</code>, and otherwise
-      raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+        raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 
 <pre><span id="VALassert_raises_string"><span class="keyword">val</span> assert_raises_string</span> : <code class="type">?label:string -> string -> (unit -> unit) -> unit</code></pre><div class="info ">
 <code class="code">assert_raises_string str task</code> returns unit if <code class="code">task ()</code> raises an
-    exception <code class="code">e</code> for which <code class="code"><span class="constructor">Printexc</span>.to_string e = str</code>, and otherwise
-    raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
+      exception <code class="code">e</code> for which <code class="code"><span class="constructor">Printexc</span>.to_string e = str</code>, and otherwise
+      raises <a href="#EXCEPTIONTestFailure">TestFailure</a>.<br>
 </div>
 </body></html>
