@@ -7,21 +7,20 @@ License:        MIT
 Synopsis:       Unit test framework fully compatible with js_of_ocaml
 Plugins:        META (0.4), DevFiles (0.4)
 BuildTools:     ocamlbuild
+AlphaFeatures:  ocamlbuild_more_args
 
 PostCleanCommand:   rm -f test/run_tests_browser.js
 
 Library webtest
   Path:               lib
-  Pack:               true
-  InternalModules:    Suite, Utils, Zipper
+  Modules:            Webtest
 
 Library webtest_js
   Path:               js
-  Pack:               true
   BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest
   Findlibname:        js
   Findlibparent:      webtest
-  InternalModules:    Runner
+  Modules:            Webtest_js
 
 Executable run_tests_browser
   Build$:             flag(tests)
@@ -62,8 +61,10 @@ Test run_tests_ocaml
   Run$:               flag(tests)
 
 Document webtest_api
-  Type:         Custom (0.4)
-  Title:        Unit test framework fully compatible with js_of_ocaml
-  XCustom:      mkdir -p ./doc && ocaml contrib/pack.ml -o doc/webtest.ml -no-ml -mli lib/suite.mli lib/zipper.mli lib/utils.mli && ocaml contrib/pack.ml -o doc/webtest_js.ml -no-ml -mli js/runner.mli && ocamlbuild -build-dir '_build' -docflags '-t Webtest -colorize-code -short-functors -charset utf-8' webtest_api.docdir/index.html && ln -sf _build/webtest_api.docdir webtest_api.docdir
-  XCustomClean: rm -rf ./doc && rm -f ./webtest_api.docdir
-  Install:      false
+  Type:                 ocamlbuild (0.4)
+  BuildTools:           ocamldoc
+  Title:                Unit test framework fully compatible with js_of_ocaml
+  XOcamlBuildPath:      .
+  XOcamlBuildExtraArgs: "-docflags '-colorize-code -short-functors -charset utf-8'"
+  XOcamlBuildLibraries: webtest, webtest.js
+  Install:              false
