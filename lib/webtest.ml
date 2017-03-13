@@ -5,6 +5,7 @@ module Suite = struct
     | Error of exn
     | Fail of string
     | Pass
+
   type outcome = {
     label: string;
     result: result;
