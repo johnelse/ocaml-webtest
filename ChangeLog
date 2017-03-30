@@ -1,3 +1,7 @@
+1.1.0 (31-Mar-2017):
+ * Add support for running a test suite under nodejs
+ * Add logging of test run times
+
 1.0.2 (16-Jan-2017):
  * Add internal modules to installed package
 
