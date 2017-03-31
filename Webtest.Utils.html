@@ -42,7 +42,7 @@ The logging produced while running the
 <td align="left" valign="top" >
 <code><span id="TYPEELToutput.outcomes">outcomes</span>&nbsp;: <code class="type"><a href="Webtest.Suite.html#TYPEoutcome">Webtest.Suite.outcome</a> list</code>;</code></td>
 <td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" ><div class="info ">
-The results of running the test.<br>
+The results of running the tests.<br>
 </div>
 </td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
 </tr></table>
@@ -122,8 +122,8 @@ A flag indicating whether all the tests
 }
 
 <div class="info ">
-A summary of a test run: short description of results plus a flag indicating
-      whether all the tests passed.<br>
+A summary of a test run: short description of results plus a flag
+      indicating whether all the tests passed.<br>
 </div>
 
 
@@ -132,10 +132,15 @@ A summary of a test run: short description of results plus a flag indicating
 </div>
 
 <pre><span id="VALsummarise_raw"><span class="keyword">val</span> summarise_raw</span> : <code class="type"><a href="Webtest.Suite.html#TYPEoutcome">Webtest.Suite.outcome</a> list -> <a href="Webtest.Utils.html#TYPEraw_summary">raw_summary</a></code></pre><div class="info ">
-<code class="code">summarise outcomes</code> converts a list of test outcome into a summary.<br>
+<code class="code">summarise outcomes</code> converts a list of test outcomes into a raw
+      summary.<br>
+</div>
+
+<pre><span id="VALsummary_of_raw"><span class="keyword">val</span> summary_of_raw</span> : <code class="type"><a href="Webtest.Utils.html#TYPEraw_summary">raw_summary</a> -> <a href="Webtest.Utils.html#TYPEsummary">summary</a></code></pre><div class="info ">
+<code class="code">summary_of_raw</code> creates a basic summary from a raw summary.<br>
 </div>
 
 <pre><span id="VALsummarise"><span class="keyword">val</span> summarise</span> : <code class="type"><a href="Webtest.Suite.html#TYPEoutcome">Webtest.Suite.outcome</a> list -> <a href="Webtest.Utils.html#TYPEsummary">summary</a></code></pre><div class="info ">
-<code class="code">summarise outcomes</code> converts a list of test outcome into a summary.<br>
+<code class="code">summarise outcomes</code> converts a list of test outcomes into a summary.<br>
 </div>
 </body></html>

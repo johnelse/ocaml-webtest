@@ -28,8 +28,8 @@ A zipper implementation based on <a href="Webtest.Suite.html#TYPEt">Suite.t</a>,
 <p>
 
     Generally this module should not be used directly; instead
-    <a href="Webtest.Utils.html#VALrun">Utils.run</a> can be used to traverse the test tree and
-    report results.<br>
+    <a href="Webtest.Utils.html#VALrun">Utils.run</a> can be used to traverse the test
+    tree and report results.<br>
 </div>
 <hr width="100%">
 
@@ -67,8 +67,9 @@ The list of siblings to the right of the current location.<br>
 }
 
 <div class="info ">
-A type representing the path through a <a href="Webtest.Suite.html#TYPEt">Webtest.Suite.t</a> from the
-      root to the current location.<br>
+A type representing the path through a
+     <a href="Webtest.Suite.html#TYPEt">Webtest.Suite.t</a> from the root to the current
+     location.<br>
 </div>
 
 
@@ -101,13 +102,14 @@ A zipper implementation based on <a href="Webtest.Suite.html#TYPEt">Suite.t</a>.
 
 
 <pre><span id="VALof_suite"><span class="keyword">val</span> of_suite</span> : <code class="type"><a href="Webtest.Suite.html#TYPEt">Webtest.Suite.t</a> -> <a href="Webtest.Zipper.html#TYPEt">t</a></code></pre><div class="info ">
-Convert a <a href="Webtest.Suite.html#TYPEt">Suite.t</a> into a <a href="#TYPEt">Zipper.t</a>.<br>
+Convert a <a href="Webtest.Suite.html#TYPEt">Suite.t</a> into a
+      <a href="#TYPEt">Zipper.t</a>.<br>
 </div>
 
 <pre><span id="VALto_suite"><span class="keyword">val</span> to_suite</span> : <code class="type"><a href="Webtest.Zipper.html#TYPEt">t</a> -> <a href="Webtest.Suite.html#TYPEt">Webtest.Suite.t</a></code></pre><div class="info ">
 Convert a <a href="#TYPEt">Zipper.t</a> into a <a href="Webtest.Suite.html#TYPEt">Suite.t</a>.
-      Note that this does not include the crumbs, only the subtree at the current
-      location.<br>
+      Note that this does not include the crumbs, only the subtree at the
+      current location.<br>
 </div>
 
 <pre><span id="VALmove_up"><span class="keyword">val</span> move_up</span> : <code class="type"><a href="Webtest.Zipper.html#TYPEt">t</a> -> <a href="Webtest.Zipper.html#TYPEt">t</a> option</code></pre><div class="info ">
@@ -123,8 +125,8 @@ Attempt to move right to the next sibling.<br>
 </div>
 
 <pre><span id="VALnext_location"><span class="keyword">val</span> next_location</span> : <code class="type"><a href="Webtest.Zipper.html#TYPEt">t</a> -> <a href="Webtest.Zipper.html#TYPEt">t</a> option</code></pre><div class="info ">
-Attempt to move to the next location while traversing the tree. Return None
-      if we're already at the last location to be traversed.<br>
+Attempt to move to the next location while traversing the tree. Return
+      None if we're already at the last location to be traversed.<br>
 </div>
 
 <pre><span id="VALget_labels"><span class="keyword">val</span> get_labels</span> : <code class="type"><a href="Webtest.Zipper.html#TYPEt">t</a> -> string list</code></pre><div class="info ">
