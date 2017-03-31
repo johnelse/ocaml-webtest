@@ -184,6 +184,9 @@ module Utils : sig
   (** [summarise outcomes] converts a list of test outcomes into a raw
       summary. *)
 
+  val summary_of_raw : raw_summary -> summary
+  (** [summary_of_raw] creates a basic summary from a raw summary. *)
+
   val summarise : Suite.outcome list -> summary
   (** [summarise outcomes] converts a list of test outcomes into a summary. *)
 end

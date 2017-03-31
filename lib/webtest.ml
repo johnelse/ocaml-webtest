@@ -319,8 +319,7 @@ module Utils = struct
       passed = (total = passes)
     }
 
-  let summarise outcomes =
-    let raw = summarise_raw outcomes in
+  let summary_of_raw raw =
     let report =
       String.concat "\n"
         [
@@ -334,4 +333,8 @@ module Utils = struct
       report;
       passed = raw.passed;
     }
+
+  let summarise outcomes =
+    summarise_raw outcomes
+    |> summary_of_raw
 end
