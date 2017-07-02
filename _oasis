@@ -17,7 +17,7 @@ Library webtest
 
 Library webtest_js
   Path:               js
-  BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest
+  BuildDepends:       js_of_ocaml, js_of_ocaml-ppx, webtest
   Findlibname:        js
   Findlibparent:      webtest
   Modules:            Webtest_js
@@ -27,11 +27,11 @@ Executable run_tests_browser
   CompiledObject:     byte
   Path:               test
   MainIs:             run_tests_browser.ml
-  BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest, webtest.js
+  BuildDepends:       js_of_ocaml, js_of_ocaml-ppx, webtest, webtest.js
   Install:            false
 
 Test run_tests_browser
-  PreCommand:         js_of_ocaml run_tests_browser.byte -o test/run_tests_browser.js
+  PreCommand:         js_of_ocaml.exe run_tests_browser.byte -o test/run_tests_browser.js
   Command:            test/test_driver.py
   Run$:               flag(tests)
 
@@ -40,11 +40,11 @@ Executable run_tests_nodejs
   CompiledObject:     byte
   Path:               test
   MainIs:             run_tests_nodejs.ml
-  BuildDepends:       js_of_ocaml, js_of_ocaml.ppx, webtest, webtest.js
+  BuildDepends:       js_of_ocaml, js_of_ocaml-ppx, webtest, webtest.js
   Install:            false
 
 Test run_tests_nodejs
-  PreCommand:         js_of_ocaml run_tests_nodejs.byte -o test/run_tests_nodejs.js
+  PreCommand:         js_of_ocaml.exe run_tests_nodejs.byte -o test/run_tests_nodejs.js
   Command:            node test/run_tests_nodejs.js
   Run$:               flag(tests)
 
