@@ -1,3 +1,6 @@
+1.2.0 (02-Jul-2017):
+ * Convert to js_of_ocaml 3.0.0
+
 1.1.0 (31-Mar-2017):
  * Add support for running a test suite under nodejs
  * Add logging of test run times
