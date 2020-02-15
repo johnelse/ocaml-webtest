@@ -69,9 +69,11 @@ module Suite : sig
   val (>::) : string -> Sync.test_fun -> t
   (** Convenience function to create a suite from a label and a
       {{:Webtest.Suite.Sync.html#TYPEtest_fun}Sync.test_fun}. *)
+
   val (>:~) : string -> Async.test_fun -> t
   (** Convenience function to create a suite from a label and an
       {{:Webtest.Suite.Async.html#TYPEtest_fun}Async.test_fun}. *)
+
   val (>:::) : string -> t list -> t
   (** Convenience function to create a suite from a label and a list of
       suites. *)
@@ -128,6 +130,7 @@ module Zipper : sig
   val of_suite : Suite.t -> t
   (** Convert a {{:Webtest.Suite.html#TYPEt}Suite.t} into a
       {{:#TYPEt}Zipper.t}. *)
+
   val to_suite : t -> Suite.t
   (** Convert a {{:#TYPEt}Zipper.t} into a {{:Webtest.Suite.html#TYPEt}Suite.t}.
       Note that this does not include the crumbs, only the subtree at the
@@ -135,8 +138,10 @@ module Zipper : sig
 
   val move_up    : t -> t option
   (** Attempt to move up to the parent node. *)
+
   val move_down  : t -> t option
   (** Attempt to move down to the first child node. *)
+
   val move_right : t -> t option
   (** Attempt to move right to the next sibling. *)
 
