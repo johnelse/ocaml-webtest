@@ -1,0 +1,4 @@
+(test
+  (name run_tests_ocaml)
+  (modules run_tests_ocaml)
+  (libraries test_common))
