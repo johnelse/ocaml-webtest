@@ -6,30 +6,11 @@ dev-repo: "git://github.com/johnelse/ocaml-webtest"
 maintainer: "john.else@gmail.com"
 available: [ ocaml-version >= "4.02.1" ]
 build: [
-  [
-    "./configure"
-    "--prefix" prefix
-    "--enable-docs"
-  ]
-  [make "build"]
+  [ "dune" "build" "-p" name "-j" jobs ]
+  [ "dune" "runtest" ] {with-test}
 ]
-build-test: [
-  [
-    "./configure"
-    "--enable-tests"
-  ]
-  [make "test"]
-]
-install: [
-  [make "PREFIX=%{prefix}%" "install"]
-]
-remove: [
-  ["ocamlfind" "remove" "webtest"]
-]
+
 depends: [
-  "oasis" {build}
-  "ocamlbuild" {build}
-  "ocamlfind" {build}
-  "js_of_ocaml"
-  "js_of_ocaml-ppx"
+  "dune"
+  "ocaml" {>= "4.02.1"}
 ]
