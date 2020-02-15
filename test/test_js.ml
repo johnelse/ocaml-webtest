@@ -1,5 +1,6 @@
 (* Javascript-specific tests. *)
 
+open Js_of_ocaml
 open Test_utils
 open Webtest.Suite
 

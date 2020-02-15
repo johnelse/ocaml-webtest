@@ -1,3 +1,5 @@
+open Js_of_ocaml
+
 module Runner = struct
   let paint color string = match color with
     | `Red -> "\027[31m" ^ string ^ "\027[0m"
