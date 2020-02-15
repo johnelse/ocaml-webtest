@@ -76,7 +76,7 @@ let test_bracket_fail_in_sync () =
   in
   let async_test = Async.bracket
     setup
-    (fun state wrapper -> assert_equal 5 6)
+    (fun _ _ -> assert_equal 5 6)
     teardown
   in
   assert_equal
@@ -92,7 +92,7 @@ let test_bracket_fail_in_async () =
   in
   let async_test = Async.bracket
     setup
-    (fun state wrapper -> wrapper (fun () -> assert_equal 5 6))
+    (fun _ wrapper -> wrapper (fun () -> assert_equal 5 6))
     teardown
   in
   assert_equal
@@ -110,7 +110,7 @@ let test_bracket_error_in_sync () =
   in
   let async_test = Async.bracket
     setup
-    (fun state wrapper -> raise TestException)
+    (fun _ _ -> raise TestException)
     teardown
   in
   assert_equal
@@ -126,7 +126,7 @@ let test_bracket_error_in_async () =
   in
   let async_test = Async.bracket
     setup
-    (fun state wrapper -> wrapper (fun () -> raise TestException))
+    (fun _ wrapper -> wrapper (fun () -> raise TestException))
     teardown
   in
   assert_equal
