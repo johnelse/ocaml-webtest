@@ -5,6 +5,8 @@ webtest_api.docdir
 test/run_tests_*.js
 doc
 
+.merlin
+
 geckodriver.log
 
 *.byte
