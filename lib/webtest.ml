@@ -185,7 +185,7 @@ module Zipper = struct
     location = suite;
   }
 
-  let to_suite {location} = location
+  let to_suite {location; _} = location
 
   let move_up {crumbs; location} =
     match crumbs with
@@ -203,7 +203,7 @@ module Zipper = struct
     (* A TestCase has no children. *)
     | Suite.TestCase _ -> None
     (* A TestList may not have any children to move down to. *)
-    | Suite.TestList (label, []) -> None
+    | Suite.TestList (_, []) -> None
     (* Move down to the first child of the TestList. *)
     | Suite.TestList (label, first_child :: other_children) -> Some {
       crumbs = {
@@ -219,7 +219,7 @@ module Zipper = struct
     (* At the top of the tree, so no siblings. *)
     | [] -> None
     (* Already at the rightmost sibling. *)
-    | {right = []} :: _ -> None
+    | {right = []; _} :: _ -> None
     (* Move to the next sibling to the right. *)
     | {left; label; right = first_right :: other_right} :: other_crumbs -> Some {
       crumbs = {
@@ -233,7 +233,7 @@ module Zipper = struct
   let rec next_sibling zipper =
     match move_right zipper with
     (* Move to the next sibling to the right. *)
-    | (Some zipper') as result -> result
+    | (Some _) as result -> result
     (* No more siblings, so try to move up. *)
     | None -> begin
       match move_up zipper with
@@ -245,7 +245,7 @@ module Zipper = struct
 
   let next_location zipper =
     match move_down zipper with
-    | Some zipper' as result -> result
+    | Some _ as result -> result
     | None -> next_sibling zipper
 
   let get_labels {crumbs; location} =
@@ -282,7 +282,7 @@ module Utils = struct
       log := (line :: !log)
     in
     let zipper = Zipper.of_suite suite in
-    let rec run' ({Zipper.location} as zipper) outcomes =
+    let rec run' ({Zipper.location; _} as zipper) outcomes =
       let continue zipper outcomes' =
         match Zipper.next_location zipper with
         | Some zipper' -> run' zipper' outcomes'
@@ -293,13 +293,13 @@ module Utils = struct
           }
       in
       match location with
-      | Suite.TestCase (label, test_fun) ->
+      | Suite.TestCase (_, test_fun) ->
         let prefix = Zipper.get_labels zipper |> String.concat ":" in
         let log = log_with_prefix prefix in
         Suite.Async.run_one
           prefix test_fun log
           (fun outcome -> continue zipper (outcome :: outcomes))
-      | Suite.TestList (label, children) -> continue zipper outcomes
+      | Suite.TestList (_, _) -> continue zipper outcomes
     in
     run' zipper []
 
