@@ -1,0 +1,18 @@
+opam-version: "1.2"
+authors: "John Else"
+homepage: "https://github.com/johnelse/ocaml-webtest"
+bug-reports: "https://github.com/johnelse/ocaml-webtest/issues"
+dev-repo: "git://github.com/johnelse/ocaml-webtest"
+maintainer: "john.else@gmail.com"
+available: [ ocaml-version >= "4.02.1" ]
+build: [
+  [ "dune" "build" "-p" name "-j" jobs ]
+  [ "dune" "runtest" ] {with-test}
+]
+
+depends: [
+  "dune"
+  "js_of_ocaml"
+  "js_of_ocaml-ppx"
+  "ocaml" {>= "4.02.1"}
+]
