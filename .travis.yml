@@ -1,5 +1,5 @@
 addons:
-  firefox: "50.0"
+  firefox: "73.0"
   apt:
     packages:
       - nodejs
