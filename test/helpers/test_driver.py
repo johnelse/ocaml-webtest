@@ -8,6 +8,7 @@ import os
 import sys
 
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 
 
@@ -15,7 +16,10 @@ def main():
     """
     Main program.
     """
-    driver = webdriver.Firefox()
+    options = Options()
+    options.add_argument('-headless')
+
+    driver = webdriver.Firefox(firefox_options=options)
     driver.get(
         "file://%s" % (os.path.join(os.getcwd(), "helpers/run_tests.html")))
 

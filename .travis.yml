@@ -3,7 +3,6 @@ addons:
   apt:
     packages:
       - nodejs
-      - xvfb
 sudo: required
 language: c
 install:
@@ -11,7 +10,7 @@ install:
   - ./test/helpers/setup_geckodriver.sh
   - wget https://raw.githubusercontent.com/ocaml/ocaml-ci-scripts/master/.travis-opam.sh
 script:
-  - xvfb-run bash -ex .travis-opam.sh
+  - bash -ex .travis-opam.sh
 env:
   global:
     - PACKAGE=webtest-js
