@@ -15,4 +15,5 @@ depends: [
   "js_of_ocaml"
   "js_of_ocaml-ppx"
   "ocaml" {>= "4.02.1"}
+  "webtest"
 ]
