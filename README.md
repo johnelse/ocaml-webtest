@@ -26,7 +26,7 @@ you're probably better off just using oUnit for the extra features it provides.
 
 This has no dependencies, and contains code for creating tests and suites.
 
-* `webtest.js`
+* `webtest-js`
 
 This depends on `js_of_ocaml`, and contains code used for running tests in a
 browser.
