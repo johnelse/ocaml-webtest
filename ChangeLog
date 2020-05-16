@@ -1,3 +1,7 @@
+2.0.0 (16-May-2020):
+ * Convert build to dune
+ * Split into two opam packages, webtest and webtest-js
+
 1.2.0 (02-Jul-2017):
  * Convert to js_of_ocaml 3.0.0
 
