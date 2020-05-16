@@ -3,5 +3,5 @@
   (public_name webtest-js)
   (wrapped false)
   (modules webtest_js)
-  (preprocess (pps js_of_ocaml.ppx))
-  (libraries js_of_ocaml js_of_ocaml.ppx webtest))
+  (preprocess (pps js_of_ocaml-ppx))
+  (libraries js_of_ocaml webtest))

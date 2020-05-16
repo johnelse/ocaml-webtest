@@ -7,7 +7,7 @@
   (name run_tests_nodejs)
   (modes js)
   (modules run_tests_nodejs)
-  (preprocess (pps js_of_ocaml.ppx))
+  (preprocess (pps js_of_ocaml-ppx))
   (libraries test_common test_common_js webtest-js))
 
 (alias
@@ -21,7 +21,7 @@
   (name run_tests_browser)
   (modes js)
   (modules run_tests_browser)
-  (preprocess (pps js_of_ocaml.ppx))
+  (preprocess (pps js_of_ocaml-ppx))
   (libraries test_common test_common_js webtest-js))
 
 (alias
