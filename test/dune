@@ -11,7 +11,7 @@
   (libraries test_common test_common_js webtest-js))
 
 (alias
-  (name extratest)
+  (name nodetest)
   (deps
     (:x run_tests_nodejs.bc.js)
     (source_tree helpers))
@@ -25,7 +25,7 @@
   (libraries test_common test_common_js webtest-js))
 
 (alias
-  (name extratest)
+  (name firefoxtest)
   (deps
     (:x run_tests_browser.bc.js)
     (source_tree helpers))
