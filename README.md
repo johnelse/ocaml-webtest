@@ -1,7 +1,7 @@
 ocaml-webtest
 =============
 
-[![Build status](https://travis-ci.org/johnelse/ocaml-webtest.png?branch=master)](https://travis-ci.org/johnelse/ocaml-webtest)
+[![Build status](https://github.com/johnelse/ocaml-webtest/actions/workflows/workflow.yml/badge.svg)](https://github.com/johnelse/ocaml-webtest/actions)
 [![API reference](https://img.shields.io/badge/docs-API_reference-blue.svg)](https://johnelse.github.io/ocaml-webtest)
 
 A unit test framework, fully compatible with
