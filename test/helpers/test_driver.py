@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Selenium test runner.
@@ -33,7 +33,7 @@ def main():
         lambda driver: driver.execute_script("return webtest.finished"))
 
     webtest = driver.execute_script("return webtest")
-    print webtest["log"]
+    print(webtest["log"])
 
     driver.quit()
 
