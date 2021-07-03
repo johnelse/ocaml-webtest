@@ -35,3 +35,9 @@ jobs:
       - run: opam exec -- dune build
 
       - run: opam exec -- dune runtest
+
+      - name: Install nodejs
+        run:  sudo apt install nodejs
+
+      - name: Run extra tests
+        run:  ./test/helpers/run_tests.sh
