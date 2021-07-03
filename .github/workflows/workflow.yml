@@ -39,5 +39,13 @@ jobs:
       - name: Install nodejs
         run:  sudo apt install nodejs
 
+      - name: Set up Python 3.8.2
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8.2
+
+      - name: Install selenium
+        run:  pip install selenium==3.141.0
+
       - name: Run extra tests
         run:  ./test/helpers/run_tests.sh
