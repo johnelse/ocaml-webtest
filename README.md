@@ -115,12 +115,11 @@ This API can be used by browser automation tools such as
 [Selenium WebDriver](http://www.seleniumhq.org/projects/webdriver/). For an
 example implementation in Python, see [test_driver.py](test/test_driver.py).
 
-A "known good" setup for automating browser tests (and what this repository
-uses for CI) is:
+A "known good" setup for automating browser tests is:
 
-* Firefox 50
-* Python 2.7 with version 3.3.0 of the Selenium bindings
-* geckodriver 0.15.0
+* Firefox 89
+* Python 3.8.5 with version 3.141.0 of the Selenium bindings
+* geckodriver 0.29.1
 * Xvfb (optional, unless running on a headless machine)
 
 ## Examples
