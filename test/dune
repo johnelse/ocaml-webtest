@@ -29,4 +29,4 @@
   (deps
     (:x run_tests_browser.bc.js)
     (source_tree helpers))
-  (action (run helpers/test_driver.py)))
+  (action (run helpers/run_firefox_tests.py)))
